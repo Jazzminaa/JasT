@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 {"version":3,"file":"app.component.js","sourceRoot":"","sources":["app.component.ts"],"names":[],"mappings":";;;;;;;AAAA,sCAAwC;AAMxC,IAAa,YAAY;IAAzB;IAEA,CAAC;IAAD,mBAAC;AAAD,CAAC,AAFD,IAEC;AAFY,YAAY;IAJxB,gBAAS,CAAC;QACT,QAAQ,EAAE,QAAQ;QAClB,WAAW,EAAG,wBAAwB;KACvC,CAAC;GACW,YAAY,CAExB;AAFY,oCAAY"}
+=======
+{"version":3,"file":"app.component.js","sourceRoot":"","sources":["app.component.ts"],"names":[],"mappings":";;;;;;;AAAA,sCAAwC;AAMxC,IAAa,YAAY;IAJzB;QAKE,iBAAY,GAAa,CAAC,UAAU,EAAE,SAAS,EAAE,YAAY,EAAE,QAAQ,EAAE,QAAQ,CAAC,CAAC;QACnF,UAAK,GAAa,CAAC,KAAK,EAAE,OAAO,EAAE,gBAAgB,EAAE,aAAa,EAAE,QAAQ,CAAC,CAAC;IAMhF,CAAC;IAHC,qCAAc,GAAd,UAAe,MAAc;QAC3B,MAAM,GAAG,IAAI,CAAC,YAAY,CAAC;IAC7B,CAAC;IACH,mBAAC;AAAD,CAAC,AARD,IAQC;AARY,YAAY;IAJxB,gBAAS,CAAC;QACT,QAAQ,EAAE,QAAQ;QAClB,WAAW,EAAG,wBAAwB;KACvC,CAAC;GACW,YAAY,CAQxB;AARY,oCAAY"}
+>>>>>>> Stashed changes

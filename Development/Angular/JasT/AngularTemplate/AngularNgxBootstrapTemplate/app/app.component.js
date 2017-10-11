@@ -8,7 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent() {
+<<<<<<< Updated upstream
     }
+=======
+        this.filterParams = ['Englisch', 'Deutsch', 'Mathematik', 'Chemie', 'Physik'];
+        this.forms = ['Q&A', 'Cloze', 'Right or Wrong', 'Multichoice', 'Memory'];
+    }
+    AppComponent.prototype.selectedFilter = function (selFil) {
+        selFil = this.chosenFilter;
+    };
+>>>>>>> Stashed changes
     return AppComponent;
 }());
 AppComponent = __decorate([
