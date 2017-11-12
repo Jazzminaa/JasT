@@ -10,21 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var data_service_1 = require("../shared/data.service");
-var Wordpair = (function () {
-    function Wordpair(dataService) {
+var AddQuiz = (function () {
+    function AddQuiz(dataService) {
         this.dataService = dataService;
     }
-    Wordpair.prototype.ngOnInit = function () {
-        throw new Error('Method not implemented.');
+    AddQuiz.prototype.ngOnInit = function () {
+        this.getTheCategories();
     };
-    return Wordpair;
+    AddQuiz.prototype.getTheCategories = function () {
+        var _this = this;
+        this.dataService.getCategories().subscribe(function (data) {
+            _this.categories = data;
+        });
+    };
+    return AddQuiz;
 }());
-Wordpair = __decorate([
+AddQuiz = __decorate([
     core_1.Component({
         selector: 'add-quiz',
         templateUrl: 'app/quiz/addquiz.component.html',
     }),
     __metadata("design:paramtypes", [data_service_1.DataService])
-], Wordpair);
-exports.Wordpair = Wordpair;
+], AddQuiz);
+exports.AddQuiz = AddQuiz;
 //# sourceMappingURL=addquiz.component.js.map

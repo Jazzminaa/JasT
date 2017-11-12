@@ -1,3 +1,4 @@
+import { Category } from './../model/category.model';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/data.service';
 
@@ -7,15 +8,23 @@ import { DataService } from '../shared/data.service';
   templateUrl : 'app/quiz/addquiz.component.html',
 })
 
-export class Wordpair implements OnInit {
+export class AddQuiz implements OnInit {
 
-    ngOnInit(): void {
-      throw new Error('Method not implemented.');
+    constructor(private dataService: DataService) {
+
     }
 
-  constructor(private dataService: DataService) {
+    categories: Category[];
 
-  }
 
+    ngOnInit(){
+        this.getTheCategories();
+    }
+
+    getTheCategories(){
+      this.dataService.getCategories().subscribe(data =>{
+        this.categories = data;
+      })
+    }
 
 }

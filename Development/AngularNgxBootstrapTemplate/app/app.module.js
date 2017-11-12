@@ -20,7 +20,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        declarations: [app_component_1.AppComponent, addquiz_component_1.Wordpair],
+        declarations: [app_component_1.AppComponent, addquiz_component_1.AddQuiz],
         imports: [
             platform_browser_1.BrowserModule,
             http_1.HttpModule,
@@ -30,7 +30,7 @@ AppModule = __decorate([
             ng2_bootstrap_1.DatepickerModule.forRoot()
         ],
         providers: [data_service_1.DataService],
-        bootstrap: [app_component_1.AppComponent]
+        bootstrap: [app_component_1.AppComponent, addquiz_component_1.AddQuiz]
     })
 ], AppModule);
 exports.AppModule = AppModule;

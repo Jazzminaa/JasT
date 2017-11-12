@@ -1,4 +1,4 @@
-import { Wordpair } from './quiz/addquiz.component';
+import { AddQuiz } from './quiz/addquiz.component';
 import { DataService } from './shared/data.service';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { HttpModule, JsonpModule } from "@angular/http";
 
 @NgModule({
-  declarations: [AppComponent, Wordpair],
+  declarations: [AppComponent, AddQuiz],
   imports: [
     BrowserModule,
     HttpModule,
@@ -21,7 +21,7 @@ import { HttpModule, JsonpModule } from "@angular/http";
     DatepickerModule.forRoot()
   ],
   providers: [DataService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, AddQuiz]
 })
 
 export class AppModule {
