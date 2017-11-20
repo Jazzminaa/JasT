@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
+require("rxjs/add/operator/map");
 var DataService = (function () {
     function DataService(http) {
         this.http = http;
@@ -18,6 +19,14 @@ var DataService = (function () {
     DataService.prototype.getCategories = function () {
         return this.http.get(this.API_Url + "categories")
             .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.getQuizTypes = function () {
+        return this.http.get(this.API_Url + "quiztypes")
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.insertQuiz = function (newQuiz) {
+        var headers = new http_1.Headers({ "Content-Type": "application/json" });
+        return this.http.post(this.API_Url + "quizes", newQuiz, { headers: headers }).map(function (data) { return data.json(); });
     };
     return DataService;
 }());

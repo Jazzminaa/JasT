@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="css\index.css">
+ <link rel="stylesheet" href="css/home.css">
 
 
 <div id='cssmenu'>
 <ul>
-    <li><a href='app/app.component.html'><span>Home</span></a></li>
+    <li><a routerLink="/home" routerLinkActive="active"><span>Home</span></a></li>
     <li class='active has-sub'><a href='#'><span>Kategorien</span></a>
             <ul>
                 <li *ngFor="let cat of categories" class='has-sub'><a href='#'><span>{{cat.name}}</span></a>
@@ -20,23 +20,9 @@
     </li>
     <li><a href='#'><span>About</span></a></li>
     <li><a href='#'><span>Kontakt</span></a></li>
-    <li><a href='app/quiz/addquiz.component.html'><span>+</span></a></li>
+    <li><a routerLink="/addquiz" routerLinkActive="active"><span>+</span></a></li>
   
 </ul>     
 </div>
 
-
-
-<h3>Herzlich Willkommen!</h3>
-
-<div>
-    <table class="table">
-       <template ngFor let-cat [ngForOf]="categories">
-            <tr>
-                <td>
-                    {{cat.name}}
-                </td>
-            </tr>
-        </template>
-    </table>
-</div>
+ <router-outlet></router-outlet>

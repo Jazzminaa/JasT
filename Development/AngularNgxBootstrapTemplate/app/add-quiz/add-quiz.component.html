@@ -1,0 +1,31 @@
+ <link rel="stylesheet" href="../css/add-quiz.css">
+
+<div>
+ <form class="form" action="">
+            <label>Titel</label>
+            <input [(ngModel)]="newQuiz.name" type="text"/>
+
+            <label>Fach</label>
+            <select [(ngModel)]="newQuiz.category" name="category">
+               <option *ngFor="let cat of categories" [ngValue]="cat">
+                    {{cat.name}}
+                </option>
+            </select>
+
+            <label>Quiz Typ</label>
+             <select [(ngModel)]="newQuiz.quizType" name="quiz">
+               <option *ngFor="let quiza of quizTypes" [ngValue]="quiza">
+                    {{quiza.name}}
+                </option>
+            </select>
+
+            <label for="age">Altersgruppe</label>
+            <input  [(ngModel)]="newQuiz.age" type="number">
+
+            <label for="email">Multiplayer</label>
+            <input id="email" type="email">
+
+            <button>Submit</button>
+        </form>
+</div>
+

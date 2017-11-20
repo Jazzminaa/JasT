@@ -1,28 +1,28 @@
-import { AddQuiz } from './quiz/addquiz.component';
 import { DataService } from './shared/data.service';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DatepickerModule, AlertModule } from 'ng2-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { HttpModule, JsonpModule } from '@angular/http';
+import { AppComponent }  from './app.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AddQuizComponent } from './add-quiz/add-quiz.component';
 
-import { AppComponent } from './app.component';
-
-
-import { HttpModule, JsonpModule } from "@angular/http";
+const appRoutes: Routes = [
+  {path: '', redirectTo: '/home', pathMatch:"full"},
+  {path: 'home', component: HomeComponent},
+  {path: 'addquiz', component: AddQuizComponent},
+];
 
 @NgModule({
-  declarations: [AppComponent, AddQuiz],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    JsonpModule,
-    FormsModule,
-    AlertModule.forRoot(),
-    DatepickerModule.forRoot()
-  ],
+  imports: [ 
+             RouterModule.forRoot(appRoutes),
+             BrowserModule,  
+             FormsModule,
+             HttpModule,
+             JsonpModule ],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent],
   providers: [DataService],
-  bootstrap: [AppComponent, AddQuiz]
+  bootstrap: [ AppComponent ]
 })
-
-export class AppModule {
-}
+export class AppModule { } 
