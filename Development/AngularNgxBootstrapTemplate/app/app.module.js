@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var login_component_1 = require("./login/login.component");
 var data_service_1 = require("./shared/data.service");
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
@@ -18,6 +19,7 @@ var appRoutes = [
     { path: '', redirectTo: '/home', pathMatch: "full" },
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'addquiz', component: add_quiz_component_1.AddQuizComponent },
+    { path: 'login', component: login_component_1.LoginComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -33,7 +35,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent],
+        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent],
         providers: [data_service_1.DataService],
         bootstrap: [app_component_1.AppComponent]
     })

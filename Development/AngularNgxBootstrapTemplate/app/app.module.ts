@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { DataService } from './shared/data.service';
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   {path: '', redirectTo: '/home', pathMatch:"full"},
   {path: 'home', component: HomeComponent},
   {path: 'addquiz', component: AddQuizComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
@@ -21,7 +23,7 @@ const appRoutes: Routes = [
              FormsModule,
              HttpModule,
              JsonpModule ],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent],
   providers: [DataService],
   bootstrap: [ AppComponent ]
 })

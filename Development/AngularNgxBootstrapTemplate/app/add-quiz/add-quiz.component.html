@@ -1,9 +1,10 @@
  <link rel="stylesheet" href="../css/add-quiz.css">
 
+<h1 align="center">Neues Spiel erstellen</h1>
 <div>
  <form class="form" action="">
             <label>Titel</label>
-            <input [(ngModel)]="newQuiz.name" type="text"/>
+            <input [(ngModel)]="newQuiz.name" type="text" name="name"/>
 
             <label>Fach</label>
             <select [(ngModel)]="newQuiz.category" name="category">
@@ -20,12 +21,10 @@
             </select>
 
             <label for="age">Altersgruppe</label>
-            <input  [(ngModel)]="newQuiz.age" type="number">
+            <input  [(ngModel)]="newQuiz.age" type="number" min="0" max="99" name="age">
 
-            <label>Multiplayer</label>
-           
 
-            <button>Submit</button>
+            <button (click)="addQuiz()">Submit</button>
         </form>
 </div>
 
