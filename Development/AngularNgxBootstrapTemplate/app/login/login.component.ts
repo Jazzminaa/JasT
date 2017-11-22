@@ -1,3 +1,4 @@
+import { DataService } from './../shared/data.service';
 import { User } from './../model/user.model';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
@@ -12,9 +13,27 @@ import { Observable } from 'rxjs/Observable';
 )
 
 export class LoginComponent{
+    getUser: User = new User;
+    newUser: User = new User;
+    errorText: string;
+    constructor(private router: Router , private dataService: DataService)  {
 
- 
-    constructor(private router: Router)  {
+    }
+    checkUser(pass: string){
+        if (this.newUser.email == "" || this.newUser.password == null )
+            this.errorText = "Einloggen fehlgeschlagen";
+        else {
+            this.getUserByEMail();
+            if(this.getUser.password == this.getUser.password)
+            {
+                this.errorText = "Hallo";
+            }
+        }
+    }
 
+    getUserByEMail(){
+        this.dataService.getUserWithEmail(this.newUser.email).subscribe(data =>{
+        this.getUser = data;
+      });
     }
 }

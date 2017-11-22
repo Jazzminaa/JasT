@@ -20,6 +20,14 @@ var DataService = (function () {
         return this.http.get(this.API_Url + "categories")
             .map(function (response) { return response.json(); });
     };
+    DataService.prototype.getUsers = function () {
+        return this.http.get(this.API_Url + "users")
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.getUserWithEmail = function (mail) {
+        return this.http.get(this.API_Url + "users/email/" + mail)
+            .map(function (response) { return response.json(); });
+    };
     DataService.prototype.getQuizTypes = function () {
         return this.http.get(this.API_Url + "quiztypes")
             .map(function (response) { return response.json(); });
