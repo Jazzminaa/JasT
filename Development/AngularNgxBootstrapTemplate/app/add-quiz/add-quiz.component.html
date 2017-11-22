@@ -13,6 +13,9 @@
                 </option>
             </select>
 
+            <label for="age">Beschreibung</label>
+            <input  [(ngModel)]="newQuiz.description" type="text" name="descrip">
+
             <label>Quiz Typ</label>
              <select [(ngModel)]="newQuiz.quizType" name="quiz">
                <option *ngFor="let quiza of quizTypes" [ngValue]="quiza">
@@ -20,7 +23,7 @@
                 </option>
             </select>
 
-            <label for="age">Altersgruppe</label>
+            <label for="age">Altersempfehlung</label>
             <input  [(ngModel)]="newQuiz.age" type="number" min="0" max="99" name="age">
 
 
