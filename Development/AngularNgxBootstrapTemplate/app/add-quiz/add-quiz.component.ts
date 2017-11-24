@@ -1,3 +1,4 @@
+import { User } from './../model/user.model';
 import { QuizType } from './../model/quiztype.model';
 import { Category } from './../model/category.model';
 import { DataService } from './../shared/data.service';
@@ -21,9 +22,15 @@ export class AddQuizComponent implements OnInit {
     errorText: string;
     categories: Category[] = [];
     quizTypes: QuizType[] = [];
+    user: User = new User;
     
     constructor(private router: Router, private dataService: DataService)  {
-
+        /*this.user.username = "test";
+        this.user.firstName = "a";
+        this.user.lastName = "b";
+        this.user.dateOfBirth = 1489490100000;
+        this.user.email="1234@4.v";
+        this.user.password="1234";*/
     }
 
     ngOnInit() {
