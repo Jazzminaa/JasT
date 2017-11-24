@@ -1,0 +1,33 @@
+ <link rel="stylesheet" href="../css/add-quiz.css">
+
+<h1 align="center">Registrieren</h1>
+<div>
+ <form class="form" action="">
+            <label>Username</label>
+            <input [(ngModel)]="newUser.username" type="text" name="name"/>
+
+            <label>Firstname</label>
+            <input [(ngModel)]="newUser.username" type="text" name="fn"/>
+
+            <label>Lastname</label>
+            <input [(ngModel)]="newUser.username" type="text" name="ln"/>
+
+            <label>Birthday</label>
+            <input [(ngModel)]="birthday" type="datetime" name="birth"/>
+
+            <label>Gender</label>
+        
+            <label>E-mail</label>
+            <input [(ngModel)]="newUser.email" type="text" name="email"/>
+
+            <label>Password</label>
+            <input  type="password" (ng-model)="newUser.password" name="pass">
+
+            <label>Retry-Password</label>
+            <input  type="password" (ng-model)="newUser.password" name="pass">
+
+            <button (click)="register()">Registrieren</button>
+            
+            <input [(ngModel)]="errorText" type="text" name="error"/>
+        </form>
+</div>

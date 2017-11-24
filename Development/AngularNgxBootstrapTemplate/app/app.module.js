@@ -15,11 +15,13 @@ var app_component_1 = require("./app.component");
 var router_1 = require("@angular/router");
 var home_component_1 = require("./home/home.component");
 var add_quiz_component_1 = require("./add-quiz/add-quiz.component");
+var register_component_1 = require("./register/register.component");
 var appRoutes = [
     { path: '', redirectTo: '/home', pathMatch: "full" },
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'addquiz', component: add_quiz_component_1.AddQuizComponent },
-    { path: 'login', component: login_component_1.LoginComponent }
+    { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'register', component: register_component_1.RegisterComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -35,7 +37,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent],
+        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent],
         providers: [data_service_1.DataService],
         bootstrap: [app_component_1.AppComponent]
     })
