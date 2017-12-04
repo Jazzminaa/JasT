@@ -20,6 +20,14 @@ var DataService = (function () {
         return this.http.get(this.API_Url + "categories")
             .map(function (response) { return response.json(); });
     };
+    DataService.prototype.getUsers = function () {
+        return this.http.get(this.API_Url + "users")
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.getUserWithEmail = function (mail) {
+        return this.http.get(this.API_Url + "users/email/" + mail)
+            .map(function (response) { return response.json(); });
+    };
     DataService.prototype.getQuizTypes = function () {
         return this.http.get(this.API_Url + "quiztypes")
             .map(function (response) { return response.json(); });
@@ -27,6 +35,10 @@ var DataService = (function () {
     DataService.prototype.insertQuiz = function (newQuiz) {
         var headers = new http_1.Headers({ "Content-Type": "application/json" });
         return this.http.post(this.API_Url + "quizes", newQuiz, { headers: headers }).map(function (data) { return data.json(); });
+    };
+    DataService.prototype.insertUser = function (user) {
+        var headers = new http_1.Headers({ "Content-Type": "application/json" });
+        return this.http.post(this.API_Url + "users", user.getJson(), { headers: headers }).map(function (data) { return data.json(); });
     };
     return DataService;
 }());

@@ -1,3 +1,4 @@
+import { User } from './../model/user.model';
 import { QuizType } from './../model/quiztype.model';
 import { Category } from './../model/category.model';
 import { DataService } from './../shared/data.service';
@@ -21,12 +22,18 @@ export class AddQuizComponent implements OnInit {
     errorText: string;
     categories: Category[] = [];
     quizTypes: QuizType[] = [];
+    user: User[] = [];
+    hide: Boolean = false;
     
     constructor(private router: Router, private dataService: DataService)  {
+        this.getUsers();
+        if(dataService.user == null){
+          this.hide = true;
+        }
 
     }
 
-    ngOnInit() {
+    ngOnInit() { 
         this.getAllCategories();
         this.getAllQuizTypes();
     }
@@ -41,6 +48,12 @@ export class AddQuizComponent implements OnInit {
         this.dataService.getQuizTypes().subscribe(data =>{
         this.quizTypes = data;
       })
+    }
+
+    getUsers(){
+        this.dataService.getUsers().subscribe(data =>{
+        this.user = data;
+    })
     }
 
     addQuiz() {

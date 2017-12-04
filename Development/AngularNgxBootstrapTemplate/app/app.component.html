@@ -1,6 +1,5 @@
  <link rel="stylesheet" href="css/home.css">
 
-
 <div id='cssmenu'>
 <ul>
     <li><a routerLink="/home" routerLinkActive="active"><span>Home</span></a></li>
@@ -20,9 +19,10 @@
     </li>
     <li><a href='#'><span>About</span></a></li>
     <li><a href='#'><span>Kontakt</span></a></li>
-    <li><a routerLink="/addquiz" routerLinkActive="active"><span>+</span></a></li>
-
-    <li style="float:right"><a routerLink="/login" routerLinkActive="active"><span>Login</span></a></li>
+    <li [hidden]="loggedIn" ><a routerLink="/addquiz" routerLinkActive="active"><span>+</span></a></li>
+    
+    <li [hidden]="loggedIn" style="float:right"><a routerLink="/login" routerLinkActive="active"><span>Login</span></a></li>
+    <li [hidden]="loggedIn"  style="float:right"><a routerLink="/register" routerLinkActive="active"><span>Registrieren</span></a></li>
   
 </ul>     
 </div>

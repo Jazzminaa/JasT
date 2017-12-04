@@ -1,7 +1,8 @@
  <link rel="stylesheet" href="../css/add-quiz.css">
 
-<h1 align="center">Neues Spiel erstellen</h1>
-<div>
+<h1 [hidden]="hide" align="center">Neues Spiel erstellen</h1>
+<h1 [hidden]="!hide" align="center">Du musst dich einloggen/registrieren damit du ein neues Spiel erstellen kannst!</h1>
+<div [hidden]="hide">
  <form class="form" action="">
             <label>Titel</label>
             <input [(ngModel)]="newQuiz.name" type="text" name="name"/>

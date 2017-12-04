@@ -1,2 +1,16 @@
  <link rel="stylesheet" href="../css/add-quiz.css">
 
+<h1 align="center">Login</h1>
+<div>
+ <form class="form" action="">
+            <label>E-mail</label>
+            <input [(ngModel)]="newUser.email" type="text" name="email"/>
+
+            <label>Password</label>
+            <input  type="password"  [(ngModel)]="newUser.password" name="pass">
+
+            <button name="login" (click)="checkUser()">LogIn</button>
+            
+            <input  [(ngModel)]="errorText" type="text" name="error"/>
+        </form>
+</div>
