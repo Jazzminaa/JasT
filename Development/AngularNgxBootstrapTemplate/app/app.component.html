@@ -6,7 +6,7 @@
     <li><a routerLink="/home" routerLinkActive="active"><span>Home</span></a></li>
     <li class='active has-sub'><a routerLink="/quizoverview" routerLinkActive="active"><span>Kategorien</span></a>
             <ul>
-                <li *ngFor="let cat of categories" class='has-sub'><a href='#'><span>{{cat.name}}</span></a>
+                <li *ngFor="let cat of categories" ng-bind="cat" class='has-sub'><a href='#'><span>{{cat.name}}</span></a>
         </ul>
     </li>
     <li class='active has-sub'><a href='#'><span>Alter</span></a>

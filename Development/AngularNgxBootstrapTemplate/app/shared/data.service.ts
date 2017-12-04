@@ -15,6 +15,7 @@ import 'rxjs/add/observable/of'
 export class DataService {
 
     API_Url: string ="http://vm86.htl-leonding.ac.at:8080/JAST/rest/";
+    cat:string="";
 
     constructor(private http:Http)
     {
@@ -22,7 +23,7 @@ export class DataService {
     }
 
     getCategories(){
-        return this.http.get(this.API_Url + "categories")
+        return this.http.get(this.API_Url + "categories"+this.cat)
         .map((response:Response)=>response.json() as Category[]);
     }
 
@@ -45,7 +46,7 @@ export class DataService {
 
     getContentById(quizId: number)
     {
-        return this.http.get(this.API_Url + "content")
+        return this.http.get(this.API_Url + "content/quiz/"+quizId)
         .map((response:Response)=>response.json() as Content[]);
     }
 
