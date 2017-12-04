@@ -13,22 +13,40 @@ import { Observable } from 'rxjs/Observable';
 )
 
 export class RegisterComponent{
-    getUser: User = new User;
+    getUser: User;
     newUser: User = new User;
     birthday: Date;
     errorText: string;
+    password: string;
     constructor(private router: Router , private dataService: DataService)  {
 
     }
     register(){
         if (this.newUser.email == "" || this.newUser.password == null )
-            this.errorText = "Einloggen fehlgeschlagen";
+            this.errorText = "Alle Felder müssen ausgefüllt werden :)";
         else {
             this.getUserByEMail();
-            if(this.getUser.password == this.getUser.password)
+            
+            if(this.getUser == null)
             {
-                this.errorText = "Hallo";
+                if(this.newUser.password == this.password)
+                {
+                    this.errorText = "Speichern";
+                    this.newUser.id = 0;
+                    this.dataService.insertUser(this.newUser).subscribe(data => {
+                    },
+                    error => {
+                      //alert("Speichern fehlgeschlagen: " + error);
+                    });
+                    //this.dataService.user = this.newUser;
+                    this.router.navigateByUrl("/home");
+                }
+                else{
+                    this.errorText = "Passwort nicht gleich!";
+                }
             }
+            else
+                this.errorText = "Email existiert bereits";
         }
     }
 

@@ -36,6 +36,10 @@ var DataService = (function () {
         var headers = new http_1.Headers({ "Content-Type": "application/json" });
         return this.http.post(this.API_Url + "quizes", newQuiz, { headers: headers }).map(function (data) { return data.json(); });
     };
+    DataService.prototype.insertUser = function (user) {
+        var headers = new http_1.Headers({ "Content-Type": "application/json" });
+        return this.http.post(this.API_Url + "users", user.getJson(), { headers: headers }).map(function (data) { return data.json(); });
+    };
     return DataService;
 }());
 DataService = __decorate([

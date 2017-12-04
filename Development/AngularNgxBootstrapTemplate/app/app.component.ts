@@ -7,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl : 'app/app.component.html',
 })
 export class AppComponent  implements OnInit{
+    loggedIn: Boolean = false;
     constructor(private dataService:DataService)
     {
+      if(dataService.user != null)
+      {
+          this.loggedIn = true;
+      }
     }
 
     categories: Category[];

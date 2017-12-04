@@ -7,10 +7,10 @@
             <input [(ngModel)]="newUser.email" type="text" name="email"/>
 
             <label>Password</label>
-            <input  type="password" (ng-model)="newUser.password" name="pass">
+            <input  type="password"  [(ngModel)]="newUser.password" name="pass">
 
             <button (click)="checkUser()">LogIn</button>
             
-            <input [(ngModel)]="errorText" type="text" name="error"/>
+            <input  [(ngModel)]="errorText" type="text" name="error"/>
         </form>
 </div>

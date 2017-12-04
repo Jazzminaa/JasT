@@ -22,13 +22,18 @@ export class AddQuizComponent implements OnInit {
     errorText: string;
     categories: Category[] = [];
     quizTypes: QuizType[] = [];
-    user: User = new User;
+    user: User[] = [];
+    hide: Boolean = false;
     
     constructor(private router: Router, private dataService: DataService)  {
+        this.getUsers();
+        if(dataService.user == null){
+          this.hide = true;
+        }
 
     }
 
-    ngOnInit() {
+    ngOnInit() { 
         this.getAllCategories();
         this.getAllQuizTypes();
     }
@@ -43,6 +48,12 @@ export class AddQuizComponent implements OnInit {
         this.dataService.getQuizTypes().subscribe(data =>{
         this.quizTypes = data;
       })
+    }
+
+    getUsers(){
+        this.dataService.getUsers().subscribe(data =>{
+        this.user = data;
+    })
     }
 
     addQuiz() {

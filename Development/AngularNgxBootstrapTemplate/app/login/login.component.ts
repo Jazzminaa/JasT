@@ -1,6 +1,9 @@
+import { Headers } from '@angular/http';
+import { AddQuizComponent } from './../add-quiz/add-quiz.component';
+import { AppComponent } from './../app.component';
 import { DataService } from './../shared/data.service';
 import { User } from './../model/user.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
@@ -13,27 +16,35 @@ import { Observable } from 'rxjs/Observable';
 )
 
 export class LoginComponent{
-    getUser: User = new User;
     newUser: User = new User;
     errorText: string;
+    getUser: User;
+
     constructor(private router: Router , private dataService: DataService)  {
 
     }
     checkUser(pass: string){
-        if (this.newUser.email == "" || this.newUser.password == null )
+        if (this.newUser.email == "" || this.newUser.password == null || this.newUser.password == "" )
             this.errorText = "Einloggen fehlgeschlagen";
         else {
-            this.getUserByEMail();
-            if(this.getUser.password == this.getUser.password)
+            this.getUserByEmail();
+            if(this.getUser.password == this.newUser.password)
             {
-                this.errorText = "Hallo";
+                this.dataService.user = this.getUser;
+                this.errorText = "Perfekt";
+                this.router.navigateByUrl("/home");
+            }
+            else    
+            {
+                this.errorText = "Falsches Password";
             }
         }
     }
 
-    getUserByEMail(){
+    getUserByEmail(){
         this.dataService.getUserWithEmail(this.newUser.email).subscribe(data =>{
         this.getUser = data;
-      });
+        })
     }
+    
 }

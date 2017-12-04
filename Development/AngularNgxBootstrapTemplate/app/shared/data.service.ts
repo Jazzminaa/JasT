@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map'
 export class DataService {
 
     API_Url: string ="http://vm86.htl-leonding.ac.at:8080/JAST/rest/";
+    user:User;
 
     constructor(private http:Http)
     {
@@ -42,6 +43,15 @@ export class DataService {
        return this.http.post(this.API_Url+"quizes",newQuiz,
        {headers:headers}).map(data=>data.json() as Quiz);
    }
+
+
+   
+   insertUser(user: User) {
+    let headers:Headers=new Headers({"Content-Type":"application/json"})
+
+    return this.http.post(this.API_Url+"users",user.getJson(),
+    {headers:headers}).map(data=>data.json() as User);
+}
 
     
 }
