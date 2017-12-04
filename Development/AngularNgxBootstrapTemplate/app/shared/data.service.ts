@@ -1,9 +1,15 @@
+import { Content } from './../model/content.model';
+import { User } from './../model/user.model';
 import { QuizType } from './../model/quiztype.model';
 import { Quiz } from './../model/quiz.model';
 import { Category } from './../model/category.model';
 import { Headers,Http,Response } from '@angular/http';
 import { Injectable } from "@angular/core";
-import 'rxjs/add/operator/map'
+import { Observable } from "@angular/core/src/facade/async";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import 'rxjs/add/observable/of'
+
 
 @Injectable()
 export class DataService {
@@ -25,12 +31,23 @@ export class DataService {
         .map((response:Response)=>response.json() as QuizType[]);
     }
 
-    insertQuiz(newQuiz: Quiz) {
-       let headers:Headers=new Headers({"Content-Type":"application/json"})
+    getQuizes(){
+        return this.http.get(this.API_Url + "quizes")
+        .map((response:Response)=>response.json() as Quiz[]);
+    }
 
-       return this.http.post(this.API_Url+"quizes",newQuiz,
-       {headers:headers}).map(data=>data.json() as Quiz);
-   }
+
+   insertQuiz(quiz: Quiz) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url+"quizes", quiz.getJson(), {headers: headers})
+        .map((res:Response) => res.json());
+    }
+
+    getContentById(quizId: number)
+    {
+        return this.http.get(this.API_Url + "content")
+        .map((response:Response)=>response.json() as Content[]);
+    }
 
     
 }

@@ -43,21 +43,17 @@ export class AddQuizComponent implements OnInit {
       })
     }
 
-    addQuiz() {
-    if (this.newQuiz.name == "" || this.newQuiz.category == null || this.newQuiz.quizType == null || this.newQuiz.age == null || this.newQuiz.description == "")
-      this.errorText = "Es müssen alle Daten eingegeben werden!";
-    else {
-      this.errorText = "";
-      this.dataService.insertQuiz(this.newQuiz)
-        .subscribe(data => {
-        },
-        error => {
-          alert("Speichern fehlgeschlagen: " + error);
-        })
+   addQuiz() {
+        if (this.newQuiz.name == "" || this.newQuiz.category == null || this.newQuiz.quizType == null || this.newQuiz.age == null || this.newQuiz.description == "")
+        this.errorText = "Es müssen alle Daten eingegeben werden!";
+        else {
+        this.errorText = "";
+        this.dataService.insertQuiz(this.newQuiz)
+            .subscribe(data => {
+            });
 
-      this.newQuiz = new Quiz();
+        this.newQuiz = new Quiz();
+        }
     }
-  }
-
 
 }

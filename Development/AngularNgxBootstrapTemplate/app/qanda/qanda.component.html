@@ -1,0 +1,33 @@
+<h1>Temp</h1>
+
+
+<label>Richtig: {{counterCorr}}</label><br>
+<label>Falsch: {{counterError}}</label>
+
+<div>    
+    <table class="table">
+        <tr>
+            <th>
+                Frage
+            </th>
+            <th>
+                Antwort
+            </th>
+        </tr>
+        <template ngFor let-content [ngForOf]="contents">
+            <tr>
+                <td>
+                    {{content.input1}}
+                </td>
+                <td>
+                    <input [(ngModel)]="inputValue" [style.backgroundColor]="solutionIsCorrect?'green': count > 0? 'red':''" [disabled]="solutionIsCorrect" type="text" name="con">
+                </td>
+                <td>
+                    <button (click)="check()" [disabled]="solutionIsCorrect" class="glyphicon glyphicon-check">Check</button>
+                </td>
+            </tr>
+        </template>
+    </table>
+</div>
+
+ <router-outlet></router-outlet>
