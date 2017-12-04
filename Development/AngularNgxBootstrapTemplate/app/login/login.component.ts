@@ -23,21 +23,25 @@ export class LoginComponent{
     constructor(private router: Router , private dataService: DataService)  {
 
     }
-    checkUser(pass: string){
+    checkUser(){
         if (this.newUser.email == "" || this.newUser.password == null || this.newUser.password == "" )
             this.errorText = "Einloggen fehlgeschlagen";
         else {
             this.getUserByEmail();
+            if(this.getUser != null){
             if(this.getUser.password == this.newUser.password)
-            {
-                this.dataService.user = this.getUser;
-                this.errorText = "Perfekt";
-                this.router.navigateByUrl("/home");
+                {
+                    this.dataService.user = this.getUser;
+                    this.errorText = "Perfekt";
+                    this.router.navigateByUrl("/home");
+                }
+                else    
+                {
+                    this.errorText = "Falsches Password";
+                }
             }
-            else    
-            {
-                this.errorText = "Falsches Password";
-            }
+            else{
+                this.errorText = "User existiert nicht";}
         }
     }
 

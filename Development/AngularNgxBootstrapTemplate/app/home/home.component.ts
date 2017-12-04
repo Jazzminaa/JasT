@@ -9,11 +9,7 @@ import { Observable } from 'rxjs/Observable';
 @Component(
     {
         selector: 'home',
-        template: `
-          <h4 >Herzlich Willkommen</h4>  
-          <input [(ngModel)]="text" type="text" name="login"/>  
-        `      //Rahmen verstecken
-        //templateUrl: 'app/home/home.component.html'
+        templateUrl: 'app/home/home.component.html'
     }
 )
 export class HomeComponent {

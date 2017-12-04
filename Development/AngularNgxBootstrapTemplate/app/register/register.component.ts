@@ -31,6 +31,7 @@ export class RegisterComponent{
             {
                 if(this.newUser.password == this.password)
                 {
+                    //Komisch
                     this.errorText = "Speichern";
                     this.newUser.id = 0;
                     this.dataService.insertUser(this.newUser).subscribe(data => {
@@ -38,15 +39,15 @@ export class RegisterComponent{
                     error => {
                       //alert("Speichern fehlgeschlagen: " + error);
                     });
-                    //this.dataService.user = this.newUser;
-                    this.router.navigateByUrl("/home");
+                    this.router.navigateByUrl("/login");
                 }
                 else{
                     this.errorText = "Passwort nicht gleich!";
                 }
             }
-            else
+            else {
                 this.errorText = "Email existiert bereits";
+            }
         }
     }
 

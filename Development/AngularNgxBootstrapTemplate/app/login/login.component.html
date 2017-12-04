@@ -9,7 +9,7 @@
             <label>Password</label>
             <input  type="password"  [(ngModel)]="newUser.password" name="pass">
 
-            <button (click)="checkUser()">LogIn</button>
+            <button name="login" (click)="checkUser()">LogIn</button>
             
             <input  [(ngModel)]="errorText" type="text" name="error"/>
         </form>

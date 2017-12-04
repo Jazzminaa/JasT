@@ -33,15 +33,15 @@ export class Quiz{
               "  \"name\": \""+this.quizType.name+"\""+
            " },"+
             "\"user\": {"+
-             "   \"id\": "+this.user.id+","+
+             "   \"id\": 1,"+
               "  \"dateOfBirth\": 1489490100000,"+
-               " \"email\": \""+this.user.email+"\","+
-                "\"firstname\": \""+this.user.firstName+"\","+
-                "\"gender\": \""+this.user.gender+"\","+
-                "\"password\": \""+this.user.password+"\","+
+               " \"email\": \"m@test.com\","+
+                "\"firstname\": \"muster\","+
+                "\"gender\": \"m\","+
+                "\"password\": \"1234\","+
                 "\"picture\": null,"+
-                "\"lastname\": \""+this.user.lastName+"\","+
-                "\"username\": \""+this.user.username+"\","+
+                "\"lastname\": \"mustermann\","+
+                "\"username\": \"Musti\","+
                 "\"multiplay\": null"+
             "}"+
         "}";
