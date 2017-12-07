@@ -5,14 +5,14 @@ import { Category } from './category.model';
 export class Quiz{
     id: number;
     age: number;
-    creationDate: Date;
+    creationDate: number;
     description: string;
-    expirationDate: Date;
     multiplay: number;
     name: string;
     category: Category;
     quizType: QuizType;
     user: User;
+    picture: string;
 
     getJson()
     {
@@ -32,7 +32,7 @@ export class Quiz{
              "   \"id\": "+this.quizType.id+","+
               "  \"name\": \""+this.quizType.name+"\""+
            " },"+
-            "\"user\": {"+
+           "\"user\": {"+
              "   \"id\": 1,"+
               "  \"dateOfBirth\": 1489490100000,"+
                " \"email\": \"m@test.com\","+

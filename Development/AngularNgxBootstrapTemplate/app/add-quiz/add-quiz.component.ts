@@ -68,9 +68,8 @@ export class AddQuizComponent implements OnInit {
           alert("Speichern fehlgeschlagen: " + error);
         })
 
-      this.newQuiz = new Quiz();
+        this.newQuiz = new Quiz();
+        }
     }
-  }
-
 
 }
