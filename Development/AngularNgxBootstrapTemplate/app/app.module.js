@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var qandainput_component_1 = require("./qanda/qandainput.component");
 var qanda_component_1 = require("./qanda/qanda.component");
 var quiz_overview_component_1 = require("./quiz-overview/quiz-overview.component");
 var login_component_1 = require("./login/login.component");
@@ -26,7 +27,8 @@ var appRoutes = [
     { path: 'addquiz', component: add_quiz_component_1.AddQuizComponent },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'quizoverview', component: quiz_overview_component_1.QuizOverviewComponent },
-    { path: 'qanda/:id', component: qanda_component_1.QAndAComponent }
+    { path: 'qanda/:id', component: qanda_component_1.QAndAComponent },
+    { path: 'qandainput', component: qandainput_component_1.QAndAInputComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -42,7 +44,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent],
+        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent],
         providers: [data_service_1.DataService],
         bootstrap: [app_component_1.AppComponent]
     })

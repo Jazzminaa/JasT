@@ -11,60 +11,40 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
     }
 )
 export class QAndAComponent implements OnInit {
-
-    quiz: Quiz; 
-    contents: Content[];
-    quizId: number=0;
-    _content: Content;
-    counter: number = 0;
-    inputValue: string = "";
-    solutionIsCorrect:boolean = false;
-    actualSolutions : string[] = [];
-
-    counterCorr: number = 0;
-    counterError: number = 0;
-
-    @Output() correct = new EventEmitter<boolean>();
-
-    @Input()
-    set content(value : Content){
-        this._content = value;
-        this.actualSolutions = this._content.input2.split(" ");
-    }
-    get content(){
-        return this._content;
-    }
        
-    constructor(private router: Router,  private route: ActivatedRoute, private dataService: DataService)  {
-        
-    }
-
-     ngOnInit() {
-        this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.quizId=+p);
-        this.getAllContent();
-     }
-
-     getAllContent()
-     {
-        this.dataService.getContentById(this.quizId).subscribe(data =>{
-        this.contents = data;
-      })
-     }
-
-     check(){
-        if(this.actualSolutions.indexOf(this.inputValue) >= 0 || this._content.input2.indexOf(this.inputValue) == 0){
-            this.solutionIsCorrect = true;
-            this.correct.emit(true);
+        contents: Content[];
+        correctCounter: number=0;
+        wrongCounter: number=0;
+        givenUpCounter: number=0;
+        actIndex: number=0;
+    
+        getPoints() {
+        return this.correctCounter*2-this.wrongCounter-this.givenUpCounter*2;
         }
-        else
-            this.counter++;
-            this.correct.emit(false);
-    }
 
-    countCorrect(correct : boolean){
-        if(correct ==true)
-            this.counterCorr++;
-        else  
-            this.counterError++;
-    } 
+        ngOnInit(): void {
+        this.dataService.getContentById(1).subscribe
+            (data=>{this.contents=data;},
+            error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})
+        }
+
+        givenUp(index: number) {
+        this.actIndex=index+1;
+        this.givenUpCounter++;
+        }
+
+        correctGuess(index: number) {
+        this.actIndex=index+1;
+        this.correctCounter++;
+        }
+
+        wrongGuess() {
+        this.wrongCounter++;
+        }
+
+
+        constructor(private dataService: DataService, router: Router) {
+
+        }
+
 }

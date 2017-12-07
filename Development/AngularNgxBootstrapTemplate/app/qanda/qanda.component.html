@@ -1,33 +1,12 @@
-<h1>Temp</h1>
+<h1>Willkommen beim Quiz</h1>
 
-
-<label>Richtig: {{counterCorr}}</label><br>
-<label>Falsch: {{counterError}}</label>
-
-<div>    
-    <table class="table">
-        <tr>
-            <th>
-                Frage
-            </th>
-            <th>
-                Antwort
-            </th>
-        </tr>
-        <template ngFor let-content [ngForOf]="contents">
-            <tr>
-                <td>
-                    {{content.input1}}
-                </td>
-                <td>
-                    <input [(ngModel)]="inputValue" [style.backgroundColor]="solutionIsCorrect?'green': count > 0? 'red':''" [disabled]="solutionIsCorrect" type="text" name="con">
-                </td>
-                <td>
-                    <button (click)="check()" [disabled]="solutionIsCorrect" class="glyphicon glyphicon-check">Check</button>
-                </td>
-            </tr>
-        </template>
-    </table>
+<div>
+  <h3>Gesamtpunkte: {{getPoints()}}</h3>
 </div>
+<div *ngFor="let content of contents; let i=index">
+    <qandainput [isEnabled]="actIndex==i" [content]="content" (correctGuess)="correctGuess(i)"
+      (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></qandainput>
+</div>
+
 
  <router-outlet></router-outlet>
