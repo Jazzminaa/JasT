@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl : 'app/app.component.html',
 })
 export class AppComponent  implements OnInit{
+
     constructor(private dataService:DataService)
     {
+
     }
 
     categories: Category[];
