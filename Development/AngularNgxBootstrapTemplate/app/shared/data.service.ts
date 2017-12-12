@@ -1,9 +1,9 @@
+import { Score } from './../model/score.model';
 import { Content } from './../model/content.model';
 import { User } from './../model/user.model';
 import { QuizType } from './../model/quiztype.model';
 import { Quiz } from './../model/quiz.model';
 import { Category } from './../model/category.model';
-import { User } from './../model/user.model';
 import { Headers,Http,Response } from '@angular/http';
 import { Injectable } from "@angular/core";
 import { Observable } from "@angular/core/src/facade/async";
@@ -62,13 +62,20 @@ export class DataService {
         .map((response:Response)=>response.json() as Content[]);
     }
 
+    insertScore(score: Score)
+    {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url+"scores", score.getJson(), {headers: headers})
+        .map((res:Response) => res.json());
+    }
 
-   
-   insertUser(user: User) {
-    let headers:Headers=new Headers({"Content-Type":"application/json"})
 
-    return this.http.post(this.API_Url+"users",user.getJson(),
-    {headers:headers}).map(data=>data.json() as User);
+ 
+    insertUser(user: User) {
+        let headers:Headers=new Headers({"Content-Type":"application/json"})
+
+        return this.http.post(this.API_Url+"users",user.getJson(),
+        {headers:headers}).map(data=>data.json() as User);
 }
 
     

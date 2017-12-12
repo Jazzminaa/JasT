@@ -1,3 +1,4 @@
+import { QAndAScoreComponent } from './qanda/qandascore.component';
 import { QAndAInputComponent } from './qanda/qandainput.component';
 import { QAndAComponent } from './qanda/qanda.component';
 import { QuizOverviewComponent } from './quiz-overview/quiz-overview.component';
@@ -13,7 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { AddQuizComponent } from './add-quiz/add-quiz.component';
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
-import 'rxjs/add/observable/of'
+import 'rxjs/add/observable/of';
 import { RegisterComponent } from './register/register.component';
 
 
@@ -23,11 +24,12 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'addquiz', component: AddQuizComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'quizoverview', component: QuizOverviewComponent},
   {path: 'qanda/:id', component: QAndAComponent},
-  {path: 'qandainput', component: QAndAInputComponent}
+  {path: 'qandainput', component: QAndAInputComponent},
+  {path: 'qandascore', component: QAndAScoreComponent}
 ];
 
 @NgModule({
@@ -37,8 +39,7 @@ const appRoutes: Routes = [
              FormsModule,
              HttpModule,
              JsonpModule ],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, RegisterComponent, QAndAScoreComponent],
   providers: [DataService],
   bootstrap: [ AppComponent ]
 })

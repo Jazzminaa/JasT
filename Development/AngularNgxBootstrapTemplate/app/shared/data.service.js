@@ -48,6 +48,11 @@ var DataService = (function () {
         return this.http.get(this.API_Url + "content/quiz/" + quizId)
             .map(function (response) { return response.json(); });
     };
+    DataService.prototype.insertScore = function (score) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url + "scores", score.getJson(), { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
     DataService.prototype.insertUser = function (user) {
         var headers = new http_1.Headers({ "Content-Type": "application/json" });
         return this.http.post(this.API_Url + "users", user.getJson(), { headers: headers }).map(function (data) { return data.json(); });
