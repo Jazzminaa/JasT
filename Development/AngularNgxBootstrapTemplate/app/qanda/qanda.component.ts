@@ -21,6 +21,7 @@ export class QAndAComponent implements OnInit {
         actIndex: number=0;
         finalPoints: number=0;
         score: Score;
+        user: User;
 
     
         getPoints() {
@@ -42,7 +43,6 @@ export class QAndAComponent implements OnInit {
             (data=>{this.contents=data;},
             error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})
 
-            Quiz.user = this.dataService.user;
         }
 
         givenUp(index: number) {
@@ -61,7 +61,7 @@ export class QAndAComponent implements OnInit {
 
 
         constructor(private dataService: DataService, router: Router) {
-
+             this.user= this.dataService.user;
         }
 
 }

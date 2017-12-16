@@ -69,6 +69,12 @@ export class DataService {
         .map((res:Response) => res.json());
     }
 
+    insertContent(content: Content)
+    {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url+"content", content.getJson(), {headers: headers})
+        .map((res:Response) => res.json());
+    }
 
  
     insertUser(user: User) {
