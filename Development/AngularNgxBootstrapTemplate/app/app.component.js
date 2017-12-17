@@ -15,7 +15,7 @@ var AppComponent = (function () {
         this.dataService = dataService;
         this.loggedIn = false;
         if (dataService.user != null) {
-            this.loggedIn = true;
+            this.loggedIn = dataService.loggedIn;
         }
     }
     AppComponent.prototype.ngOnInit = function () {

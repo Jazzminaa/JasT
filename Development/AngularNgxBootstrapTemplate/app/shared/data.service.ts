@@ -3,7 +3,6 @@ import { User } from './../model/user.model';
 import { QuizType } from './../model/quiztype.model';
 import { Quiz } from './../model/quiz.model';
 import { Category } from './../model/category.model';
-import { User } from './../model/user.model';
 import { Headers,Http,Response } from '@angular/http';
 import { Injectable } from "@angular/core";
 import { Observable } from "@angular/core/src/facade/async";
@@ -18,10 +17,11 @@ export class DataService {
     API_Url: string ="http://vm86.htl-leonding.ac.at:8080/JAST/rest/";
     user:User;
     cat:string="";
+    loggedIn: Boolean;
 
     constructor(private http:Http)
     {
-
+        this.loggedIn = true;
     }
 
     getCategories(){

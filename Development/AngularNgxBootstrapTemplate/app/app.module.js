@@ -18,17 +18,16 @@ var app_component_1 = require("./app.component");
 var router_1 = require("@angular/router");
 var home_component_1 = require("./home/home.component");
 var add_quiz_component_1 = require("./add-quiz/add-quiz.component");
-var register_component_1 = require("./register/register.component");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 require("rxjs/add/observable/of");
+var register_component_1 = require("./register/register.component");
 var appRoutes = [
     { path: '', redirectTo: '/home', pathMatch: "full" },
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'addquiz', component: add_quiz_component_1.AddQuizComponent },
     { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'register', component: register_component_1.RegisterComponent }
-    { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'register', component: register_component_1.RegisterComponent },
     { path: 'quizoverview', component: quiz_overview_component_1.QuizOverviewComponent },
     { path: 'qanda/:id', component: qanda_component_1.QAndAComponent },
     { path: 'qandainput', component: qandainput_component_1.QAndAInputComponent }
@@ -47,8 +46,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent],
-        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent],
+        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent],
         providers: [data_service_1.DataService],
         bootstrap: [app_component_1.AppComponent]
     })

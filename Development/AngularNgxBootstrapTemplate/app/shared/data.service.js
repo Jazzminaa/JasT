@@ -18,6 +18,7 @@ var DataService = (function () {
         this.http = http;
         this.API_Url = "http://vm86.htl-leonding.ac.at:8080/JAST/rest/";
         this.cat = "";
+        this.loggedIn = true;
     }
     DataService.prototype.getCategories = function () {
         return this.http.get(this.API_Url + "categories" + this.cat)

@@ -12,7 +12,7 @@ export class AppComponent  implements OnInit{
     {
       if(dataService.user != null)
       {
-          this.loggedIn = true;
+          this.loggedIn = dataService.loggedIn;
       }
     }
 

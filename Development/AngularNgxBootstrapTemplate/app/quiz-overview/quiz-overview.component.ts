@@ -12,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 export class QuizOverviewComponent implements OnInit {
 
     quizes: Quiz[];
+    name:string = "Kein User";
     
     constructor(private router: Router, private dataService: DataService)  {
-
+        if(dataService.user != null)
+        {
+            this.name = dataService.user.username;
+        }
+        
     }
 
      ngOnInit() {

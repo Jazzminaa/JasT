@@ -23,8 +23,7 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'addquiz', component: AddQuizComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
-  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'quizoverview', component: QuizOverviewComponent},
   {path: 'qanda/:id', component: QAndAComponent},
   {path: 'qandainput', component: QAndAInputComponent}
@@ -37,8 +36,7 @@ const appRoutes: Routes = [
              FormsModule,
              HttpModule,
              JsonpModule ],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent],
   providers: [DataService],
   bootstrap: [ AppComponent ]
 })
