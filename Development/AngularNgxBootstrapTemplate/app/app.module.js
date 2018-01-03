@@ -22,13 +22,14 @@ require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 require("rxjs/add/observable/of");
 var register_component_1 = require("./register/register.component");
+var ng2_opd_popup_1 = require("ng2-opd-popup");
 var appRoutes = [
     { path: '', redirectTo: '/home', pathMatch: "full" },
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'addquiz', component: add_quiz_component_1.AddQuizComponent },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'register', component: register_component_1.RegisterComponent },
-    { path: 'quizoverview', component: quiz_overview_component_1.QuizOverviewComponent },
+    { path: 'quizoverview/:id', component: quiz_overview_component_1.QuizOverviewComponent },
     { path: 'qanda/:id', component: qanda_component_1.QAndAComponent },
     { path: 'qandainput', component: qandainput_component_1.QAndAInputComponent }
 ];
@@ -44,7 +45,8 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             http_1.HttpModule,
-            http_1.JsonpModule
+            http_1.JsonpModule,
+            ng2_opd_popup_1.PopupModule.forRoot()
         ],
         declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent],
         providers: [data_service_1.DataService],

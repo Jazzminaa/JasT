@@ -44,7 +44,6 @@ export class QAndAComponent implements OnInit {
 
 
         constructor(private dataService: DataService, router: Router) {
-
         }
 
 }

@@ -49,6 +49,11 @@ export class DataService {
         .map((response:Response)=>response.json() as Quiz[]);
     }
 
+    getQuizesByCat(id: number){
+        return this.http.get(this.API_Url + "quizes/category/" + id)
+        .map((response:Response)=>response.json() as Quiz[]);
+    }
+
 
    insertQuiz(quiz: Quiz) {
         let headers = new Headers({ 'Content-Type': 'application/json' });

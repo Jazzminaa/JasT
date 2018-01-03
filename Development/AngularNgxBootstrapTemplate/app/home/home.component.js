@@ -16,8 +16,14 @@ var HomeComponent = (function () {
         this.dataService = dataService;
         if (dataService.user != null) {
             this.text = "Hallo " + dataService.user.username;
+            this.user = dataService.user;
         }
     }
+    HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent.prototype.ngOnDestroy = function () {
+        this.dataService.user = this.user;
+    };
     return HomeComponent;
 }());
 HomeComponent = __decorate([

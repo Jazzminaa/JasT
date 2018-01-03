@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
+import { User } from '../model/user.model';
 
 @Component(
     {
@@ -12,13 +13,24 @@ import { Observable } from 'rxjs/Observable';
         templateUrl: 'app/home/home.component.html'
     }
 )
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     text:string;
+    user:User;
     constructor(private dataService:DataService)
     {
       if(dataService.user != null)
       {
           this.text = "Hallo " + dataService.user.username;
+          this.user = dataService.user;
       }
+    }
+
+    ngOnInit(){
+        
+    }
+
+    ngOnDestroy()
+    {
+        this.dataService.user = this.user;
     }
 }

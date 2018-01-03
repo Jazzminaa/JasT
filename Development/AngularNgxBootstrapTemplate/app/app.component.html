@@ -3,9 +3,9 @@
 <div id='cssmenu'>
 <ul>
     <li><a routerLink="/home" routerLinkActive="active"><span>Home</span></a></li>
-    <li class='active has-sub'><a routerLink="/quizoverview" routerLinkActive="active"><span>Kategorien</span></a>
+    <li class='active has-sub'><a routerLink="/quizoverview/0" routerLinkActive="active"><span>Kategorien</span></a>
             <ul>
-                <li *ngFor="let cat of categories" ng-bind="cat" class='has-sub'><a href='#'><span>{{cat.name}}</span></a>
+                <li *ngFor="let cat of categories" ng-bind="cat" class='has-sub'><a routerLink="/quizoverview/{{cat.id}}" routerLinkActive="active"><span>{{cat.name}}</span></a>
         </ul>
     </li>
     <li class='active has-sub'><a href='#'><span>Alter</span></a>
@@ -26,5 +26,9 @@
   
 </ul>     
 </div>
+<popup>
+    Add your custom html elements here
+</popup>
+<button (click)="ClickButton()">LaLa</button>
 
  <router-outlet></router-outlet>
