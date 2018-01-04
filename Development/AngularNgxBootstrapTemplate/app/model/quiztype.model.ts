@@ -1,5 +1,10 @@
 export class QuizType{
     id: number;
     name: string;
-    timestamp: Date;
+
+    getJson()
+    {
+        return     "\"id\": "+this.id+","+
+                    "\"name\": \""+this.name+"\"";
+    }
 }
