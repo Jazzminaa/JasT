@@ -1,3 +1,4 @@
+import { Content } from './../model/content.model';
 import { Router } from '@angular/router';
 import { DataService } from './../shared/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,11 @@ import { Component, OnInit } from '@angular/core';
 )
 
 export class AddQuizContentComponent implements OnInit{
+
+        content: Content;
+        inputOne: string;
+        inputTwo: string;
+        
         constructor(private dataService: DataService, router: Router) {
              
         }
@@ -17,5 +23,15 @@ export class AddQuizContentComponent implements OnInit{
         ngOnInit(): void
         {
             
+        }
+
+        saveContent()
+        {
+            this.dataService.insertContent(this.content)
+            .subscribe(data => {
+            },
+            error => {
+            alert("Speichern fehlgeschlagen: " + error);
+            })
         }
 }
