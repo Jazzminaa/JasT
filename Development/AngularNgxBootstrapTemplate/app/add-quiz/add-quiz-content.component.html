@@ -9,7 +9,7 @@
                 Antwort
             </th>
         </tr>
-        <template>
+        <template ngFor let-content [ngForOf]="contents">
             <tr>
                 <td></td>
             </tr>
@@ -18,3 +18,5 @@
             </tr>
         </template>
  </table>
+
+ <button>Speichern</button>
