@@ -57,7 +57,6 @@ var AddQuizComponent = (function () {
             this.dataService.insertQuiz(this.newQuiz)
                 .subscribe(function (data) {
             }, function (error) {
-                alert("Speichern fehlgeschlagen: " + error);
             });
             this.newQuiz = new quiz_model_1.Quiz();
         }

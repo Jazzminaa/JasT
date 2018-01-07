@@ -65,7 +65,7 @@ export class AddQuizComponent implements OnInit {
         .subscribe(data => {
         },
         error => {
-          alert("Speichern fehlgeschlagen: " + error);
+         
         })
 
         this.newQuiz = new Quiz();

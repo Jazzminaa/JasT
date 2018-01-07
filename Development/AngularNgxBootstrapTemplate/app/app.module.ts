@@ -1,3 +1,4 @@
+import { AddQuizContentComponent } from './add-quiz/add-quiz-content.component';
 import { QAndAScoreComponent } from './qanda/qandascore.component';
 import { QAndAInputComponent } from './qanda/qandainput.component';
 import { QAndAComponent } from './qanda/qanda.component';
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
   {path: 'quizoverview', component: QuizOverviewComponent},
   {path: 'qanda/:id', component: QAndAComponent},
   {path: 'qandainput', component: QAndAInputComponent},
-  {path: 'qandascore', component: QAndAScoreComponent}
+  {path: 'qandascore', component: QAndAScoreComponent},
+  {path: 'addquizcontent', component: AddQuizContentComponent}
 ];
 
 @NgModule({
@@ -39,7 +41,7 @@ const appRoutes: Routes = [
              FormsModule,
              HttpModule,
              JsonpModule ],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, RegisterComponent, QAndAScoreComponent],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, RegisterComponent, QAndAScoreComponent, AddQuizContentComponent],
   providers: [DataService],
   bootstrap: [ AppComponent ]
 })

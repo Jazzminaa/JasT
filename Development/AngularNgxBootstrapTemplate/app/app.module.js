@@ -5,6 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var add_quiz_content_component_1 = require("./add-quiz/add-quiz-content.component");
 var qandascore_component_1 = require("./qanda/qandascore.component");
 var qandainput_component_1 = require("./qanda/qandainput.component");
 var qanda_component_1 = require("./qanda/qanda.component");
@@ -33,7 +34,8 @@ var appRoutes = [
     { path: 'quizoverview', component: quiz_overview_component_1.QuizOverviewComponent },
     { path: 'qanda/:id', component: qanda_component_1.QAndAComponent },
     { path: 'qandainput', component: qandainput_component_1.QAndAInputComponent },
-    { path: 'qandascore', component: qandascore_component_1.QAndAScoreComponent }
+    { path: 'qandascore', component: qandascore_component_1.QAndAScoreComponent },
+    { path: 'addquizcontent', component: add_quiz_content_component_1.AddQuizContentComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -49,7 +51,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent, register_component_1.RegisterComponent, qandascore_component_1.QAndAScoreComponent],
+        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent, register_component_1.RegisterComponent, qandascore_component_1.QAndAScoreComponent, add_quiz_content_component_1.AddQuizContentComponent],
         providers: [data_service_1.DataService],
         bootstrap: [app_component_1.AppComponent]
     })
