@@ -17,6 +17,7 @@ export class DataService {
 
     API_Url: string ="http://vm86.htl-leonding.ac.at:8080/JAST/rest/";
     user:User;
+    newQuiz:Quiz;
     cat:string="";
 
     constructor(private http:Http)
@@ -47,6 +48,11 @@ export class DataService {
     getQuizes(){
         return this.http.get(this.API_Url + "quizes")
         .map((response:Response)=>response.json() as Quiz[]);
+    }
+
+    getQuizWithUserAndName(){
+        return this.http.get(this.API_Url + "quizes/user/"+this.newQuiz.user.id+"/name/"+this.newQuiz.name)
+        .map((response:Response)=>response.json() as Quiz);
     }
 
 

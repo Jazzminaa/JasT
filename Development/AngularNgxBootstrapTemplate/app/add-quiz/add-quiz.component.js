@@ -21,10 +21,11 @@ var AddQuizComponent = (function () {
         this.categories = [];
         this.quizTypes = [];
         this.user = [];
-        this.hide = false;
+        this.hide = true;
         this.getUsers();
-        if (dataService.user == null) {
-            this.hide = true;
+        if (dataService.user != null) {
+            this.hide = false;
+            this.newQuiz.user = dataService.user;
         }
     }
     AddQuizComponent.prototype.ngOnInit = function () {
@@ -58,6 +59,7 @@ var AddQuizComponent = (function () {
                 .subscribe(function (data) {
             }, function (error) {
             });
+            this.dataService.newQuiz = this.newQuiz;
             this.newQuiz = new quiz_model_1.Quiz();
         }
     };

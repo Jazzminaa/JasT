@@ -17,8 +17,8 @@ export class Content{
     {
         return "{"+
             "\"id\":"+this.id+","+
-            "\"input1\": "+this.input1+","+
-            "\"input2\": "+this.input2+"," +
+            "\"input1\": \""+this.input1+"\","+
+            "\"input2\": \""+this.input2+"\"," +
              "\"picture1\": "+null+"," +
             "\"picture2\": "+null+"," +
             "\"quiz\": "+this.quiz.getJson()+
