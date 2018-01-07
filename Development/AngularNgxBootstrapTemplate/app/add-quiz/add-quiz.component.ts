@@ -30,6 +30,7 @@ export class AddQuizComponent implements OnInit {
         if(dataService.user != null){
           this.hide = false;
           this.newQuiz.user = dataService.user;
+          this.newQuiz.id = 0;
         }
 
     }
@@ -62,12 +63,12 @@ export class AddQuizComponent implements OnInit {
       this.errorText = "Es müssen alle Daten eingegeben werden!";
     else {
       this.errorText = "";
-      this.dataService.insertQuiz(this.newQuiz)
+      /*this.dataService.insertQuiz(this.newQuiz)
         .subscribe(data => {
         },
         error => {
          
-        })
+        })*/
         this.dataService.newQuiz = this.newQuiz;
         this.newQuiz = new Quiz();
         

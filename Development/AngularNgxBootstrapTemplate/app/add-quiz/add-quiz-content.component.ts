@@ -1,8 +1,8 @@
+import { Quiz } from './../model/quiz.model';
 import { Content } from './../model/content.model';
 import { Router } from '@angular/router';
 import { DataService } from './../shared/data.service';
 import { Component, OnInit } from '@angular/core';
-import { Quiz } from '../model/quiz.model';
 @Component(
     {
         selector: 'addquizcontent',
@@ -16,7 +16,9 @@ export class AddQuizContentComponent implements OnInit{
         quiz: Quiz = new Quiz;
         
         constructor(private dataService: DataService, router: Router) {
-           
+            this.getQuiz();
+            dataService.newQuiz.id = this.quiz.id;
+            this.quiz = dataService.newQuiz;
         }
 
 
@@ -36,8 +38,10 @@ export class AddQuizContentComponent implements OnInit{
         addContentToList(input1: string, input2:string): void
         {
             let content = new Content();
+            content.id = 0;
             content.input1 = input1;
             content.input2 = input2;
+            content.quiz = this.quiz;
             this.newContents.push(content);
 
         }
@@ -52,7 +56,6 @@ export class AddQuizContentComponent implements OnInit{
 
         saveContent()
         {
-            this.getQuiz();
             this.newContents.forEach((content, index) =>{
                 content.quiz = this.quiz;
                 this.dataService.insertContent(content)
