@@ -15,7 +15,6 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of'
 import { RegisterComponent } from './register/register.component';
-import {PopupModule} from 'ng2-opd-popup';
 
 
 const appRoutes: Routes = [
@@ -35,8 +34,7 @@ const appRoutes: Routes = [
              BrowserModule,  
              FormsModule,
              HttpModule,
-             JsonpModule,
-             PopupModule.forRoot() ],
+             JsonpModule],
   declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent],
   providers: [DataService],
   bootstrap: [ AppComponent ]

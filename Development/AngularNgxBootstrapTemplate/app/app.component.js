@@ -10,19 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var data_service_1 = require("./shared/data.service");
 var core_1 = require("@angular/core");
-var ng2_opd_popup_1 = require("ng2-opd-popup");
 var AppComponent = (function () {
-    function AppComponent(dataService, popup) {
+    function AppComponent(dataService) {
         this.dataService = dataService;
-        this.popup = popup;
         this.loggedIn = false;
         if (dataService.user != null) {
             this.loggedIn = dataService.loggedIn;
         }
     }
-    AppComponent.prototype.ClickButton = function () {
-        this.popup.show();
-    };
     AppComponent.prototype.ngOnInit = function () {
         this.getAllCategories();
     };
@@ -39,7 +34,7 @@ AppComponent = __decorate([
         selector: 'my-app',
         templateUrl: 'app/app.component.html',
     }),
-    __metadata("design:paramtypes", [data_service_1.DataService, ng2_opd_popup_1.Popup])
+    __metadata("design:paramtypes", [data_service_1.DataService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

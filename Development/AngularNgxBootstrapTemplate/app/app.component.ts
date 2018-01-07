@@ -1,7 +1,6 @@
 import { DataService } from './shared/data.service';
 import { Category } from './model/category.model';
 import { Component, OnInit } from '@angular/core';
-import {Popup} from 'ng2-opd-popup';
 
 @Component({
   selector: 'my-app',
@@ -9,7 +8,7 @@ import {Popup} from 'ng2-opd-popup';
 })
 export class AppComponent  implements OnInit{
     loggedIn: Boolean = false;
-    constructor(private dataService:DataService,private popup:Popup)
+    constructor(private dataService:DataService)
     {
       if(dataService.user != null)
       {
@@ -19,10 +18,6 @@ export class AppComponent  implements OnInit{
 
     categories: Category[];
 
-    ClickButton(){
-      this.popup.show();
-    }
-    
 
     ngOnInit(){
         this.getAllCategories();
