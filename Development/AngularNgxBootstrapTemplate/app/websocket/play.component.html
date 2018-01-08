@@ -1,0 +1,13 @@
+<h1>Hallo</h1>
+
+<button (click)="launchCounter()">
+    (Re)Launch Counter
+  </button>
+  <p>
+    Sent: {{sentMessage}}
+  </p>
+  <p>
+    Received: {{message}}
+  </p>
+  <input [(ngModel)]="sendthismessage" type="text" name="name"/>  
+  <button (click)="send()"></button>
