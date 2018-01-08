@@ -12,20 +12,23 @@ export class AppComponent  implements OnInit{
     {
       if(dataService.user != null)
       {
-          this.loggedIn = true;
+          this.loggedIn = dataService.loggedIn;
       }
     }
 
     categories: Category[];
 
+
     ngOnInit(){
         this.getAllCategories();
     }
+
     
     getAllCategories(){
       this.dataService.getCategories().subscribe(data =>{
         this.categories = data;
       })
+
     }
   
 }

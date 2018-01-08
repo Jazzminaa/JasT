@@ -21,14 +21,13 @@ import { RegisterComponent } from './register/register.component';
 import { WebsocketService } from './websocket/websocketServices.component';
 
 
-
 const appRoutes: Routes = [
   {path: '', redirectTo: '/home', pathMatch:"full"},
   {path: 'home', component: HomeComponent},
   {path: 'addquiz', component: AddQuizComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'quizoverview', component: QuizOverviewComponent},
+  {path: 'quizoverview/:id', component: QuizOverviewComponent},
   {path: 'qanda/:id', component: QAndAComponent},
   {path: 'qandainput', component: QAndAInputComponent},
   {path: 'qandascore', component: QAndAScoreComponent},
@@ -45,6 +44,9 @@ const appRoutes: Routes = [
              JsonpModule ],
   declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, RegisterComponent, QAndAScoreComponent, AddQuizContentComponent, PlayComponent],
   providers: [DataService,WebsocketService],
+             JsonpModule],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent],
+  providers: [DataService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { } 

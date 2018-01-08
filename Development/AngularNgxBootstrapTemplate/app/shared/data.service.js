@@ -18,6 +18,7 @@ var DataService = (function () {
         this.http = http;
         this.API_Url = "http://vm86.htl-leonding.ac.at:8080/JAST/rest/";
         this.cat = "";
+        this.loggedIn = true;
     }
     DataService.prototype.getCategories = function () {
         return this.http.get(this.API_Url + "categories" + this.cat)
@@ -41,6 +42,10 @@ var DataService = (function () {
     };
     DataService.prototype.getQuizWithUserAndName = function () {
         return this.http.get(this.API_Url + "quizes/user/" + this.newQuiz.user.id + "/name/" + this.newQuiz.name)
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.getQuizesByCat = function (id) {
+        return this.http.get(this.API_Url + "quizes/category/" + id)
             .map(function (response) { return response.json(); });
     };
     DataService.prototype.insertQuiz = function (quiz) {

@@ -32,6 +32,7 @@ export class LoginComponent{
             if(this.getUser.password == this.newUser.password)
                 {
                     this.dataService.user = this.getUser;
+                    this.dataService.loggedIn = true;
                     this.errorText = "Perfekt";
                     this.router.navigateByUrl("/home");
                 }

@@ -32,7 +32,7 @@ var appRoutes = [
     { path: 'addquiz', component: add_quiz_component_1.AddQuizComponent },
     { path: 'login', component: login_component_1.LoginComponent },
     { path: 'register', component: register_component_1.RegisterComponent },
-    { path: 'quizoverview', component: quiz_overview_component_1.QuizOverviewComponent },
+    { path: 'quizoverview/:id', component: quiz_overview_component_1.QuizOverviewComponent },
     { path: 'qanda/:id', component: qanda_component_1.QAndAComponent },
     { path: 'qandainput', component: qandainput_component_1.QAndAInputComponent },
     { path: 'qandascore', component: qandascore_component_1.QAndAScoreComponent },
@@ -55,6 +55,8 @@ AppModule = __decorate([
         ],
         declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent, register_component_1.RegisterComponent, qandascore_component_1.QAndAScoreComponent, add_quiz_content_component_1.AddQuizContentComponent, play_component_1.PlayComponent],
         providers: [data_service_1.DataService, websocketServices_component_1.WebsocketService],
+        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent],
+        providers: [data_service_1.DataService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

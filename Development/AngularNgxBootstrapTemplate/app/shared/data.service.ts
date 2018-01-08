@@ -19,10 +19,11 @@ export class DataService {
     user:User;
     newQuiz:Quiz;
     cat:string="";
+    loggedIn: Boolean;
 
     constructor(private http:Http)
     {
-
+        this.loggedIn = true;
     }
 
     getCategories(){
@@ -53,6 +54,10 @@ export class DataService {
     getQuizWithUserAndName(){
         return this.http.get(this.API_Url + "quizes/user/"+this.newQuiz.user.id+"/name/"+this.newQuiz.name)
         .map((response:Response)=>response.json() as Quiz);
+    }
+    getQuizesByCat(id: number){
+        return this.http.get(this.API_Url + "quizes/category/" + id)
+        .map((response:Response)=>response.json() as Quiz[]);
     }
 
 
