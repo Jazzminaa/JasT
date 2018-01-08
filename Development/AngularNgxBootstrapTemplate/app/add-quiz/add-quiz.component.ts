@@ -67,6 +67,7 @@ export class AddQuizComponent implements OnInit {
         .subscribe(data => {
         },
         error => {
+            
          
         })
         this.dataService.newQuiz = this.newQuiz;

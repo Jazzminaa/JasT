@@ -42,11 +42,8 @@ const appRoutes: Routes = [
              FormsModule,
              HttpModule,
              JsonpModule ],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, RegisterComponent, QAndAScoreComponent, AddQuizContentComponent, PlayComponent],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, QAndAScoreComponent, AddQuizContentComponent, PlayComponent],
   providers: [DataService,WebsocketService],
-             JsonpModule],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent],
-  providers: [DataService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { } 

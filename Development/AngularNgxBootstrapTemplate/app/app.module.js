@@ -53,10 +53,8 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent, register_component_1.RegisterComponent, qandascore_component_1.QAndAScoreComponent, add_quiz_content_component_1.AddQuizContentComponent, play_component_1.PlayComponent],
+        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent, qandascore_component_1.QAndAScoreComponent, add_quiz_content_component_1.AddQuizContentComponent, play_component_1.PlayComponent],
         providers: [data_service_1.DataService, websocketServices_component_1.WebsocketService],
-        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent],
-        providers: [data_service_1.DataService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

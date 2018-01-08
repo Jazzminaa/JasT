@@ -58,6 +58,7 @@ var AddQuizComponent = (function () {
             this.errorText = "";
             this.dataService.insertQuiz(this.newQuiz)
                 .subscribe(function (data) {
+            }, function (error) {
             });
             this.dataService.newQuiz = this.newQuiz;
             this.newQuiz = new quiz_model_1.Quiz();
