@@ -56,12 +56,10 @@ var AddQuizComponent = (function () {
             this.errorText = "Es müssen alle Daten eingegeben werden!";
         else {
             this.errorText = "";
-            /*this.dataService.insertQuiz(this.newQuiz)
-              .subscribe(data => {
-              },
-              error => {
-               
-              })*/
+            this.dataService.insertQuiz(this.newQuiz)
+                .subscribe(function (data) {
+            }, function (error) {
+            });
             this.dataService.newQuiz = this.newQuiz;
             this.newQuiz = new quiz_model_1.Quiz();
         }

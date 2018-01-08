@@ -14,6 +14,7 @@ export class AddQuizContentComponent implements OnInit{
 
         newContents: Content[] = new Array();
         quiz: Quiz = new Quiz;
+        quizes: Quiz [] = [];
         
         constructor(private dataService: DataService, router: Router) {
             this.getQuiz();
@@ -31,6 +32,7 @@ export class AddQuizContentComponent implements OnInit{
             this.dataService.getQuizWithUserAndName().subscribe(data =>{
             this.quiz = data;
             })
+            //this.quiz = this.quizes[0];
         }
 
         
