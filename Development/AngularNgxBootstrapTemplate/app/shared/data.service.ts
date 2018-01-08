@@ -1,9 +1,9 @@
+import { Score } from './../model/score.model';
 import { Content } from './../model/content.model';
 import { User } from './../model/user.model';
 import { QuizType } from './../model/quiztype.model';
 import { Quiz } from './../model/quiz.model';
 import { Category } from './../model/category.model';
-import { User } from './../model/user.model';
 import { Headers,Http,Response } from '@angular/http';
 import { Injectable } from "@angular/core";
 import { Observable } from "@angular/core/src/facade/async";
@@ -17,6 +17,7 @@ export class DataService {
 
     API_Url: string ="http://vm86.htl-leonding.ac.at:8080/JAST/rest/";
     user:User;
+    newQuiz:Quiz;
     cat:string="";
 
     constructor(private http:Http)
@@ -49,6 +50,11 @@ export class DataService {
         .map((response:Response)=>response.json() as Quiz[]);
     }
 
+    getQuizWithUserAndName(){
+        return this.http.get(this.API_Url + "quizes/user/"+this.newQuiz.user.id+"/name/"+this.newQuiz.name)
+        .map((response:Response)=>response.json() as Quiz);
+    }
+
 
    insertQuiz(quiz: Quiz) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -62,13 +68,26 @@ export class DataService {
         .map((response:Response)=>response.json() as Content[]);
     }
 
+    insertScore(score: Score)
+    {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url+"scores", score.getJson(), {headers: headers})
+        .map((res:Response) => res.json());
+    }
 
-   
-   insertUser(user: User) {
-    let headers:Headers=new Headers({"Content-Type":"application/json"})
+    insertContent(content: Content)
+    {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url+"content", content.getJson(), {headers: headers})
+        .map((res:Response) => res.json());
+    }
 
-    return this.http.post(this.API_Url+"users",user.getJson(),
-    {headers:headers}).map(data=>data.json() as User);
+ 
+    insertUser(user: User) {
+        let headers:Headers=new Headers({"Content-Type":"application/json"})
+
+        return this.http.post(this.API_Url+"users",user.getJson(),
+        {headers:headers}).map(data=>data.json() as User);
 }
 
     

@@ -1,5 +1,10 @@
 export class Category{
     id: number;
     name: string;
-    timestap: Date;
+
+    getJson()
+    {
+        return     "\"id\": "+this.id+","+
+                    "\"name\": \""+this.name+"\"";
+    }
 }

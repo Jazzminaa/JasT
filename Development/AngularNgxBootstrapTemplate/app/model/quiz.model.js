@@ -4,7 +4,7 @@ var Quiz = (function () {
     }
     Quiz.prototype.getJson = function () {
         return "{" +
-            "\"id\": 0," +
+            "\"id\": " + this.id + "," +
             "\"age\": " + this.age + "," +
             "\"creationDate\": 1489490100000," +
             "\"description\": \"" + this.description + "\"," +

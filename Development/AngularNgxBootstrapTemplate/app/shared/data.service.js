@@ -39,6 +39,10 @@ var DataService = (function () {
         return this.http.get(this.API_Url + "quizes")
             .map(function (response) { return response.json(); });
     };
+    DataService.prototype.getQuizWithUserAndName = function () {
+        return this.http.get(this.API_Url + "quizes/user/" + this.newQuiz.user.id + "/name/" + this.newQuiz.name)
+            .map(function (response) { return response.json(); });
+    };
     DataService.prototype.insertQuiz = function (quiz) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         return this.http.post(this.API_Url + "quizes", quiz.getJson(), { headers: headers })
@@ -47,6 +51,16 @@ var DataService = (function () {
     DataService.prototype.getContentById = function (quizId) {
         return this.http.get(this.API_Url + "content/quiz/" + quizId)
             .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.insertScore = function (score) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url + "scores", score.getJson(), { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    DataService.prototype.insertContent = function (content) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url + "content", content.getJson(), { headers: headers })
+            .map(function (res) { return res.json(); });
     };
     DataService.prototype.insertUser = function (user) {
         var headers = new http_1.Headers({ "Content-Type": "application/json" });

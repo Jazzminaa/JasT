@@ -1,29 +1,19 @@
 import { User } from './user.model';
 import { QuizType } from './quiztype.model';
+import { Quiz } from './quiz.model';
 import { Category } from './category.model';
-
-export class Quiz{
+export class Score{
     id: number;
-    age: number;
-    creationDate: number;
-    description: string;
-    multiplay: number;
-    name: string;
+    points: number;
     category: Category;
     quizType: QuizType;
     user: User;
-    picture: string;
 
-    getJson()
+     getJson()
     {
         return "{"+
-            "\"id\": "+this.id+","+
-            "\"age\": "+this.age+","+
-            "\"creationDate\": 1489490100000,"+
-            "\"description\": \""+this.description+"\","+
-            "\"multiplay\": 0,"+
-            "\"name\": \""+this.name+"\","+
-            "\"picture\": null,"+
+            "\"id\": 0,"+
+            "\"points\": "+this.points+","+
             "\"category\": {"+
              "   \"id\": "+this.category.id+","+
               "  \"name\": \""+this.category.name+"\""+

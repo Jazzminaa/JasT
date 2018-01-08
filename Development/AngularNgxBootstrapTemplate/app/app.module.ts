@@ -1,3 +1,6 @@
+import { PlayComponent } from './websocket/play.component';
+import { AddQuizContentComponent } from './add-quiz/add-quiz-content.component';
+import { QAndAScoreComponent } from './qanda/qandascore.component';
 import { QAndAInputComponent } from './qanda/qandainput.component';
 import { QAndAComponent } from './qanda/qanda.component';
 import { QuizOverviewComponent } from './quiz-overview/quiz-overview.component';
@@ -13,8 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { AddQuizComponent } from './add-quiz/add-quiz.component';
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
-import 'rxjs/add/observable/of'
+import 'rxjs/add/observable/of';
 import { RegisterComponent } from './register/register.component';
+import { WebsocketService } from './websocket/websocketServices.component';
 
 
 
@@ -23,11 +27,13 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'addquiz', component: AddQuizComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
-  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'quizoverview', component: QuizOverviewComponent},
   {path: 'qanda/:id', component: QAndAComponent},
-  {path: 'qandainput', component: QAndAInputComponent}
+  {path: 'qandainput', component: QAndAInputComponent},
+  {path: 'qandascore', component: QAndAScoreComponent},
+  {path: 'addquizcontent', component: AddQuizContentComponent},
+  {path: 'play', component: PlayComponent}
 ];
 
 @NgModule({
@@ -37,9 +43,8 @@ const appRoutes: Routes = [
              FormsModule,
              HttpModule,
              JsonpModule ],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent],
-  providers: [DataService],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, RegisterComponent, QAndAScoreComponent, AddQuizContentComponent, PlayComponent],
+  providers: [DataService,WebsocketService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { } 

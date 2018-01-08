@@ -2,6 +2,10 @@
 var Category = (function () {
     function Category() {
     }
+    Category.prototype.getJson = function () {
+        return "\"id\": " + this.id + "," +
+            "\"name\": \"" + this.name + "\"";
+    };
     return Category;
 }());
 exports.Category = Category;

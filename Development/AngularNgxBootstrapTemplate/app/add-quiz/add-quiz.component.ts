@@ -23,12 +23,14 @@ export class AddQuizComponent implements OnInit {
     categories: Category[] = [];
     quizTypes: QuizType[] = [];
     user: User[] = [];
-    hide: Boolean = false;
+    hide: Boolean = true;
     
     constructor(private router: Router, private dataService: DataService)  {
         this.getUsers();
-        if(dataService.user == null){
-          this.hide = true;
+        if(dataService.user != null){
+          this.hide = false;
+          this.newQuiz.user = dataService.user;
+          this.newQuiz.id = 0;
         }
 
     }
@@ -65,10 +67,11 @@ export class AddQuizComponent implements OnInit {
         .subscribe(data => {
         },
         error => {
-          alert("Speichern fehlgeschlagen: " + error);
+         
         })
-
+        this.dataService.newQuiz = this.newQuiz;
         this.newQuiz = new Quiz();
+        
         }
     }
 

@@ -20,6 +20,14 @@ var AddQuizComponent = (function () {
         this.newQuiz = new quiz_model_1.Quiz;
         this.categories = [];
         this.quizTypes = [];
+        this.user = [];
+        this.hide = true;
+        this.getUsers();
+        if (dataService.user != null) {
+            this.hide = false;
+            this.newQuiz.user = dataService.user;
+            this.newQuiz.id = 0;
+        }
     }
     AddQuizComponent.prototype.ngOnInit = function () {
         this.getAllCategories();
@@ -37,6 +45,12 @@ var AddQuizComponent = (function () {
             _this.quizTypes = data;
         });
     };
+    AddQuizComponent.prototype.getUsers = function () {
+        var _this = this;
+        this.dataService.getUsers().subscribe(function (data) {
+            _this.user = data;
+        });
+    };
     AddQuizComponent.prototype.addQuiz = function () {
         if (this.newQuiz.name == "" || this.newQuiz.category == null || this.newQuiz.quizType == null || this.newQuiz.age == null || this.newQuiz.description == "")
             this.errorText = "Es müssen alle Daten eingegeben werden!";
@@ -44,7 +58,9 @@ var AddQuizComponent = (function () {
             this.errorText = "";
             this.dataService.insertQuiz(this.newQuiz)
                 .subscribe(function (data) {
+            }, function (error) {
             });
+            this.dataService.newQuiz = this.newQuiz;
             this.newQuiz = new quiz_model_1.Quiz();
         }
     };
