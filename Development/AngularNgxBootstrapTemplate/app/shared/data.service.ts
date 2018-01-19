@@ -10,6 +10,7 @@ import { Observable } from "@angular/core/src/facade/async";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of'
+import { Multiplay } from '../model/multiplay.model';
 
 
 @Injectable()
@@ -50,7 +51,14 @@ export class DataService {
         return this.http.get(this.API_Url + "quizes")
         .map((response:Response)=>response.json() as Quiz[]);
     }
-
+    getMultiplays() {
+        //return Multiplay[];
+        return
+    }
+    getMultiplaysByCat(arg0: number) {
+        //return Multiplay[];
+        return
+    }
     getQuizWithUserAndName(){
         return this.http.get(this.API_Url + "quizes/user/"+this.newQuiz.user.id+"/name/"+this.newQuiz.name)
         .map((response:Response)=>response.json() as Quiz);

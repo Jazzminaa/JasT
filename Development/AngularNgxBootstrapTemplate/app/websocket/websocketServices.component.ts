@@ -1,10 +1,9 @@
-//<strong>websocket.service.ts</strong>
 import { Injectable } from '@angular/core';
 import { Subject, Observer, Observable } from 'rxjs/Rx';
 @Injectable()
 export class WebsocketService{
-  public createWebsocket(): Subject<MessageEvent> {
-        let socket = new WebSocket('ws://localhost:8080/JAST/play/1');
+  public createWebsocket(id:number): Subject<MessageEvent> {
+        let socket = new WebSocket('ws://vm86.htl-leonding.ac.at:8080/JAST/play/'+id);
         let observable = Observable.create(
                     (observer: Observer<MessageEvent>) => {
                         socket.onmessage = observer.next.bind(observer);
@@ -14,7 +13,7 @@ export class WebsocketService{
                     }
         );
         let observer = {
-                next: (data: Object) => {
+                next: (data: String) => { //object
                     if (socket.readyState === WebSocket.OPEN) {
                         socket.send(JSON.stringify(data));
                     }

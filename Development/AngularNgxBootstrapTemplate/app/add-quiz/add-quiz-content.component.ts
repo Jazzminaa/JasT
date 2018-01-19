@@ -3,6 +3,7 @@ import { Content } from './../model/content.model';
 import { Router } from '@angular/router';
 import { DataService } from './../shared/data.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../model/user.model';
 @Component(
     {
         selector: 'addquizcontent',
@@ -15,8 +16,10 @@ export class AddQuizContentComponent implements OnInit{
         newContents: Content[] = new Array();
         quiz: Quiz = new Quiz;
         quizes: Quiz [] = [];
+        user: User;
         
         constructor(private dataService: DataService, router: Router) {
+            this.user =dataService.user;
             this.getQuiz();
             dataService.newQuiz.id = this.quiz.id;
             this.quiz = dataService.newQuiz;
@@ -26,6 +29,10 @@ export class AddQuizContentComponent implements OnInit{
         ngOnInit(): void
         {
             
+        }
+        ngOnDestroy()
+        {
+            this.dataService.user = this.user;
         }
 
         getQuiz(){
