@@ -28,6 +28,6 @@ import { DataService } from '../shared/data.service';
     }
 
     send(){
-        this.socket.next(this.sentMessage);
+        this.socket.next(this.sentMessage +"<br>");
     }
 }

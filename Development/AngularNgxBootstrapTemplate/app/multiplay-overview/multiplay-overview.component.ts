@@ -17,7 +17,6 @@ export class MultiplayOverviewComponent implements OnInit {
 
     multiplays: Multiplay[];
     user: User;
-    name:string = "Kein User";
     testId:number=0;
     
     constructor(private router: Router, private dataService: DataService,private route: ActivatedRoute )  {
@@ -25,7 +24,6 @@ export class MultiplayOverviewComponent implements OnInit {
         if(dataService.user != null)
         {
             this.user = dataService.user;
-            this.name = dataService.user.username;
         }
     }
 
@@ -61,9 +59,9 @@ export class MultiplayOverviewComponent implements OnInit {
 
      getAllMultiplayes()
      {
-        /*this.dataService.getMultiplays().subscribe(data =>{
+        this.dataService.getMultiplays().subscribe(data =>{
         this.multiplays = data;
-      });*/
+      });
      }
 
      navigateToQuizDetail(id: number) {

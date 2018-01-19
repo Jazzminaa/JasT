@@ -52,8 +52,8 @@ export class DataService {
         .map((response:Response)=>response.json() as Quiz[]);
     }
     getMultiplays() {
-        //return Multiplay[];
-        return
+        return this.http.get(this.API_Url + "multiplays")
+        .map((response:Response)=>response.json() as Multiplay[]);
     }
     getMultiplaysByCat(arg0: number) {
         //return Multiplay[];

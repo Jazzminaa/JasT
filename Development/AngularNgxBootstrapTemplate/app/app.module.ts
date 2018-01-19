@@ -19,6 +19,7 @@ import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of';
 import { RegisterComponent } from './register/register.component';
 import { WebsocketService } from './websocket/websocketServices.component';
+import { MultiplayOverviewComponent } from './multiplay-overview/multiplay-overview.component';
 
 
 const appRoutes: Routes = [
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'quizoverview/:id', component: QuizOverviewComponent},
+  {path: 'multiplayoverview/:id', component: MultiplayOverviewComponent},
   {path: 'qanda/:id', component: QAndAComponent},
   {path: 'qandainput', component: QAndAInputComponent},
   {path: 'qandascore', component: QAndAScoreComponent},
@@ -42,7 +44,7 @@ const appRoutes: Routes = [
              FormsModule,
              HttpModule,
              JsonpModule ],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, QAndAScoreComponent, AddQuizContentComponent, PlayComponent],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent,MultiplayOverviewComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, QAndAScoreComponent, AddQuizContentComponent, PlayComponent],
   providers: [DataService,WebsocketService],
   bootstrap: [ AppComponent ]
 })

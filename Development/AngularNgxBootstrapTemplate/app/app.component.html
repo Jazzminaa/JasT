@@ -17,6 +17,11 @@
                 <li class='has-sub'><a href='#'><span>20+</span></a>
             </ul>
     </li>
+    <li class='active has-sub'><a routerLink="/multiplayoverview/0" routerLinkActive="active"><span>Lernräume</span></a>
+        <ul>
+            <li *ngFor="let cat of categories" ng-bind="cat" class='has-sub'><a routerLink="/quizoverview/{{cat.id}}" routerLinkActive="active"><span>{{cat.name}}</span></a>
+        </ul>
+    </li>
     <li><a href='#'><span>About</span></a></li>
     <li><a href='#'><span>Kontakt</span></a></li>
     <li [hidden]="loggedIn" ><a routerLink="/addquiz" routerLinkActive="active"><span>+</span></a></li>

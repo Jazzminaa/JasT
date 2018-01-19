@@ -41,8 +41,8 @@ var DataService = (function () {
             .map(function (response) { return response.json(); });
     };
     DataService.prototype.getMultiplays = function () {
-        //return Multiplay[];
-        return;
+        return this.http.get(this.API_Url + "multiplays")
+            .map(function (response) { return response.json(); });
     };
     DataService.prototype.getMultiplaysByCat = function (arg0) {
         //return Multiplay[];
