@@ -1,7 +1,10 @@
-<h1>Hallo</h1>
+<link rel="stylesheet" href="../css/home.css">
+Hallo
+<br>
+{{multiplay?.name}}
 
-  <p>
-    Received: {{message}}
-  </p>
-  <input [(ngModel)]="sentMessage" type="text" name="name"/>  
-  <button (click)="send()"></button>
+<div *ngFor="let content of contents; let i=index">
+    {{content.id}}
+</div>
+
+<router-outlet></router-outlet>

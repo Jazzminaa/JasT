@@ -17,7 +17,8 @@ export class MultiplayOverviewComponent implements OnInit {
 
     multiplays: Multiplay[];
     user: User;
-    testId:number=0;
+    testId:number = 0;
+    ageId: number = 0;
     
     constructor(private router: Router, private dataService: DataService,private route: ActivatedRoute )  {
         
@@ -30,6 +31,7 @@ export class MultiplayOverviewComponent implements OnInit {
 
      ngOnInit() {
         this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.testId=+p);
+        this.route.params.switchMap((params: Params) => params['age']).subscribe(p=>this.ageId=+p);
         this.GetCat();
      }
 

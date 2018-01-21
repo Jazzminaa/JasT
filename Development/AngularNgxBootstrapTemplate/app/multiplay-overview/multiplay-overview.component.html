@@ -23,19 +23,22 @@
         <template ngFor let-multiplay [ngForOf]="multiplays">
             <tr>
                 <td>
-                    <a routerLink="" routerLinkActive="active">{{multiplay .name}}</a>
+                    <a routerLink="/play/{{multiplay.id}}/{{multiplay.quiz.id}}" routerLinkActive="active">{{multiplay.name}}</a>
                 </td>
                 <td>
                     {{multiplay.quiz.name}}
                 </td>
                 <td>
-                    Type muss mit eingelesen werden
+                    {{multiplay.quiz.quiztype.name}}
                 </td>
                 <td>
-                    {{multiplay.user.name}}
+                    {{multiplay.user.firstname}}
                 </td>
                 <td>
                     {{multiplay.counter}}
+                </td>
+                <td>
+                    In Rest MEthode erstellen
                 </td>
             </tr>
         </template>

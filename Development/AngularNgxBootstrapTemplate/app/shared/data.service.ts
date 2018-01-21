@@ -59,6 +59,12 @@ export class DataService {
         //return Multiplay[];
         return
     }
+
+    getMultiplayById(id: number)
+    {
+        return this.http.get(this.API_Url + "multiplays/"+id)
+        .map((response:Response)=>response.json() as Multiplay);
+    }
     getQuizWithUserAndName(){
         return this.http.get(this.API_Url + "quizes/user/"+this.newQuiz.user.id+"/name/"+this.newQuiz.name)
         .map((response:Response)=>response.json() as Quiz);

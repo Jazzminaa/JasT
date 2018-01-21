@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent  implements OnInit{
     loggedIn: Boolean = false;
+    id: number = 0;
+    age: number = 0;
     constructor(private dataService:DataService)
     {
       if(dataService.user != null)
@@ -23,6 +25,10 @@ export class AppComponent  implements OnInit{
         this.getAllCategories();
     }
 
+    change(newid: number)
+    {
+      this.id = newid;
+    }
     
     getAllCategories(){
       this.dataService.getCategories().subscribe(data =>{

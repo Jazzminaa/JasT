@@ -14,12 +14,17 @@ var AppComponent = (function () {
     function AppComponent(dataService) {
         this.dataService = dataService;
         this.loggedIn = false;
+        this.id = 0;
+        this.age = 0;
         if (dataService.user != null) {
             this.loggedIn = dataService.loggedIn;
         }
     }
     AppComponent.prototype.ngOnInit = function () {
         this.getAllCategories();
+    };
+    AppComponent.prototype.change = function (newid) {
+        this.id = newid;
     };
     AppComponent.prototype.getAllCategories = function () {
         var _this = this;
