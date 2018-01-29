@@ -1,8 +1,13 @@
  <link rel="stylesheet" href="css/home.css">
-
+ 
 <div id='cssmenu'>
 <ul>
     <li><a routerLink="/home" routerLinkActive="active"><span>Home</span></a></li>
+    <li class='active has-sub'><a routerLink="/quizoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Quizes</span></a>
+        <ul>
+            <li><a routerLink="/multiplayoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Lernräume</span></a></li>
+        </ul>
+    </li>
     <li class='active has-sub'><a><span>Kategorien</span></a>
             <ul>
                 <li *ngFor="let cat of categories" (click)="change(cat.id)" ng-bind="cat" class='has-sub'><a><span>{{cat.name}}</span></a>
@@ -19,11 +24,7 @@
     </li>
 
     
-    <li class='active has-sub'><a routerLink="/quizoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Quizes</span></a>
-        <ul>
-            <li><a routerLink="/multiplayoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Lernräume</span></a></li>
-        </ul>
-    </li>
+   
     <li><a href='#'><span>About</span></a></li>
     <li><a href='#'><span>Kontakt</span></a></li>
     <li [hidden]="loggedIn" ><a routerLink="/addquiz" routerLinkActive="active"><span>+</span></a></li>

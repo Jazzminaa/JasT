@@ -14,6 +14,7 @@ require("rxjs/add/operator/switchMap");
 var HomeComponent = (function () {
     function HomeComponent(dataService) {
         this.dataService = dataService;
+        this.title = 'My First Angular App';
         if (dataService.user != null) {
             this.text = "Hallo " + dataService.user.username;
             this.user = dataService.user;

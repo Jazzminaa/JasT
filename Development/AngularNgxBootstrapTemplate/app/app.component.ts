@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl : 'app/app.component.html',
 })
 export class AppComponent  implements OnInit{
+  title = 'My First Angular App';
     loggedIn: Boolean = false;
     id: number = 0;
     age: number = 0;

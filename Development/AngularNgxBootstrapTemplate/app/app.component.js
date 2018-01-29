@@ -13,6 +13,7 @@ var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent(dataService) {
         this.dataService = dataService;
+        this.title = 'My First Angular App';
         this.loggedIn = false;
         this.id = 0;
         this.age = 0;

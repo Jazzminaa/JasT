@@ -14,6 +14,8 @@ import { User } from '../model/user.model';
     }
 )
 export class HomeComponent implements OnInit {
+    
+  title = 'My First Angular App';
     text:string;
     user:User;
     constructor(private dataService:DataService)
