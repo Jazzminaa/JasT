@@ -3,7 +3,8 @@ import { Subject, Observer, Observable } from 'rxjs/Rx';
 @Injectable()
 export class WebsocketService{
   public createWebsocket(id:number): Subject<MessageEvent> {
-        let socket = new WebSocket('ws://vm86.htl-leonding.ac.at:8080/JAST/play/'+id);
+        //let socket = new WebSocket('ws://vm86.htl-leonding.ac.at:8080/JAST/play/'+id);
+        let socket = new WebSocket('ws://localhost:8080/JAST/play/'+id);
         let observable = Observable.create(
                     (observer: Observer<MessageEvent>) => {
                         socket.onmessage = observer.next.bind(observer);

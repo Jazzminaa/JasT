@@ -14,13 +14,20 @@ require("rxjs/add/operator/switchMap");
 var HomeComponent = (function () {
     function HomeComponent(dataService) {
         this.dataService = dataService;
-        this.title = 'My First Angular App';
+        this.text = "Hallo Gast!";
+        this.count = 0;
         if (dataService.user != null) {
-            this.text = "Hallo " + dataService.user.username;
             this.user = dataService.user;
+            this.text = "Hallo " + this.user.username + "!";
         }
     }
     HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent.prototype.ngDoCheck = function () {
+        if (this.dataService.user != undefined) {
+            this.user = this.dataService.user;
+            this.text = "Hallo " + this.user.username + "!";
+        }
     };
     HomeComponent.prototype.ngOnDestroy = function () {
         this.dataService.user = this.user;

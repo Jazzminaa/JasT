@@ -1,5 +1,7 @@
 import { Content } from './../model/content.model';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter ,DoCheck} from '@angular/core';
+import { Subject, Observable, Subscription } from 'rxjs/Rx';
+
 @Component(
     {
         selector: 'qandainput',
@@ -7,7 +9,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     }
 )
 
-export class QAndAInputComponent {
+export class QAndAInputComponent implements DoCheck {
     @Input() isEnabled: boolean;
     @Input() content: Content;
     @Output() correctGuess = new EventEmitter<number>();
@@ -17,9 +19,17 @@ export class QAndAInputComponent {
     isCorrect: boolean=false;
     isWrong: boolean=false;
     isGivenUp: boolean=false;
+    isDone: boolean=false;
     guessedContent: string="";
     mistakes: number=0;
+    some : string;
 
+    ngDoCheck(): void {
+        if(this.content.geloestVon != undefined)
+        {
+          this.isDone =true;
+        }
+     }
     giveUp() {
         this.isGivenUp=true;
         this.guessedContent=this.content.input2;
@@ -31,7 +41,7 @@ export class QAndAInputComponent {
         if (words.indexOf(this.guessedContent.toUpperCase())>=0) {
             this.isCorrect=true;
             this.isWrong=false;
-            this.correctGuess.emit(0);
+            this.correctGuess.emit(this.content.id);
         }
         else {
             this.mistakes++;

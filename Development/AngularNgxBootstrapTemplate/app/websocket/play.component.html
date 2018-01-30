@@ -4,7 +4,15 @@ Hallo
 {{multiplay?.name}}
 
 <div *ngFor="let content of contents; let i=index">
-    {{content.id}}
+    <qandainput [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
+        (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></qandainput>
+        <p>{{content?.geloestVon}}</p>
+   
+
 </div>
+
+{{message}}
+
+
 
 <router-outlet></router-outlet>

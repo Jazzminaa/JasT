@@ -11,6 +11,7 @@ export class Content{
     quiz: Quiz = new Quiz;
     quizType: QuizType;
     user:User;
+    geloestVon:string ;
 
 
     getJson()

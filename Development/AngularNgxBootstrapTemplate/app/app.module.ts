@@ -21,6 +21,7 @@ import { RegisterComponent } from './register/register.component';
 import { WebsocketService } from './websocket/websocketServices.component';
 import { MultiplayOverviewComponent } from './multiplay-overview/multiplay-overview.component';
 import { ChatComponent } from './websocket/chat.component.';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const appRoutes: Routes = [
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
   {path: 'qandascore', component: QAndAScoreComponent},
   {path: 'addquizcontent', component: AddQuizContentComponent},
   {path: 'play/:id/:qid', component: PlayComponent},
-  {path: 'chat', component: ChatComponent}
+  {path: 'chat', component: ChatComponent},
+  {path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({
@@ -46,7 +48,7 @@ const appRoutes: Routes = [
              FormsModule,
              HttpModule,
              JsonpModule ],
-  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent,MultiplayOverviewComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, QAndAScoreComponent, AddQuizContentComponent, PlayComponent,ChatComponent],
+  declarations: [ AppComponent, HomeComponent, AddQuizComponent, LoginComponent,RegisterComponent,MultiplayOverviewComponent, QuizOverviewComponent, QAndAComponent, QAndAInputComponent, QAndAScoreComponent, AddQuizContentComponent, PlayComponent,ChatComponent,ProfileComponent],
   providers: [DataService,WebsocketService],
   bootstrap: [ AppComponent ]
 })

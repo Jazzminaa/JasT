@@ -4,7 +4,7 @@
   <h3>Gesamtpunkte: {{getPoints()}}</h3>
 </div>
 <div *ngFor="let content of contents; let i=index">
-    <qandainput [isEnabled]="actIndex==i" [content]="content" (correctGuess)="correctGuess(i)"
+    <qandainput [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
       (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></qandainput>
 </div>
 

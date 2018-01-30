@@ -14,21 +14,27 @@ import { User } from '../model/user.model';
     }
 )
 export class HomeComponent implements OnInit {
-    
-  title = 'My First Angular App';
-    text:string;
+    text:string = "Hallo Gast!";
     user:User;
+    count:number = 0;
     constructor(private dataService:DataService)
     {
       if(dataService.user != null)
       {
-          this.text = "Hallo " + dataService.user.username;
           this.user = dataService.user;
+          this.text = "Hallo "+this.user.username+ "!";
       }
     }
 
     ngOnInit(){
         
+    }
+    ngDoCheck(): void {
+        if(this.dataService.user  != undefined)
+        {
+            this.user = this.dataService.user;
+            this.text = "Hallo "+this.user.username+ "!";
+        }
     }
 
     ngOnDestroy()
