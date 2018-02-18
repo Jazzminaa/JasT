@@ -23,7 +23,12 @@ export class LoginComponent{
     constructor(private router: Router , private dataService: DataService)  {
 
     }
-    checkUser(){
+
+    sleep(ms = 0) {
+        return new Promise(r => setTimeout(r, ms));
+    }
+     checkUser(){
+        //new Promise(r => setTimeout(r, 500));
         if (this.newUser.email == "" || this.newUser.password == null || this.newUser.password == "" )
             this.errorText = "Einloggen fehlgeschlagen";
         else {

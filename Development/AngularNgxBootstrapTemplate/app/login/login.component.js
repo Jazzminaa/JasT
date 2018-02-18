@@ -19,7 +19,12 @@ var LoginComponent = (function () {
         this.dataService = dataService;
         this.newUser = new user_model_1.User;
     }
+    LoginComponent.prototype.sleep = function (ms) {
+        if (ms === void 0) { ms = 0; }
+        return new Promise(function (r) { return setTimeout(r, ms); });
+    };
     LoginComponent.prototype.checkUser = function () {
+        //new Promise(r => setTimeout(r, 500));
         if (this.newUser.email == "" || this.newUser.password == null || this.newUser.password == "")
             this.errorText = "Einloggen fehlgeschlagen";
         else {

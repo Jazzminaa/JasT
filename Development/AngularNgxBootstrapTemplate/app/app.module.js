@@ -29,6 +29,7 @@ var websocketServices_component_1 = require("./websocket/websocketServices.compo
 var multiplay_overview_component_1 = require("./multiplay-overview/multiplay-overview.component");
 var chat_component_1 = require("./websocket/chat.component.");
 var profile_component_1 = require("./profile/profile.component");
+var add_multiplay_component_1 = require("./add-multiplay/add-multiplay.component");
 var appRoutes = [
     { path: '', redirectTo: '/home', pathMatch: "full" },
     { path: 'home', component: home_component_1.HomeComponent },
@@ -43,7 +44,8 @@ var appRoutes = [
     { path: 'addquizcontent', component: add_quiz_content_component_1.AddQuizContentComponent },
     { path: 'play/:id/:qid', component: play_component_1.PlayComponent },
     { path: 'chat', component: chat_component_1.ChatComponent },
-    { path: 'profile', component: profile_component_1.ProfileComponent }
+    { path: 'profile', component: profile_component_1.ProfileComponent },
+    { path: 'add-multiplay', component: add_multiplay_component_1.AddMultiplayComponent }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -59,7 +61,10 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent, login_component_1.LoginComponent, register_component_1.RegisterComponent, multiplay_overview_component_1.MultiplayOverviewComponent, quiz_overview_component_1.QuizOverviewComponent, qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent, qandascore_component_1.QAndAScoreComponent, add_quiz_content_component_1.AddQuizContentComponent, play_component_1.PlayComponent, chat_component_1.ChatComponent, profile_component_1.ProfileComponent],
+        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, add_quiz_component_1.AddQuizComponent,
+            login_component_1.LoginComponent, register_component_1.RegisterComponent, multiplay_overview_component_1.MultiplayOverviewComponent, quiz_overview_component_1.QuizOverviewComponent,
+            qanda_component_1.QAndAComponent, qandainput_component_1.QAndAInputComponent, qandascore_component_1.QAndAScoreComponent, add_quiz_content_component_1.AddQuizContentComponent,
+            play_component_1.PlayComponent, chat_component_1.ChatComponent, profile_component_1.ProfileComponent, add_multiplay_component_1.AddMultiplayComponent],
         providers: [data_service_1.DataService, websocketServices_component_1.WebsocketService],
         bootstrap: [app_component_1.AppComponent]
     })

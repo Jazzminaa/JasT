@@ -30,8 +30,10 @@ export class MultiplayOverviewComponent implements OnInit {
 
 
      ngOnInit() {
-        this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.testId=+p);
-        this.route.params.switchMap((params: Params) => params['age']).subscribe(p=>this.ageId=+p);
+
+        this.route.params.subscribe((params: Params) => {this.testId= params['id'] ; this.ageId = params['age']
+        });
+       
         this.GetCat();
      }
 

@@ -1,9 +1,8 @@
 <link rel="stylesheet" href="../css/home.css">
-Hallo
-<br>
+
 {{multiplay?.name}}
 
-<div *ngFor="let content of contents; let i=index">
+<div [hidden]="contents[0].quiztype == 1" *ngFor="let content of contents; let i=index">
     <qandainput [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
         (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></qandainput>
         <p>{{content?.geloestVon}}</p>

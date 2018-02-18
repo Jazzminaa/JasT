@@ -28,6 +28,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
     send(){
-        this.socket.next(this.sentMessage +"<br>");
+        this.socket.next(this.dataService.user.username + ": " +this.sentMessage);
     }
 }
