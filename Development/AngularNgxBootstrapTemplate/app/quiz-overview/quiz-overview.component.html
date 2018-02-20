@@ -1,0 +1,37 @@
+<div>    
+    <table class="table">
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Beschreibung
+            </th>
+            <th>
+                Fach
+            </th>
+            <th>
+                Typ
+            </th>
+        </tr>
+        <template ngFor let-quiz [ngForOf]="quizes">
+            <tr>
+                <td>
+                    <a routerLink="/qanda/1" routerLinkActive="active">{{quiz.name}}</a>
+                </td>
+                <td>
+                    {{quiz.description}}
+                </td>
+                <td>
+                    {{quiz.category.name}}
+                </td>
+                <td>
+                    {{quiz.quiztype.name}}
+                </td>
+            </tr>
+        </template>
+    </table>
+</div>
+<label>{{name}}</label>
+<label>{{testId}}</label>
+ <router-outlet></router-outlet>
