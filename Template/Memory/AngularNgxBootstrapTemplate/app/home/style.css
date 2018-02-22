@@ -2,12 +2,12 @@ div#memory_board{
   background:#DADADA;
   border:#999 1px solid;
   width: 750px;
-  height: 750px;
+  height: 920px;
   padding: 24px;
   margin: 0px auto;
 }
 
-td {
+button#card {
   background: #C30303;
   border: #000 1px solid;
   width: 150px;
