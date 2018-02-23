@@ -75,6 +75,13 @@ export class HomeComponent {
         else{
             console.log(con1 + " & " + con2 +" Falsch");
             //this.timeout();
+            let i =0;
+            do{
+                this.OpenOrCloseCard(this.rowOfCard1 ,this.colOfCard1,true);
+                this.OpenOrCloseCard(this.rowOfCard2 ,this.colOfCard2,true);
+                i++;
+            }while(i == 100)
+
             this.OpenOrCloseCard(this.rowOfCard1 ,this.colOfCard1,false);
             this.OpenOrCloseCard(this.rowOfCard2 ,this.colOfCard2,false);
         }
@@ -87,6 +94,8 @@ export class HomeComponent {
 
     timeout() {
         setTimeout(() => {
+            this.OpenOrCloseCard(this.rowOfCard1 ,this.colOfCard1,true);
+            this.OpenOrCloseCard(this.rowOfCard2 ,this.colOfCard2,true);
             console.log("Loading ...");
             this.timeout();
         }, 1000/60);
