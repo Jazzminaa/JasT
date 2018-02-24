@@ -40,6 +40,18 @@ var DataService = (function () {
         return this.http.get(this.API_Url + "quizes")
             .map(function (response) { return response.json(); });
     };
+    DataService.prototype.getMultiplays = function () {
+        return this.http.get(this.API_Url + "multiplays")
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.getMultiplaysByCat = function (arg0) {
+        //return Multiplay[];
+        return;
+    };
+    DataService.prototype.getMultiplayById = function (id) {
+        return this.http.get(this.API_Url + "multiplays/" + id)
+            .map(function (response) { return response.json(); });
+    };
     DataService.prototype.getQuizWithUserAndName = function () {
         return this.http.get(this.API_Url + "quizes/user/" + this.newQuiz.user.id + "/name/" + this.newQuiz.name)
             .map(function (response) { return response.json(); });

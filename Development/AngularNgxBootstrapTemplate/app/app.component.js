@@ -10,16 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var data_service_1 = require("./shared/data.service");
 var core_1 = require("@angular/core");
+var user_model_1 = require("./model/user.model");
 var AppComponent = (function () {
     function AppComponent(dataService) {
         this.dataService = dataService;
         this.loggedIn = false;
+        this.id = 0;
+        this.age = 0;
         if (dataService.user != null) {
-            this.loggedIn = dataService.loggedIn;
+            this.theUser = dataService.user;
         }
     }
+    AppComponent.prototype.logOut = function () {
+        this.dataService.user = new user_model_1.User;
+        this.dataService.user.username = "Gast";
+        this.loggedIn = false;
+    };
+    AppComponent.prototype.ngDoCheck = function () {
+        if (this.dataService.user != undefined && this.dataService.user.id != null) {
+            this.loggedIn = true;
+        }
+    };
+    AppComponent.prototype.ngOnDestroy = function () {
+        this.dataService.user = this.theUser;
+    };
     AppComponent.prototype.ngOnInit = function () {
         this.getAllCategories();
+    };
+    AppComponent.prototype.change = function (newid) {
+        this.id = newid;
     };
     AppComponent.prototype.getAllCategories = function () {
         var _this = this;
