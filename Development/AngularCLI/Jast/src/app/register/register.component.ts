@@ -14,10 +14,12 @@ export class RegisterComponent implements OnInit {
   newUser: User = new User;
   errorText: string;
   password: string;
+  date:Date;
   constructor(private router: Router , private dataService: DataService)  {
-
+    this.newUser.gender = "m";
   }
   register(){
+
       if (this.newUser.email == "" || this.newUser.password == null )
           this.errorText = "Alle Felder müssen ausgefüllt werden :)";
       else {
@@ -28,15 +30,14 @@ export class RegisterComponent implements OnInit {
               if(this.newUser.password == this.password)
               {
                   //Komisch
-                  console.log("Its my birthday"+this.newUser.dateOfBirth);
                   this.errorText = "Speichern";
                   this.newUser.id = 0;
+                  this.newUser.dateOfBirth = this.date.toString();
                   this.dataService.insertUser(this.newUser).subscribe(data => {
                   },
                   error => {
                     //alert("Speichern fehlgeschlagen: " + error);
                   });
-                  console.log("???birthday"+this.newUser.dateOfBirth);
                   this.router.navigateByUrl("/login");
               }
               else{
@@ -56,6 +57,18 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  setGender(num:number){
+        switch(num)
+        {
+            case 1: this.newUser.gender = "m";
+            break;
+            case 2: this.newUser.gender = "w";
+            break;
+            case 3: this.newUser.gender = "s";
+            break
+        }
   }
 
 }

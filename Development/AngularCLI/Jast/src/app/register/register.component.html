@@ -3,22 +3,29 @@
 <div>
  <form class="form" action="">
             <label>Username</label>
-            <input [(ngModel)]="newUser.username" type="text" name="name"/>
-
+            <input [(ngModel)]="newUser.username" required minlength="5" type="text" name="name"/>
+            <!--<div [hidden]="newUser.username.length >= 5"
+                    class="alert alert-danger">
+                Name ist zu kurz.  Es muss mindestens 5 Zeichen lang sein
+            </div>-->
             <label>Firstname</label>
-            <input [(ngModel)]="newUser.firstName" type="text" name="fn"/>
+            <input [(ngModel)]="newUser.firstName" required minlength="3" type="text" name="fn"/>
 
             <label>Lastname</label>
-            <input [(ngModel)]="newUser.lastName" type="text" name="ln"/>
+            <input [(ngModel)]="newUser.lastName" required minlength="3" type="text" name="ln"/>
 
             <label>Birthday</label>
-            <input [(ngModel)]="newUser.birthday" type="datetime" name="birth"/>
+            <input [(ngModel)]="date" required type="date" name="birth"/>
 
             <label>Gender</label>
-            <input [(ngModel)]="newUser.gender" type="text" name="birth"/>
+            <div>
+                <input (click)="setGender(1)" type="radio" name="gender" value="m" checked> männlich
+                <input  (click)="setGender(2)" type="radio" name="gender" value="w"> weiblich
+                <input  (click)="setGender(3)" type="radio" name="gender" value="a"> anders
+            </div>
         
             <label>E-mail</label>
-            <input [(ngModel)]="newUser.email" type="text" name="email"/>
+            <input [(ngModel)]="newUser.email"  type="text" name="email"/>
 
             <label>Password</label>
             <input  type="password" [(ngModel)]="newUser.password" name="pass">
