@@ -26,6 +26,8 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of';
 import { SwitchComponent } from './quiz-overview/switch-quiztype';
+import { PlayqandaComponent } from './websocket/play/playqanda/playqanda.component';
+import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { SwitchComponent } from './quiz-overview/switch-quiztype';
     RegisterComponent,
     PlayComponent,
     ChatComponent,
-    SwitchComponent
+    SwitchComponent,
+    PlayqandaComponent,
+    PlayclozeComponent
   ],
   imports: [
     BrowserModule,
