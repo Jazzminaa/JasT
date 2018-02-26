@@ -1,3 +1,4 @@
+import { Multiswitch } from './multiplay-overview/multiswitch';
 import { WebsocketService } from './websocket/websocket-service';
 import { DataService } from './shared/data.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -50,7 +51,8 @@ import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.compone
     ChatComponent,
     SwitchComponent,
     PlayqandaComponent,
-    PlayclozeComponent
+    PlayclozeComponent,
+    Multiswitch
   ],
   imports: [
     BrowserModule,

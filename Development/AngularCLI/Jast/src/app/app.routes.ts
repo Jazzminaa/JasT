@@ -1,3 +1,5 @@
+import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.component';
+import { PlayqandaComponent } from './websocket/play/playqanda/playqanda.component';
 import { QandaComponent } from './qanda/qanda.component';
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,6 +19,7 @@ import { QandascoreComponent } from './qanda/qandascore/qandascore.component';
 import { ClozeComponent } from './cloze/cloze.component';
 import { ClozeinputComponent } from './cloze/clozeinput/clozeinput.component';
 import { SwitchComponent } from './quiz-overview/switch-quiztype';
+import { Multiswitch } from './multiplay-overview/multiswitch';
 
 
 const appRoutes: Routes = [
@@ -37,7 +40,11 @@ const appRoutes: Routes = [
     {path:'add-multiplay',component:AddMultiplayComponent},
     {path: 'cloze/:id', component: ClozeComponent},
     {path: 'clozeinput', component: ClozeinputComponent},
-    {path: 'switch/:qid/:id', component: SwitchComponent}
+    {path: 'switch/:qid/:id', component: SwitchComponent},
+    {path: 'multiswitch/:qtid/:qid/:id', component: Multiswitch},
+    {path: 'multiqanda/:id/:qid', component: PlayqandaComponent},
+    {path: 'multicloze/:id/:qid', component: PlayclozeComponent},
+
 
 ];
 
