@@ -23,7 +23,7 @@ export class ClozeinputComponent implements DoCheck {
     some : string;
 
     ngDoCheck(): void {
-      
+       
     }
   giveUp() {
       this.isGivenUp=true;
