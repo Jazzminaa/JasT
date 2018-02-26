@@ -1,15 +1,14 @@
 
 {{multiplay?.name}}
-
-<div [hidden]="contents[0].quiztype == 1" *ngFor="let content of contents; let i=index">
+<div [hidden]="check(contents[0])">
+<div [hidden]="isQandA" *ngFor="let content of contents; let i=index">
     <qandainput [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
         (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></qandainput>
         <p>{{content?.geloestVon}}</p>
-   
-
 </div>
-
+</div>
 {{message}}
+
 
 
 

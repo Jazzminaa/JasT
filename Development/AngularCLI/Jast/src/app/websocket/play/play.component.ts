@@ -1,8 +1,8 @@
+import { Content } from './../../model/content.model';
 import { Component, OnInit } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DoCheck } from '@angular/core';
-import { Content } from '../../model/content.model';
 import { Multiplay } from '../../model/multiplay.model';
 import { User } from '../../model/user.model';
 import { DataService } from '../../shared/data.service';
@@ -26,20 +26,26 @@ export class PlayComponent implements  OnInit{
   multiplayId: number;
   multiplay: Multiplay;
   theUser:User;
+  isQandA:boolean=false;
+  isCloze:boolean=false;
 
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
       
       if(dataService.user != null)
       {
           this.theUser = dataService.user;
+          this.route.params.switchMap((params: Params) => params['qid']).subscribe(p=>this.quizId=+p);
           this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.multiplayId=+p);
       }
       else{
           this.router.navigateByUrl("/login");
       }
+    
+
       if(this.multiplayId != undefined)
       {
           this.socket = websocketService.createWebsocket(this.multiplayId);
+        
       }
      
 
@@ -74,17 +80,27 @@ export class PlayComponent implements  OnInit{
   }
 
   ngOnInit(){
-      this.route.params.switchMap((params: Params) => params['qid']).subscribe(p=>this.quizId=+p);
+        this.getMultiplayById();
+        this.getContentById();    
       this.socket.subscribe(
       message => this.message = message.data
-      );
-      this.getMultiplayById();
-      this.getContentById();
+      );  
 
-     
-      
   }
 
+  check(con:Content)
+  {
+    if(con != undefined)
+    {
+        console.log(con.id)
+        switch(con.quiz.quizType.id)
+        {
+            case 1 : this.isQandA = true;
+            break;
+        }
+    }
+    return false;
+  }
   getMultiplayById()
   {
       this.dataService.getMultiplayById(this.multiplayId).subscribe
@@ -103,16 +119,5 @@ export class PlayComponent implements  OnInit{
   {
       this.socket.next(i+";"+this.dataService.user.username);
   }
-  send(){
-      let num: number =Math.floor(Math.random() * 6) + 1  
-      this.message = num+";Alex"+num
-    
-      /*if (this.contents[2].geloestVon != undefined)
-      {
-          this.contents[2].geloestVon += "& XY";
-      }
-      else
-      this.contents[2].geloestVon = "gelöst von XY";*/
-     // this.socket.next(this.sentMessage);
-    }
+
 }

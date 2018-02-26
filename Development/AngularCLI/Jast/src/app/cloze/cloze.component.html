@@ -4,7 +4,11 @@
   <h3>Gesamtpunkte: {{getPoints()}}</h3>
 </div>
 
-<div [innerHtml] = "newString"></div>
+<div *ngFor="let content of contents; let i=index">
+    <app-clozeinput [isEnabled]="actIndex==i" [content]="content" [check]="check" (correctGuess)="correctGuess(i)"
+      (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-clozeinput>
+</div>
+
 
 <button type="button" class="btn btn-info btn-lg" (click)="openModal();saveScore();">Speichern</button>
 
@@ -20,7 +24,7 @@
         <p>You scored {{getPoints()}} points!</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="saveScore()">Close</button>
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
       </div>
     </div>
   </div>
