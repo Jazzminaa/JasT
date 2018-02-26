@@ -33,13 +33,14 @@
 
             <label>Password</label>
             <input  type="password" [(ngModel)]="newUser.password" name="pass">
+        
+
+            <label>Retry-Password</label>
+            <input  type="password" [(ngModel)]="password" name="pass">
             <div [hidden]="validationPass" 
                     class="alert alert-danger">
                 {{passError}}
             </div>
-
-            <label>Retry-Password</label>
-            <input  type="password" [(ngModel)]="password" name="pass">
 
             <button (click)="register()">Registrieren</button>
             
