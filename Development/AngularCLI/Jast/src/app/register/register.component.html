@@ -4,15 +4,15 @@
  <form class="form" action="">
             <label>Username</label>
             <input [(ngModel)]="newUser.username" required minlength="5" type="text" name="name"/>
-            <!--<div [hidden]="newUser.username.length >= 5"
+            <div [hidden]="validationUsername" 
                     class="alert alert-danger">
                 Name ist zu kurz.  Es muss mindestens 5 Zeichen lang sein
-            </div>-->
+            </div>
             <label>Firstname</label>
-            <input [(ngModel)]="newUser.firstName" required minlength="3" type="text" name="fn"/>
+            <input [(ngModel)]="newUser.firstName" required  type="text" name="fn"/>
 
             <label>Lastname</label>
-            <input [(ngModel)]="newUser.lastName" required minlength="3" type="text" name="ln"/>
+            <input [(ngModel)]="newUser.lastName" required type="text" name="ln"/>
 
             <label>Birthday</label>
             <input [(ngModel)]="date" required type="date" name="birth"/>
@@ -26,9 +26,17 @@
         
             <label>E-mail</label>
             <input [(ngModel)]="newUser.email"  type="text" name="email"/>
+            <div [hidden]="validationEmail" 
+                    class="alert alert-danger">
+                {{emailError}}
+            </div>
 
             <label>Password</label>
             <input  type="password" [(ngModel)]="newUser.password" name="pass">
+            <div [hidden]="validationPass" 
+                    class="alert alert-danger">
+                {{passError}}
+            </div>
 
             <label>Retry-Password</label>
             <input  type="password" [(ngModel)]="password" name="pass">

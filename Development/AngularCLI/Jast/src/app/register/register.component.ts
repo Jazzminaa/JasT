@@ -15,39 +15,74 @@ export class RegisterComponent implements OnInit {
   errorText: string;
   password: string;
   date:Date;
+  validation:boolean=true;
+  validationUsername:boolean=true;
+  validationEmail:boolean=true;
+  validationPass: boolean=true;
   constructor(private router: Router , private dataService: DataService)  {
     this.newUser.gender = "m";
+    this.newUser.username = " ";
   }
-  register(){
 
+  register(){
+    this.validationUsername = this.newUser.username != undefined && this.newUser.username.length >= 5;
+    this.validationEmail = this.newUser.email != undefined && this.valEmail();
+    this.validationPass = this.newUser.password != undefined && this.valPass();
+    this.validation = this.validationUsername && this.validationEmail && this.validationPass;
       if (this.newUser.email == "" || this.newUser.password == null )
           this.errorText = "Alle Felder müssen ausgefüllt werden :)";
       else {
           this.getUserByEMail();
           
-          if(this.getUser == null)
+          if(this.getUser == null && this.validation)
           {
-              if(this.newUser.password == this.password)
-              {
                   //Komisch
                   this.errorText = "Speichern";
                   this.newUser.id = 0;
                   this.newUser.dateOfBirth = this.date.toString();
-                  this.dataService.insertUser(this.newUser).subscribe(data => {
+                  /*this.dataService.insertUser(this.newUser).subscribe(data => {
                   },
                   error => {
                     //alert("Speichern fehlgeschlagen: " + error);
                   });
-                  this.router.navigateByUrl("/login");
-              }
-              else{
-                  this.errorText = "Passwort nicht gleich!";
-              }
+                  this.router.navigateByUrl("/login");*/
+          }
+          else if(this.getUser != null)
+          {
+            this.errorText = "Email existiert bereits";
           }
           else {
-              this.errorText = "Email existiert bereits";
+              this.errorText = "Achte auf Validierung.";
           }
       }
+  }
+  emailError:string = "Fehlt";
+  valEmail(){
+      let pattern = "[A-Z]+@[A-Z]+/.[A-Z]";
+      pattern = "[A-Z]+@[A-Z]+"
+    let reg:RegExp=new RegExp(pattern);
+      if(this.newUser.email.indexOf('@') <=0)
+      {
+          this.emailError = "@ Fehlt"
+          return false;
+      }
+      else if(!reg.exec(this.newUser.email))
+      {
+            this.emailError = "So schaut eine Email aus: example@gmail.com";
+            return false;
+      }
+      return true;
+  }
+
+  passError:string= "Fehlt";
+  valPass()
+  {
+      if(this.newUser.password != this.password)
+      {
+          this.passError = "Passwort stimmt nicht mit Retry-Password überein.";
+          return false;
+      }
+      return true;
   }
 
   getUserByEMail(){
