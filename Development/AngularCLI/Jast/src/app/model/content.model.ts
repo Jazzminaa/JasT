@@ -7,7 +7,6 @@ export class Content{
     input1: string = "";
     input2: string = "";
     quiz: Quiz = new Quiz;
-    quizType: QuizType;
     user:User;
     geloestVon:string ;
 
