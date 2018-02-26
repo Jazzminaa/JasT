@@ -1,3 +1,5 @@
+import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
+import { RightorwrongComponent } from './rightorwrong/rightorwrong.component';
 import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.component';
 import { PlayqandaComponent } from './websocket/play/playqanda/playqanda.component';
 import { QandaComponent } from './qanda/qanda.component';
@@ -40,6 +42,9 @@ const appRoutes: Routes = [
     {path:'add-multiplay',component:AddMultiplayComponent},
     {path: 'cloze/:id', component: ClozeComponent},
     {path: 'clozeinput', component: ClozeinputComponent},
+    {path: 'switch/:qid/:id', component: SwitchComponent},
+    {path: 'rightorwrong/:id', component: RightorwrongComponent},
+    {path: 'rightorwrongbutton', component: RightorwrongbuttonComponent}
     {path: 'switch/:qid/:id', component: SwitchComponent},
     {path: 'multiswitch/:qtid/:qid/:id', component: Multiswitch},
     {path: 'multiqanda/:id/:qid', component: PlayqandaComponent},

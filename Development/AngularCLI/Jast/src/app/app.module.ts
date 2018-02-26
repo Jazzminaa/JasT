@@ -29,6 +29,8 @@ import 'rxjs/add/observable/of';
 import { SwitchComponent } from './quiz-overview/switch-quiztype';
 import { PlayqandaComponent } from './websocket/play/playqanda/playqanda.component';
 import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.component';
+import { RightorwrongComponent } from './rightorwrong/rightorwrong.component';
+import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,9 @@ import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.compone
     PlayqandaComponent,
     PlayclozeComponent,
     Multiswitch
+    PlayclozeComponent,
+    RightorwrongComponent,
+    RightorwrongbuttonComponent
   ],
   imports: [
     BrowserModule,

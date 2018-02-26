@@ -32,7 +32,9 @@ export class SwitchComponent implements OnInit {
             case 2:
             router.navigateByUrl("/cloze/"+this.quizid);
             break;
-
+            case 3:
+            router.navigateByUrl("/rightorwrong/"+this.quizid);
+            break;
         }
     }
 
