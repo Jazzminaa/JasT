@@ -64,6 +64,7 @@ export class ClozeinputComponent implements DoCheck {
             this.isCorrect = true;
         }
         this.isEnabled=true;
+        
       }
       return false;
   }
