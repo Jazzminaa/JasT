@@ -95,6 +95,8 @@ export class QuizOverviewComponent  implements OnInit {
                  this.router.navigateByUrl("/qanda/"+id);
              case "cloze":
                  this.router.navigateByUrl("/cloze/"+id);  
+            case "rightorwrong":
+                 this.router.navigateByUrl("/rightorwrong/"+id);  
          }
 
 

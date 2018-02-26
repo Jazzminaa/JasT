@@ -1,3 +1,5 @@
+import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
+import { RightorwrongComponent } from './rightorwrong/rightorwrong.component';
 import { QandaComponent } from './qanda/qanda.component';
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -37,7 +39,9 @@ const appRoutes: Routes = [
     {path:'add-multiplay',component:AddMultiplayComponent},
     {path: 'cloze/:id', component: ClozeComponent},
     {path: 'clozeinput', component: ClozeinputComponent},
-    {path: 'switch/:qid/:id', component: SwitchComponent}
+    {path: 'switch/:qid/:id', component: SwitchComponent},
+    {path: 'rightorwrong/:id', component: RightorwrongComponent},
+    {path: 'rightorwrongbutton', component: RightorwrongbuttonComponent}
 
 ];
 
