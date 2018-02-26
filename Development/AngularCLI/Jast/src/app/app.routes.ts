@@ -44,7 +44,7 @@ const appRoutes: Routes = [
     {path: 'clozeinput', component: ClozeinputComponent},
     {path: 'switch/:qid/:id', component: SwitchComponent},
     {path: 'rightorwrong/:id', component: RightorwrongComponent},
-    {path: 'rightorwrongbutton', component: RightorwrongbuttonComponent}
+    {path: 'rightorwrongbutton', component: RightorwrongbuttonComponent},
     {path: 'switch/:qid/:id', component: SwitchComponent},
     {path: 'multiswitch/:qtid/:qid/:id', component: Multiswitch},
     {path: 'multiqanda/:id/:qid', component: PlayqandaComponent},

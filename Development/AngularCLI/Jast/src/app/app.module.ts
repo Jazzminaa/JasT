@@ -54,8 +54,7 @@ import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/r
     SwitchComponent,
     PlayqandaComponent,
     PlayclozeComponent,
-    Multiswitch
-    PlayclozeComponent,
+    Multiswitch,
     RightorwrongComponent,
     RightorwrongbuttonComponent
   ],
