@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-xs-3">{{content.input1}}</div>
+    <div class="col-xs-9">
+        <button [disabled]="isGivenUp||isCorrect||isDone" (click)="checkButtonRightContent()">Richtig</button>
+        <button [disabled]="isGivenUp||isCorrect||isDone" (click)="checkButtonWrongContent()">Falsch</button>
+        <label *ngIf="isWrong == true">Falsche Antwort!</label>
+        <label *ngIf="isCorrect == true">Richtige Antwort!</label>
+    </div>
+</div>

@@ -8,23 +8,31 @@ import { User } from '../model/user.model';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
- 
+
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
+    this.ReadOnly = true;
   }
   text:string = "Hallo Gast!";
   newUser:User;
+  outPutUser: User;
+  oldUser:User;
   count:number = 0;
-  ReadOnly: boolean = true;
+  ReadOnly: boolean = false;
+  birthday:Date;
   constructor(private dataService:DataService)
   {
     if(dataService.user != null)
     {
-        this.newUser = dataService.user;
-        this.text = "Hallo "+this.newUser.username+ "!";
+      this.birthday = new Date(dataService.user.dateOfBirth.toString());
+        this.toOutPutUser(dataService.user);
     }
+    
   }
-
+   
+  toOutPutUser(u: User) {
+    //this.oldUser = this.outPutUser;
+    this.outPutUser = this.oldUser;
+  }
   edit()
   {
       this.ReadOnly =false;

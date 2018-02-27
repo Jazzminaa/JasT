@@ -1,22 +1,22 @@
+import { Content } from './../model/content.model';
+import { User } from './../model/user.model';
 import { Quiz } from './../model/quiz.model';
 import { QuizType } from './../model/quiztype.model';
 import { Category } from './../model/category.model';
+import { Score } from './../model/score.model';
 import { WebsocketService } from './../websocket/websocket-service';
-import { OnInit, Component, Output, Input, EventEmitter } from '@angular/core';
-import { DataService } from '../shared/data.service';
-import { Router,ActivatedRoute, Params  } from '@angular/router';
-import { Content } from '../model/content.model';
-import { Score } from '../model/score.model';
-import { User } from '../model/user.model';
+import { DataService } from './../shared/data.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'qanda',
-  templateUrl: './qanda.component.html',
-  styleUrls: ['./qanda.component.css']
+  selector: 'app-rightorwrong',
+  templateUrl: './rightorwrong.component.html',
+  styleUrls: ['./rightorwrong.component.css']
 })
-export class QandaComponent  implements OnInit {
-       
-   contents: Content[];
+export class RightorwrongComponent implements OnInit {
+
+        contents: Content[];
         correctCounter: number=0;
         wrongCounter: number=0;
         givenUpCounter: number=0;
@@ -28,8 +28,6 @@ export class QandaComponent  implements OnInit {
         quizId: number;
         categoryId: number;
         selQuiz: Quiz;
-        selQuizType: QuizType;
-        selCategory: Category;
 
         openModal(){
             this.display='block';
@@ -50,8 +48,6 @@ export class QandaComponent  implements OnInit {
             this.score = new Score();
             this.score.id = 1;
             this.score.points = this.finalPoints;
-            this.score.category = this.selCategory;
-            this.score.quizType = this.selQuizType;
 
            
             this.dataService.insertScore(this.score).subscribe(data => {
@@ -73,9 +69,6 @@ export class QandaComponent  implements OnInit {
          {
         
             this.selQuiz = this.contents[0].quiz;
-            this.selQuizType = this.contents[0].quiz.quizType;
-            this.selCategory = this.contents[0].quiz.category;
-         
          }
 
         givenUp(index: number) {
@@ -97,4 +90,5 @@ export class QandaComponent  implements OnInit {
              this.user= this.dataService.user;
              this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.quizId=+p);
         }
+
 }

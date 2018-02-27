@@ -1,19 +1,18 @@
-import { Content } from './../../model/content.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { DoCheck } from '@angular/core';
-import { Multiplay } from '../../model/multiplay.model';
-import { User } from '../../model/user.model';
-import { DataService } from '../../shared/data.service';
-import { WebsocketService } from '../websocket-service';
+import { Content } from '../../../model/content.model';
+import { Multiplay } from '../../../model/multiplay.model';
+import { User } from '../../../model/user.model';
+import { DataService } from '../../../shared/data.service';
+import { WebsocketService } from '../../websocket-service';
 
 @Component({
-  selector: 'play',
-  templateUrl: './play.component.html',
-  styleUrls: ['./play.component.css']
+  selector: 'app-playcloze',
+  templateUrl: './playcloze.component.html',
+  styleUrls: ['./playcloze.component.css']
 })
-export class PlayComponent implements  OnInit{
+export class PlayclozeComponent implements  OnInit{
   private data: string[];
 
   private socket: Subject<any>;
@@ -102,6 +101,7 @@ export class PlayComponent implements  OnInit{
 
   correctGuess(i:number)
   {
+    console.log("r");
       this.socket.next(i+";"+this.dataService.user.username);
   }
 
