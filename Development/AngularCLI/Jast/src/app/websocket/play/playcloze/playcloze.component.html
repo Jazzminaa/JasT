@@ -1,3 +1,7 @@
-<p>
-  playcloze works!
-</p>
+<h1>{{multiplay?.name}}</h1>
+<div *ngFor="let content of contents; let i=index">
+  <app-clozeinput [isEnabled]="actIndex==i" [content]="content" [check]="true" (correctGuess)="correctGuess(i)"
+  (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-clozeinput>
+</div>
+
+<router-outlet></router-outlet>

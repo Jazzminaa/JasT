@@ -21,51 +21,66 @@ export class ClozeinputComponent implements DoCheck {
     guessedContent: string="";
     mistakes: number=0;
     some : string;
+    testMulti: boolean = true;
 
     ngDoCheck(): void {
-       
+        if(this.content.geloestVon != undefined)
+        {
+          this.isDone =true;
+          this.guessedContent = this.content.input2;
+        }
+
+        if( this.content.input2 == this.guessedContent && this.check && this.testMulti)
+        {
+            this.checkContent();
+            this.testMulti = false;
+        }
+
     }
-  giveUp() {
-      this.isGivenUp=true;
-      this.guessedContent=this.content.input2;
-      this.givenUp.emit(0);
-  }
-  test:boolean=false;
-  checkContent() {
+    giveUp() {
+        this.isGivenUp=true;
+        this.guessedContent=this.content.input2;
+        this.givenUp.emit(0);
+    }
+    test:boolean=false;
+    checkContent() {
 
-      let words = this.content.input2.toUpperCase().split(", ");
-      if (words.indexOf(this.guessedContent.toUpperCase())>=0) {
-          this.isCorrect=true;
-          this.isWrong=false;
-          this.correctGuess.emit(this.content.id);
-      }
-      else {
-          this.mistakes++;
-          this.isWrong=true;
-          this.isCorrect=false;
-          this.wrongGuess.emit(0);
-      }
-  }
+        let words = this.content.input2.toUpperCase().split(", ");
+        if (words.indexOf(this.guessedContent.toUpperCase())>=0) {
+            this.isCorrect=true;
+            this.isWrong=false;
+            this.isDone = true;
+            this.correctGuess.emit(this.content.id);
+        }
+        else {
+            this.mistakes++;
+            this.isWrong=true;
+            this.isCorrect=false;
+            this.wrongGuess.emit(0);
+        }
+    }
 
-  validation(check:boolean)
-  {
-      
-      if(check == true)
-      {
+    validation(check:boolean)
+    {
         
-        if(this.guessedContent != this.content.input2)
+        if(check == true)
         {
-            this.isWrong = true;
-            this.isCorrect = false;
+            
+            if(this.guessedContent != this.content.input2)
+            {
+                this.isWrong = true;
+                this.isCorrect = false;
+                this.mistakes++;
+            
+            }
+            else
+            {
+                this.isWrong = false;
+                this.isDone = true;
+                this.isCorrect = true;
+                
+            }            
         }
-        else
-        {
-            this.isWrong = false;
-            this.isCorrect = true;
-        }
-        this.isEnabled=true;
-        
-      }
-      return false;
-  }
+        return false;
+    }
 }
