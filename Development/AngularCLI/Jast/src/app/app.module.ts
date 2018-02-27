@@ -1,3 +1,4 @@
+import { Multiswitch } from './multiplay-overview/multiswitch';
 import { WebsocketService } from './websocket/websocket-service';
 import { DataService } from './shared/data.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -54,6 +55,7 @@ import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
     SwitchComponent,
     PlayqandaComponent,
     PlayclozeComponent,
+    Multiswitch,
     RightorwrongComponent,
     RightorwrongbuttonComponent,
     QuiztypeinfoComponent

@@ -2,25 +2,25 @@
 <div>
  <form class="form" action="">
             <label>Username</label>
-            <input [(disabled)]="ReadOnly" [(ngModel)]="newUser.username" type="text" name="name"/>
+            <input [(disabled)]="ReadOnly" [(ngModel)]="outPutUser.username" type="text" name="name"/>
 
             <label>Firstname</label>
-            <input [(disabled)]="ReadOnly"  [(ngModel)]="newUser.firstName" type="text" name="fn"/>
+            <input [(disabled)]="ReadOnly"  [(ngModel)]="outPutUser.firstname" type="text" name="fn"/>
 
             <label>Lastname</label>
-            <input  [(disabled)]="ReadOnly"  [(ngModel)]="newUser.lastName" type="text" name="ln"/>
+            <input  [(disabled)]="ReadOnly"  [(ngModel)]="outPutUser.lastname" type="text" name="ln"/>
 
             <label>Birthday</label>
-            <input [(disabled)]="ReadOnly"  [(ngModel)]="newUser.birthday" type="datetime" name="birth"/>
+            <input [(disabled)]="ReadOnly"  [(ngModel)]="birthday" type="date" name="birth"/>
 
             <label>Gender</label>
-            <input [(disabled)]="ReadOnly"  [(ngModel)]="newUser.gender" type="datetime" name="birth"/>
+            <input [(disabled)]="ReadOnly"  [(ngModel)]="outPutUser.gender" type="text" name="gender"/>
         
             <label>E-mail</label>
-            <input [(disabled)]="ReadOnly"  [(ngModel)]="newUser.email" type="text" name="email"/>
+            <input [(disabled)]="ReadOnly"  [(ngModel)]="outPutUser.email" type="text" name="email"/>
 
             <label [hidden]="ReadOnly">Password</label>
-            <input [hidden]="ReadOnly" type="password" [(ngModel)]="newUser.password" name="pass">
+            <input [hidden]="ReadOnly" type="password" [(ngModel)]="outPutUser.password" name="pass">
 
             <label [hidden]="ReadOnly">Retry-Password</label>
             <input [hidden]="ReadOnly" type="password" [(ngModel)]="password" name="pass">

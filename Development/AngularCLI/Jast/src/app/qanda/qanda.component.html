@@ -5,7 +5,7 @@
 </div>
 <div *ngFor="let content of contents; let i=index">
     <qandainput [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
-      (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></qandainput> <p>{{content?.geloestVon}}</p>
+      (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></qandainput> 
 </div>
 
 <button type="button" class="btn btn-warning btn-lg" (click)="openModal();saveScore();">Speichern</button>

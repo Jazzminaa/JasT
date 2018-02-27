@@ -23,7 +23,7 @@
       <template ngFor let-multiplay [ngForOf]="multiplays">
           <tr>
               <td>
-                  <a routerLink="/play/{{multiplay.id}}/{{multiplay.quiz.id}}" routerLinkActive="active">{{multiplay.name}}</a>
+                  <a routerLink="/multiswitch/{{multiplay.quiz.quiztype.id}}/{{multiplay.quiz.id}}/{{multiplay.id}}" routerLinkActive="active">{{multiplay.name}}</a>
               </td>
               <td>
                   {{multiplay.quiz.name}}
