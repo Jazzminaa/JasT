@@ -1,9 +1,16 @@
 
   <link href="style.css" rel="stylesheet" type="text/css">
+
+<script>
+    function myFunction() {
+        document.getElementById("demo").innerHTML = "Paragraph changed.";
+    }
+</script>
   <div id="memory_board">
+        <p id="demo">A Paragraph</p>
     <table >
           <tr >
-              <td *ngFor="let content of row1;let i = index"><button (click)="showContent(1,i)"  id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td>
+              <td *ngFor="let content of row1;let i = index"><button onclick="myFunction()" (click)="showContent(1,i)"  id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td>
           </tr>
           <tr >
               <td *ngFor="let content of row2;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
