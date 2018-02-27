@@ -2,4 +2,10 @@
 input{
     border: none;
   }
+
+  h1{
+    text-decoration: underline;
+    font-size: 40px;
+    font-family: "Times New Roman", Times, serif;
+  }
   
