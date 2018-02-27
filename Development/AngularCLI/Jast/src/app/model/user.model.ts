@@ -12,7 +12,7 @@ export class User{
     getJson()
     {
         return "{"+
-            "\"id\": 0,"+
+            "\"id\": "+this.id+","+
             "\"dateOfBirth\": \""+this.dateOfBirth+"\","+
             "\"email\": \""+this.email+"\","+
             "\"firstname\": \""+this.firstName+"\","+
