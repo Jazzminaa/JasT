@@ -1,3 +1,4 @@
+import { Multiswitch } from './multiplay-overview/multiswitch';
 import { WebsocketService } from './websocket/websocket-service';
 import { DataService } from './shared/data.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,6 +27,11 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of';
 import { SwitchComponent } from './quiz-overview/switch-quiztype';
+import { PlayqandaComponent } from './websocket/play/playqanda/playqanda.component';
+import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.component';
+import { RightorwrongComponent } from './rightorwrong/rightorwrong.component';
+import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
+import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +52,13 @@ import { SwitchComponent } from './quiz-overview/switch-quiztype';
     RegisterComponent,
     PlayComponent,
     ChatComponent,
-    SwitchComponent
+    SwitchComponent,
+    PlayqandaComponent,
+    PlayclozeComponent,
+    Multiswitch,
+    RightorwrongComponent,
+    RightorwrongbuttonComponent,
+    QuiztypeinfoComponent
   ],
   imports: [
     BrowserModule,

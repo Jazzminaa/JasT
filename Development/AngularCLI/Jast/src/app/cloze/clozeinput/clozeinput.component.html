@@ -1,9 +1,5 @@
-<div class="row">
-  <div class="col-xs-3">{{content.input1}}</div>
-  <div class="col-xs-9">
-      <input size="50"  [(ngModel)]="guessedContent" [style.backgroundColor]="isCorrect==true?'#97ff7a':isWrong==true?'#fc6146':isGivenUp?'#e0d1ce':isDone?'#ed5676':''" />
-      <button [disabled]="isGivenUp||isCorrect||isDone" (click)="checkContent()" class="glyphicon glyphicon-ok"></button>
-      <button [disabled]="isGivenUp||isCorrect||isDone" class="glyphicon glyphicon-remove" (click)="giveUp()"></button>
-      <label *ngIf="mistakes>0">Fehlversuche: {{mistakes}}</label>
-  </div>
+<div>
+    <h1>{{content.input1}}</h1>
+    <input size="10" [(disabled)]="isDone"  [(ngModel)]="guessedContent"  [hidden]="validation(check)"   [style.backgroundColor]="isCorrect==true?'#97ff7a':isWrong==true?'#fc6146':isGivenUp?'#e0d1ce':isDone?'#ed5676':''" />
+    {{content?.geloestVon}}
 </div>
