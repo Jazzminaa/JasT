@@ -1,3 +1,4 @@
+import { PlayRightandWrongComponent } from './websocket/play/play-rightand-wrong/play-rightand-wrong.component';
 import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
 import { QuizType } from './model/quiztype.model';
 import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
@@ -14,7 +15,6 @@ import { RegisterComponent } from './register/register.component';
 import { QuizOverviewComponent } from './quiz-overview/quiz-overview.component';
 import { MultiplayOverviewComponent } from './multiplay-overview/multiplay-overview.component';
 import { AddQuizContentComponent } from './add-quiz/add-quiz-content/add-quiz-content.component';
-import { PlayComponent } from './websocket/play/play.component';
 import { ChatComponent } from './websocket/chat/chat.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddMultiplayComponent } from './add-multiplay/add-multiplay.component';
@@ -38,7 +38,6 @@ const appRoutes: Routes = [
     {path: 'qandainput', component: QandainputComponent},
     {path: 'qandascore', component: QandascoreComponent},
     {path: 'addquizcontent', component: AddQuizContentComponent},
-    {path: 'play/:id/:qid', component: PlayComponent},
     {path: 'chat', component: ChatComponent},
     {path: 'profile', component: ProfileComponent},
     {path:'add-multiplay',component:AddMultiplayComponent},
@@ -52,7 +51,8 @@ const appRoutes: Routes = [
     {path: 'multiqanda/:id/:qid', component: PlayqandaComponent},
     {path: 'multicloze/:id/:qid', component: PlayclozeComponent},
     {path: 'rightorwrongbutton', component: RightorwrongbuttonComponent},
-    {path: 'quiztypeinfo', component: QuiztypeinfoComponent}
+    {path: 'quiztypeinfo', component: QuiztypeinfoComponent},
+    {path: 'multirightorwrong/:id/:qid', component: PlayRightandWrongComponent},
 
 
 ];

@@ -21,7 +21,6 @@ import { QandainputComponent } from './qanda/qandainput/qandainput.component';
 import { QandascoreComponent } from './qanda/qandascore/qandascore.component';
 import { QuizOverviewComponent } from './quiz-overview/quiz-overview.component';
 import { RegisterComponent } from './register/register.component';
-import { PlayComponent } from './websocket/play/play.component';
 import { ChatComponent } from './websocket/chat/chat.component';
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
@@ -32,6 +31,7 @@ import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.compone
 import { RightorwrongComponent } from './rightorwrong/rightorwrong.component';
 import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
 import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
+import { PlayRightandWrongComponent } from './websocket/play/play-rightand-wrong/play-rightand-wrong.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,6 @@ import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
     QandascoreComponent,
     QuizOverviewComponent,
     RegisterComponent,
-    PlayComponent,
     ChatComponent,
     SwitchComponent,
     PlayqandaComponent,
@@ -58,7 +57,8 @@ import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
     Multiswitch,
     RightorwrongComponent,
     RightorwrongbuttonComponent,
-    QuiztypeinfoComponent
+    QuiztypeinfoComponent,
+    PlayRightandWrongComponent
   ],
   imports: [
     BrowserModule,
