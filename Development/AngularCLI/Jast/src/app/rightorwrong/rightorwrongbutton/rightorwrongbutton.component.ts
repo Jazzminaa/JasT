@@ -42,42 +42,35 @@ export class RightorwrongbuttonComponent {
             this.isCorrect=true;
             this.isWrong=false;
             this.correctGuess.emit(this.content.id);
+            this.isDone = true;
         }
         else {
             this.mistakes++;
             this.isWrong=true;
             this.isCorrect=false;
             this.wrongGuess.emit(0);
+            this.isDone = true;
         }
     }
-    checkButtonWrongCOntent()
+    checkButtonWrongContent()
     {
-        this.guessedContent = "Flasch";
+        this.guessedContent = "Falsch";
         let words = this.content.input2.toUpperCase().split(", ");
         if (words.indexOf(this.guessedContent.toUpperCase())>=0) {
             this.isCorrect=true;
             this.isWrong=false;
             this.correctGuess.emit(this.content.id);
+             this.isDone = true;
         }
         else {
             this.mistakes++;
             this.isWrong=true;
             this.isCorrect=false;
             this.wrongGuess.emit(0);
+             this.isDone = true;
         }
     }
-    checkContent() {
-        let words = this.content.input2.toUpperCase().split(", ");
-        if (words.indexOf(this.guessedContent.toUpperCase())>=0) {
-            this.isCorrect=true;
-            this.isWrong=false;
-            this.correctGuess.emit(this.content.id);
-        }
-        else {
-            this.mistakes++;
-            this.isWrong=true;
-            this.isCorrect=false;
-            this.wrongGuess.emit(0);
-        }
-    }
+   
+
+   
 }

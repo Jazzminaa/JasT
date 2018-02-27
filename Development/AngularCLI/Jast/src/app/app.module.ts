@@ -31,6 +31,7 @@ import { PlayqandaComponent } from './websocket/play/playqanda/playqanda.compone
 import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.component';
 import { RightorwrongComponent } from './rightorwrong/rightorwrong.component';
 import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
+import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/r
     PlayclozeComponent,
     Multiswitch,
     RightorwrongComponent,
-    RightorwrongbuttonComponent
+    RightorwrongbuttonComponent,
+    QuiztypeinfoComponent
   ],
   imports: [
     BrowserModule,

@@ -109,7 +109,15 @@ export class DataService {
         console.log(response);
         return this.http.post(this.API_Url+"users",user.getJson(),
         {headers:headers}).map(data=>data.json() as User);
-}
+    }
+
+    updateUser(user: User) {
+        let headers:Headers=new Headers({"Content-Type":"application/json"})
+        let response:string = this.API_Url+"users/"+user.id + user.getJson();
+        console.log(response);
+        return this.http.put(this.API_Url+"users/"+user.id,user.getJson(),
+        {headers:headers}).map(data=>data.json() as User);
+    }
 
     
 }

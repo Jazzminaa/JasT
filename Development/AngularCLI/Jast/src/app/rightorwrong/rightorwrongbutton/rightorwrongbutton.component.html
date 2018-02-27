@@ -3,7 +3,7 @@
     <div class="col-xs-9">
         <button [disabled]="isGivenUp||isCorrect||isDone" (click)="checkButtonRightContent()">Richtig</button>
         <button [disabled]="isGivenUp||isCorrect||isDone" (click)="checkButtonWrongContent()">Falsch</button>
-        <label *ngIf="mistakes>0">Falsche Antwort!</label>
+        <label *ngIf="isWrong == true">Falsche Antwort!</label>
         <label *ngIf="isCorrect == true">Richtige Antwort!</label>
     </div>
 </div>
