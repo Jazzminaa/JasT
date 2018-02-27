@@ -1,3 +1,5 @@
+import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
+import { QuizType } from './model/quiztype.model';
 import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
 import { RightorwrongComponent } from './rightorwrong/rightorwrong.component';
 import { QandaComponent } from './qanda/qanda.component';
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     {path: 'clozeinput', component: ClozeinputComponent},
     {path: 'switch/:qid/:id', component: SwitchComponent},
     {path: 'rightorwrong/:id', component: RightorwrongComponent},
-    {path: 'rightorwrongbutton', component: RightorwrongbuttonComponent}
+    {path: 'rightorwrongbutton', component: RightorwrongbuttonComponent},
+    {path: 'quiztypeinfo', component: QuiztypeinfoComponent}
 
 ];
 
