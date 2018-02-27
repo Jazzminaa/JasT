@@ -10,7 +10,8 @@ import 'rxjs/add/operator/switchMap';
   templateUrl: './quiz-overview.component.html',
   styleUrls: ['./quiz-overview.component.css']
 })
-export class QuizOverviewComponent  implements OnInit {
+export class QuizOverviewComponent implements OnInit {
+        display: string;
 
  
     quizes: Quiz[];
@@ -41,6 +42,14 @@ export class QuizOverviewComponent  implements OnInit {
      {
          this.dataService.user = this.user;
      }
+
+      openModal(){
+            this.display='block';
+        }
+
+        onCloseHandled(){
+            this.display='none';
+        }
 
      GetCat(){
         

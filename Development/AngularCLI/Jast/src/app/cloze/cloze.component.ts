@@ -48,8 +48,6 @@ export class ClozeComponent implements OnInit {
 
     }
 
-    
-
     saveScore()
     {
         this.check = true;
