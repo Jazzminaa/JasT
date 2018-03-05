@@ -58,6 +58,7 @@ export class AddQuizComponent implements OnInit {
     this.errorText = "Es müssen alle Daten eingegeben werden!";
   else {
     this.errorText = "";
+    console.log(this.newQuiz.getJson())
     this.dataService.insertQuiz(this.newQuiz)
       .subscribe(data => {
       },

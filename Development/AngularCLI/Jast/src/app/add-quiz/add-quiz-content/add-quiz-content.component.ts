@@ -19,19 +19,21 @@ export class AddQuizContentComponent implements OnInit{
   
   constructor(private dataService: DataService, router: Router) {
       this.user =dataService.user;
+      this.getQuiz();
       this.timeout();
-      dataService.newQuiz.id = this.quiz.id;
-      this.quiz = dataService.newQuiz;
   }
 
   timeout() {
     setTimeout(() => {
         if(this.quiz == undefined)
         {
-            this.getQuiz();
+            console.log("Loading ...");
+            this.timeout();
         }
-        console.log("Loading ...");
-        this.timeout();
+        else{
+            this.dataService.newQuiz.id = this.quiz.id;
+            this.quiz = this.dataService.newQuiz;
+        }
     }, 1000);
 } 
 
