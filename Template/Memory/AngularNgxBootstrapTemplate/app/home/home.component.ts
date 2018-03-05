@@ -9,6 +9,7 @@ import { Content } from './content';
 )
 export class HomeComponent {
     
+    //#region  Variablen
     //contents:Content[] = [{id:0,input:"A",input2:"A"},{id:1,input:"B",input2:"B"},{id:1,input:"C",input2:"C"}];
     contents:Content[] = [{id:0,input:"A",input2:"A"},{id:1,input:"B",input2:"B"},{id:1,input:"C",input2:"C"},{id:1,input:"D",input2:"D"},
                             {id:0,input:"A1",input2:"A1"},{id:1,input:"B1",input2:"B1"},{id:1,input:"C1",input2:"C1"},{id:1,input:"D1",input2:"D1"},
@@ -29,6 +30,8 @@ export class HomeComponent {
     row: number;
     counter: number;
     counter2: number = 0;
+
+    //#endregion
     constructor()
     {
         this.calculateRowAndColNumber();
@@ -71,6 +74,11 @@ export class HomeComponent {
             console.log(con1 + " & " + con2 +" Richtig");
             this.OpenOrCloseCard(this.rowOfCard1 ,this.colOfCard1,true);
             this.OpenOrCloseCard(this.rowOfCard2 ,this.colOfCard2,true);
+            this.rowOfCard1 = undefined;
+            this.colOfCard1 = undefined;
+            this.rowOfCard2 = undefined;
+            this.colOfCard2 = undefined;
+            return;
         }
         else{
             console.log(con1 + " & " + con2 +" Falsch");
@@ -94,11 +102,13 @@ export class HomeComponent {
 
     timeout() {
         setTimeout(() => {
-            this.OpenOrCloseCard(this.rowOfCard1 ,this.colOfCard1,true);
-            this.OpenOrCloseCard(this.rowOfCard2 ,this.colOfCard2,true);
+            if(this.rowOfCard2 != undefined && this.rowOfCard1 != undefined)
+            {
+                this.proof();
+            }
             console.log("Loading ...");
             this.timeout();
-        }, 1000/60);
+        }, 1000);
     } 
     showContent(rowname:number,index:number)
     {
@@ -109,11 +119,11 @@ export class HomeComponent {
             this.rowOfCard1 = rowname;
             this.colOfCard1 = index;
         }
-        else if(this.rowOfCard2 == undefined)
+        else if(this.rowOfCard2 == undefined && this.rowOfCard1 != undefined)
         {
             this.rowOfCard2 = rowname;
             this.colOfCard2 = index;
-            this.proof();
+            this.timeout();
         }
         
     }
