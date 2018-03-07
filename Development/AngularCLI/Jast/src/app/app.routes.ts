@@ -1,3 +1,4 @@
+import { AddSwitch } from './add-quiz/addswitch';
 import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
 import { QuizType } from './model/quiztype.model';
 import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
@@ -52,7 +53,8 @@ const appRoutes: Routes = [
     {path: 'multiqanda/:id/:qid', component: PlayqandaComponent},
     {path: 'multicloze/:id/:qid', component: PlayclozeComponent},
     {path: 'rightorwrongbutton', component: RightorwrongbuttonComponent},
-    {path: 'quiztypeinfo', component: QuiztypeinfoComponent}
+    {path: 'quiztypeinfo', component: QuiztypeinfoComponent},
+    {path: 'addswitch/:id', component: AddSwitch}
 
 
 ];

@@ -105,8 +105,6 @@ export class DataService {
  
     insertUser(user: User) {
         let headers:Headers=new Headers({"Content-Type":"application/json"})
-        let response:string = this.API_Url+"users" + user.getJson();
-        console.log(response);
         return this.http.post(this.API_Url+"users",user.getJson(),
         {headers:headers}).map(data=>data.json() as User);
     }
