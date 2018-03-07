@@ -16,6 +16,7 @@ export class AddQuizContentComponent implements OnInit{
   quiz: Quiz = new Quiz;
   quizes: Quiz [] = [];
   user: User;
+  canSave:boolean = false;
   
   constructor(private dataService: DataService, router: Router) {
       this.user =dataService.user;
@@ -25,7 +26,7 @@ export class AddQuizContentComponent implements OnInit{
 
   timeout() {
     setTimeout(() => {
-        if(this.quiz == undefined)
+        if(this.quiz.id == 0) 
         {
             console.log("Loading ...");
             this.timeout();
@@ -33,6 +34,7 @@ export class AddQuizContentComponent implements OnInit{
         else{
             this.dataService.newQuiz.id = this.quiz.id;
             this.quiz = this.dataService.newQuiz;
+            this.canSave = true;
         }
     }, 1000);
 } 
@@ -51,7 +53,6 @@ export class AddQuizContentComponent implements OnInit{
       this.dataService.getQuizWithUserAndName().subscribe(data =>{
       this.quiz = data;
       })
-      //this.quiz = this.quizes[0];
   }
 
   
@@ -77,7 +78,10 @@ export class AddQuizContentComponent implements OnInit{
 
   saveContent()
   {
-      this.newContents.forEach((content, index) =>{
+      if(this.canSave)
+      {
+          
+        this.newContents.forEach((content, index) =>{
           content.quiz = this.quiz;
           this.dataService.insertContent(content)
           .subscribe(data => {
@@ -86,7 +90,11 @@ export class AddQuizContentComponent implements OnInit{
           alert("Speichern fehlgeschlagen: " + error);
       })
       })
-     
+      return true;
+    }
+    else{
+        return false;
+    }
   }
 
 }

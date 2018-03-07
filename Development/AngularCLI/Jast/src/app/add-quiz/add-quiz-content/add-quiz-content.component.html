@@ -1,3 +1,5 @@
+
+{{quiz.id}}
 <table class="table">
   <tr>
       <th>
@@ -20,4 +22,4 @@
 <button (click)="addContentToList(input1.value, input2.value)">Add Content</button>
 </div>
 
-<button (click)="saveContent()">Speichern</button>
+<button [disabled]="canSave" (click)="saveContent()">Speichern</button>

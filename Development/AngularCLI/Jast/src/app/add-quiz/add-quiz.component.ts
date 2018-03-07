@@ -19,6 +19,7 @@ export class AddQuizComponent implements OnInit {
   quizTypes: QuizType[] = [];
   user: User[] = [];
   hide: Boolean = true;
+  lo:boolean = false;
   
   constructor(private router: Router, private dataService: DataService)  {
       this.getUsers();
@@ -55,19 +56,21 @@ export class AddQuizComponent implements OnInit {
 
   addQuiz() {
   if (this.newQuiz.name == "" || this.newQuiz.category == null || this.newQuiz.quizType == null || this.newQuiz.age == null || this.newQuiz.description == "")
-    this.errorText = "Es müssen alle Daten eingegeben werden!";
+    {this.errorText = "Es müssen alle Daten eingegeben werden!";
+    console.log("Es müssen alle Daten eingegeben werden!")}
   else {
     this.errorText = "";
-    console.log(this.newQuiz.getJson())
-    this.dataService.insertQuiz(this.newQuiz)
+    /*this.dataService.insertQuiz(this.newQuiz)
       .subscribe(data => {
       },
       error => {
-          
+          this.errorText = error;
        
-      })
+      })*/
+     
       this.dataService.newQuiz = this.newQuiz;
       this.newQuiz = new Quiz();
+      this.router.navigateByUrl("/addquizcontent");
       
       }
   }

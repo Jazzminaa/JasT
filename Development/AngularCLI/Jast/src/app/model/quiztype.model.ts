@@ -4,7 +4,7 @@ export class QuizType{
 
     getJson()
     {
-        return     "\"id\": "+this.id+","+
-                    "\"name\": \""+this.name+"\"";
+        return     "{\"id\": "+this.id+","+
+                    "\"name\": \""+this.name+"\"}";
     }
 }
