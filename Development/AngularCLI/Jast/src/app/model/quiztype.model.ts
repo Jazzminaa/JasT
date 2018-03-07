@@ -4,7 +4,13 @@ export class QuizType{
 
     getJson()
     {
-        return     "{\"id\": "+this.id+","+
-                    "\"name\": \""+this.name+"\"}";
+        if(this.id == undefined)
+        {
+            this.id = 0;
+        }
+        return "{"+
+            "\"id\": "+this.id+","+
+            "\"name\": \""+this.name+"\""+
+        "}";
     }
 }
