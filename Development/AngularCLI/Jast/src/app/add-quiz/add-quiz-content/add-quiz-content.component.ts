@@ -65,8 +65,6 @@ export class AddQuizContentComponent implements OnInit{
       content.input2 = input2;
       content.quiz = this.quiz;
       this.newContents.push(content);
-      this.getQuiz();
-      this.timeout();
 
   }
 

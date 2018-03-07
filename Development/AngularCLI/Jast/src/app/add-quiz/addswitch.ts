@@ -21,6 +21,7 @@ export class AddSwitch implements OnInit {
             this.user = dataService.user;
             this.quiz = dataService.newQuiz;
         }
+        this.getQuiz();
         this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.quiztypeid=+p);
         switch(this.quiztypeid)
         {
@@ -34,7 +35,12 @@ export class AddSwitch implements OnInit {
         }
     }
 
-
+    getQuiz(){
+        this.dataService.getQuizWithUserAndName().subscribe(data =>{
+        this.quiz = data;
+        })
+    }
+  
      ngOnInit() {
         
         
