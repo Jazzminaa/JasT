@@ -32,6 +32,7 @@ import { PlayclozeComponent } from './websocket/play/playcloze/playcloze.compone
 import { RightorwrongComponent } from './rightorwrong/rightorwrong.component';
 import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/rightorwrongbutton.component';
 import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
+import { AddSwitch } from './add-quiz/addswitch';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
     Multiswitch,
     RightorwrongComponent,
     RightorwrongbuttonComponent,
-    QuiztypeinfoComponent
+    QuiztypeinfoComponent,
+    AddSwitch
   ],
   imports: [
     BrowserModule,

@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
                   //Komisch
                   this.errorText = "Speichern";
                   this.newUser.id = 0;
-                  this.newUser.dateOfBirth = this.date.toString();
                   this.dataService.insertUser(this.newUser).subscribe(data => {
                   },
                   error => {

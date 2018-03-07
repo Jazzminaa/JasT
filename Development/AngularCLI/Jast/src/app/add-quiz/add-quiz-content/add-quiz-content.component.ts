@@ -18,7 +18,7 @@ export class AddQuizContentComponent implements OnInit{
   user: User;
   canSave:boolean = false;
   
-  constructor(private dataService: DataService, router: Router) {
+  constructor(private dataService: DataService,private router: Router) {
       this.user =dataService.user;
       this.getQuiz();
       this.timeout();
@@ -26,7 +26,7 @@ export class AddQuizContentComponent implements OnInit{
 
   timeout() {
     setTimeout(() => {
-        if(this.quiz.id == 0) 
+        if(this.quiz.id == 0 ||this.quiz.id == undefined || this.quiz == undefined ) 
         {
             console.log("Loading ...");
             this.timeout();
@@ -42,7 +42,7 @@ export class AddQuizContentComponent implements OnInit{
 
   ngOnInit(): void
   {
-      
+
   }
   ngOnDestroy()
   {
@@ -65,6 +65,8 @@ export class AddQuizContentComponent implements OnInit{
       content.input2 = input2;
       content.quiz = this.quiz;
       this.newContents.push(content);
+      this.getQuiz();
+      this.timeout();
 
   }
 
@@ -78,23 +80,16 @@ export class AddQuizContentComponent implements OnInit{
 
   saveContent()
   {
-      if(this.canSave)
-      {
-          
         this.newContents.forEach((content, index) =>{
           content.quiz = this.quiz;
           this.dataService.insertContent(content)
           .subscribe(data => {
           },
           error => {
-          alert("Speichern fehlgeschlagen: " + error);
-      })
-      })
-      return true;
-    }
-    else{
-        return false;
-    }
+          //alert("Speichern fehlgeschlagen: " + error);
+        })
+      });
+      this.router.navigateByUrl("/home");
   }
 
 }
