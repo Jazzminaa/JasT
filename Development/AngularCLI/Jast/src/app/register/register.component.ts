@@ -39,13 +39,12 @@ export class RegisterComponent implements OnInit {
                   //Komisch
                   this.errorText = "Speichern";
                   this.newUser.id = 0;
-                  this.newUser.dateOfBirth = this.date.toString();
-                  /*this.dataService.insertUser(this.newUser).subscribe(data => {
+                  this.dataService.insertUser(this.newUser).subscribe(data => {
                   },
                   error => {
                     //alert("Speichern fehlgeschlagen: " + error);
                   });
-                  this.router.navigateByUrl("/login");*/
+                  this.router.navigateByUrl("/login");
           }
           else if(this.getUser != null)
           {
@@ -66,11 +65,11 @@ export class RegisterComponent implements OnInit {
           this.emailError = "@ Fehlt"
           return false;
       }
-      else if(!reg.exec(this.newUser.email))
+      /*else if(!reg.exec(this.newUser.email))
       {
             this.emailError = "So schaut eine Email aus: example@gmail.com";
             return false;
-      }
+      }*/
       return true;
   }
 

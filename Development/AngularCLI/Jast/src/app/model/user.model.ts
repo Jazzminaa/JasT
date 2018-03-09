@@ -1,6 +1,6 @@
 export class User{
     id: number;
-    dateOfBirth: String;
+    dateOfBirth: Date;
     email: string;
     firstName: string;
     lastName: string;
@@ -8,6 +8,7 @@ export class User{
     gender: string;
     password: string;
     picture: string;
+    
 
     getJson()
     {

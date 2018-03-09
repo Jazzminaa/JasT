@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlayComponent } from './play.component';
+import { PlayRightandWrongComponent } from './play-rightand-wrong.component';
 
-describe('PlayComponent', () => {
-  let component: PlayComponent;
-  let fixture: ComponentFixture<PlayComponent>;
+describe('PlayRightandWrongComponent', () => {
+  let component: PlayRightandWrongComponent;
+  let fixture: ComponentFixture<PlayRightandWrongComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlayComponent ]
+      declarations: [ PlayRightandWrongComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlayComponent);
+    fixture = TestBed.createComponent(PlayRightandWrongComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
