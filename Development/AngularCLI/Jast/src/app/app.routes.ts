@@ -25,6 +25,7 @@ import { ClozeComponent } from './cloze/cloze.component';
 import { ClozeinputComponent } from './cloze/clozeinput/clozeinput.component';
 import { SwitchComponent } from './quiz-overview/switch-quiztype';
 import { Multiswitch } from './multiplay-overview/multiswitch';
+import { MemoryComponent } from './memory/memory.component';
 
 
 const appRoutes: Routes = [
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     {path: 'quiztypeinfo', component: QuiztypeinfoComponent},
     {path: 'multirightorwrong/:id/:qid', component: PlayRightandWrongComponent},
     {path: 'quiztypeinfo', component: QuiztypeinfoComponent},
-    {path: 'addswitch/:id', component: AddSwitch}
+    {path: 'addswitch/:id', component: AddSwitch},
+    {path: 'memory/:id', component: MemoryComponent}
 
 
 ];
