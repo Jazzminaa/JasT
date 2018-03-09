@@ -59,8 +59,7 @@ import { AddSwitch } from './add-quiz/addswitch';
     RightorwrongComponent,
     RightorwrongbuttonComponent,
     QuiztypeinfoComponent,
-    PlayRightandWrongComponent
-    QuiztypeinfoComponent,
+    PlayRightandWrongComponent,
     AddSwitch
   ],
   imports: [

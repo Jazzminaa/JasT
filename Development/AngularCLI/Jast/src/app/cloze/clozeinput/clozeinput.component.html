@@ -1,7 +1,5 @@
 <div>
     {{content.input1}}
     <input size="10"  *ngIf="content.input2 != undefined" [(disabled)]="isDone"  [(ngModel)]="guessedContent"  [hidden]="validation(check)"   [style.backgroundColor]="isCorrect==true?'#97ff7a':isWrong==true?'#fc6146':isGivenUp?'#e0d1ce':isDone?'#ed5676':''" />
-    {{content.input1}}
-    <input [(disabled)]="isDone"  [(ngModel)]="guessedContent"  [hidden]="validation(check)"   [style.backgroundColor]="isCorrect==true?'#97ff7a':isWrong==true?'#fc6146':isGivenUp?'#e0d1ce':isDone?'#ed5676':''" />
     {{content?.geloestVon}}
 </div>
