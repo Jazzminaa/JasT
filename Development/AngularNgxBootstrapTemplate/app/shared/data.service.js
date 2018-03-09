@@ -11,13 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/map");
+require("rxjs/add/operator/catch");
+require("rxjs/add/observable/of");
 var DataService = (function () {
     function DataService(http) {
         this.http = http;
         this.API_Url = "http://vm86.htl-leonding.ac.at:8080/JAST/rest/";
+        this.cat = "";
+        this.loggedIn = true;
     }
     DataService.prototype.getCategories = function () {
-        return this.http.get(this.API_Url + "categories")
+        return this.http.get(this.API_Url + "categories" + this.cat)
             .map(function (response) { return response.json(); });
     };
     DataService.prototype.getUsers = function () {
@@ -32,9 +36,48 @@ var DataService = (function () {
         return this.http.get(this.API_Url + "quiztypes")
             .map(function (response) { return response.json(); });
     };
-    DataService.prototype.insertQuiz = function (newQuiz) {
-        var headers = new http_1.Headers({ "Content-Type": "application/json" });
-        return this.http.post(this.API_Url + "quizes", newQuiz, { headers: headers }).map(function (data) { return data.json(); });
+    DataService.prototype.getQuizes = function () {
+        return this.http.get(this.API_Url + "quizes")
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.getMultiplays = function () {
+        return this.http.get(this.API_Url + "multiplays")
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.getMultiplaysByCat = function (arg0) {
+        //return Multiplay[];
+        return;
+    };
+    DataService.prototype.getMultiplayById = function (id) {
+        return this.http.get(this.API_Url + "multiplays/" + id)
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.getQuizWithUserAndName = function () {
+        return this.http.get(this.API_Url + "quizes/user/" + this.newQuiz.user.id + "/name/" + this.newQuiz.name)
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.getQuizesByCat = function (id) {
+        return this.http.get(this.API_Url + "quizes/category/" + id)
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.insertQuiz = function (quiz) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url + "quizes", quiz.getJson(), { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    DataService.prototype.getContentById = function (quizId) {
+        return this.http.get(this.API_Url + "content/quiz/" + quizId)
+            .map(function (response) { return response.json(); });
+    };
+    DataService.prototype.insertScore = function (score) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url + "scores", score.getJson(), { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    DataService.prototype.insertContent = function (content) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url + "content", content.getJson(), { headers: headers })
+            .map(function (res) { return res.json(); });
     };
     DataService.prototype.insertUser = function (user) {
         var headers = new http_1.Headers({ "Content-Type": "application/json" });

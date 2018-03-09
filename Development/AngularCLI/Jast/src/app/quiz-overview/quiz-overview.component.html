@@ -1,0 +1,53 @@
+<div>    
+    <table class="table">
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+                Beschreibung
+            </th>
+            <th>
+                Fach
+            </th>
+            <th>
+                Typ
+            </th>
+        </tr>
+        <template ngFor let-quiz [ngForOf]="quizes">
+            <tr>
+                <td>
+                    <a routerLink="/switch/{{quiz.quiztype.id}}/{{quiz.id}}" routerLinkActive="active">{{quiz.name}}</a>
+                </td>
+                <td>
+                    {{quiz.description}}
+                </td>
+                <td>
+                    {{quiz.category.name}}
+                </td>
+                <td>
+                   <a routerLink="/quiztypeinfo" routerLinkActive="active"> {{quiz.quiztype.name}}</a>
+                </td>
+                <td>
+                    <button type="button" class="btn-danger" (click)="openModal()">Info</button>
+                    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">Information über Quiz {{quiz.name}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{{quiz.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </template>
+    </table>
+</div>
+<label>{{name}}</label>
+<label>{{testId}}</label>
+ <router-outlet></router-outlet>

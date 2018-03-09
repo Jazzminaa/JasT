@@ -1,0 +1,34 @@
+<h1 align="center">Profil</h1>
+<div>
+ <form class="form" action="">
+            <label>Username</label>
+            <input [(disabled)]="ReadOnly" [(ngModel)]="user.username" type="text" name="name"/>
+
+            <label>Firstname</label>
+            <input [(disabled)]="ReadOnly"  [(ngModel)]="user.firstname" type="text" name="fn"/>
+
+            <label>Lastname</label>
+            <input  [(disabled)]="ReadOnly"  [(ngModel)]="user.lastname" type="text" name="ln"/>
+
+            <label>Birthday</label>
+            <input [(disabled)]="ReadOnly"  [(ngModel)]="user.dateOfBirth" type="date" name="birth"/>
+
+            <label>Gender</label>
+            <input [(disabled)]="ReadOnly"  [(ngModel)]="user.gender" type="text" name="gender"/>
+        
+            <label>E-mail</label>
+            <input [(disabled)]="ReadOnly"  [(ngModel)]="user.email" type="text" name="email"/>
+
+            <label [hidden]="ReadOnly">Password</label>
+            <input [hidden]="ReadOnly" type="password" [(ngModel)]="passw" name="pass">
+
+            <button [hidden]="ReadOnly"  (click)="edit()">Passwort ändern</button>
+
+            <button [hidden]="!ReadOnly"  (click)="edit()">Ändern</button>
+            <button [hidden]="ReadOnly"  (click)="save()">Speichern</button>
+            
+            <button [hidden]="ReadOnly" (click)="cancel()">Abbrechen</button>
+            
+            <input [hidden]="ReadOnly"  [(ngModel)]="errorText" type="text" name="error"/>
+        </form>
+</div>

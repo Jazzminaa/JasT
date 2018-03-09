@@ -1,0 +1,48 @@
+<h1 [hidden]="hide" align="center">Neue Lerngruppe erstellen</h1>
+<h1 [hidden]="!hide" align="center">Du musst dich einloggen/registrieren damit du ein neues Spiel erstellen kannst!</h1>
+<div [hidden]="hide">
+ <form class="form" action="">
+            <label>Name</label>
+            <input [(ngModel)]="newMultiplay.name" type="text" name="name"/>
+
+            <label>Max Spieler</label>
+            <input [(ngModel)]="newMultiplay.counter" type="number" name="count"/>
+
+            <label for="age">Filter</label>
+            <input  [(ngModel)]="filter" type="text" name="descrip">
+
+            <label>Alterfilter:</label>
+             <!--<select [(ngModel)]="newMultiplay.quizType" name="quiz">
+               <option *ngFor="let quiza of quizTypes" [ngValue]="quiza">
+                    {{quiza.name}}
+                </option>
+            </select>-->
+            <input  [(ngModel)]="filterAge" type="number" name="age">
+
+
+            <label>Kategoriefilter:</label>
+             <select [(ngModel)]="newMultiplay.filterCat" name="fCAt">
+               <option *ngFor="let cat of categories" [ngValue]="cat">
+                    {{cat.name}}
+                </option>
+            </select>
+
+            <label>Typefilter:</label>
+             <select [(ngModel)]="filtertyp" name="fTyp">
+               <option *ngFor="let typ of quizTypes" [ngValue]="typ">
+                    {{typ.name}}
+                </option>
+            </select>
+
+            <label>Quiz:</label>
+             <select [(ngModel)]="newMultiplay.quiz" name="quiz">
+               <option *ngFor="let quiz of quizes" [ngValue]="quiz">
+                    {{quiz.name}}
+                </option>
+            </select>
+
+            <button type="button" (click)="addMultiplay()" routerLink="/home" routerLinkActive="active">Fertig</button>
+            
+        </form>
+</div>
+

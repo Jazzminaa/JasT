@@ -1,0 +1,49 @@
+
+<h1 align="center">Registrieren</h1>
+<div>
+ <form class="form" action="">
+            <label>Username</label>
+            <input [(ngModel)]="newUser.username" required minlength="5" type="text" name="name"/>
+            <div [hidden]="validationUsername" 
+                    class="alert alert-danger">
+                Name ist zu kurz.  Es muss mindestens 5 Zeichen lang sein
+            </div>
+            <label>Firstname</label>
+            <input [(ngModel)]="newUser.firstName" required  type="text" name="fn"/>
+
+            <label>Lastname</label>
+            <input [(ngModel)]="newUser.lastName" required type="text" name="ln"/>
+
+            <label>Birthday</label>
+            <input [(ngModel)]="newUser.dateOfBirth" required type="date" name="birth"/>
+
+            <label>Gender</label>
+            <div>
+                <input (click)="setGender(1)" type="radio" name="gender" value="m" checked> männlich
+                <input  (click)="setGender(2)" type="radio" name="gender" value="w"> weiblich
+                <input  (click)="setGender(3)" type="radio" name="gender" value="a"> anders
+            </div>
+        
+            <label>E-mail</label>
+            <input [(ngModel)]="newUser.email"  type="text" name="email"/>
+            <div [hidden]="validationEmail" 
+                    class="alert alert-danger">
+                {{emailError}}
+            </div>
+
+            <label>Password</label>
+            <input  type="password" [(ngModel)]="newUser.password" name="pass">
+        
+
+            <label>Retry-Password</label>
+            <input  type="password" [(ngModel)]="password" name="pass">
+            <div [hidden]="validationPass" 
+                    class="alert alert-danger">
+                {{passError}}
+            </div>
+
+            <button (click)="register()">Registrieren</button>
+            
+            <input [(ngModel)]="errorText" type="text" name="error"/>
+        </form>
+</div>

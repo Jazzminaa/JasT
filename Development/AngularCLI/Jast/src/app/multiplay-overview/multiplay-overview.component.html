@@ -1,0 +1,49 @@
+<div>    
+  <table class="table">
+      <tr>
+          <th>
+              Gruppenname
+          </th>
+          <th>
+              Quizname
+          </th>
+          <th>
+              Quiztype
+          </th>
+          <th>
+              Besitzer
+          </th>
+          <th>
+              Anzahl
+          </th>
+          <th>
+              Teilnehmer
+          </th>
+      </tr>
+      <template ngFor let-multiplay [ngForOf]="multiplays">
+          <tr>
+              <td>
+                  <a routerLink="/multiswitch/{{multiplay.quiz.quiztype.id}}/{{multiplay.quiz.id}}/{{multiplay.id}}" routerLinkActive="active">{{multiplay.name}}</a>
+              </td>
+              <td>
+                  {{multiplay.quiz.name}}
+              </td>
+              <td>
+                  {{multiplay.quiz.quiztype.name}}
+              </td>
+              <td>
+                  {{multiplay.user.firstname}}
+              </td>
+              <td>
+                  {{multiplay.counter}}
+              </td>
+              <td>
+                  In Rest MEthode erstellen
+              </td>
+          </tr>
+      </template>
+      <tr [hidden]="user == undefined" ><a routerLink="/add-multiplay" routerLinkActive="active">Neue Lerngruppe erstellen</a></tr>
+  </table>
+</div>
+
+<router-outlet></router-outlet>

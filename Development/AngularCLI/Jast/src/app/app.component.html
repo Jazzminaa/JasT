@@ -1,0 +1,41 @@
+
+<div id='cssmenu'>
+<ul>
+    <li><a routerLink="/home" routerLinkActive="active"><span>Home</span></a></li>
+    <li class='active has-sub'><a routerLink="/quizoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Quizes</span></a>
+        <ul>
+            <li><a routerLink="/multiplayoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Lernräume</span></a></li>
+        </ul>
+    </li>
+    <li class='active has-sub'><a (click)="change(0)"><span>Kategorien</span></a>
+            <ul>
+                <li *ngFor="let cat of categories" (click)="change(cat.id)" ng-bind="cat" class='has-sub'><a><span>{{cat.name}}</span></a>
+        </ul>
+    </li>
+    <li class='active has-sub'><a (click)="age=0"> <span>Alter</span></a>
+            <ul>
+                <li class='has-sub'><a (click)="age=1"><span>0-6</span></a>
+                <li class='has-sub'><a (click)="age=2"><span>7-10</span></a>
+                <li class='has-sub'><a (click)="age=3"><span>11-14</span></a>
+                <li class='has-sub'><a (click)="age=4"><span>15-19</span></a>
+                <li class='has-sub'><a (click)="age=5"><span>20+</span></a>
+            </ul>
+    </li>
+
+    
+   
+    <li><a routerLink="/home" routerLinkActive="active"><span>About</span></a></li>
+    <li><a routerLink="/home" routerLinkActive="active"><span>Kontakt</span></a></li>
+    <li [hidden]="!loggedIn" ><a routerLink="/addquiz" routerLinkActive="active"><span>+</span></a></li>
+    <li [hidden]="!loggedIn"  style="float:right"><a  routerLink="/home" routerLinkActive="active" ><span (click)="logOut()">LogOut</span></a></li>
+    <li [hidden]="!loggedIn" style="float:right"><a routerLink="/chat" routerLinkActive="active"><span>Chat</span></a></li>
+    
+    <li [hidden]="loggedIn" style="float:right"><a routerLink="/login" routerLinkActive="active"><span>Login</span></a></li>
+    <li [hidden]="loggedIn"  style="float:right"><a routerLink="/register" routerLinkActive="active"><span>Registrieren</span></a></li>
+
+    <li [hidden]="!loggedIn"  style="float:right"><a routerLink="/profile" routerLinkActive="active"><span>Profile</span></a></li>
+    
+  
+</ul>     
+</div>
+ <router-outlet></router-outlet>
