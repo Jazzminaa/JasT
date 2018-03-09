@@ -33,6 +33,7 @@ import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/r
 import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
 import { PlayRightandWrongComponent } from './websocket/play/play-rightand-wrong/play-rightand-wrong.component';
 import { AddSwitch } from './add-quiz/addswitch';
+import { MemoryComponent } from './memory/memory.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { AddSwitch } from './add-quiz/addswitch';
     RightorwrongbuttonComponent,
     QuiztypeinfoComponent,
     PlayRightandWrongComponent,
-    AddSwitch
+    AddSwitch,
+    MemoryComponent
   ],
   imports: [
     BrowserModule,
