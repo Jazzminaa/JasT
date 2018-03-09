@@ -6,40 +6,41 @@ import { OnInit, Component } from '@angular/core';
 
 @Component(
     {
-        selector: 'multiswitch',
+        selector: 'addswitch',
         template: ' '
     }
 )
-export class Multiswitch implements OnInit {
+export class AddSwitch implements OnInit {
 
     user: User;
-    mquizid: number;
-    quizid: number;
     quiztypeid: number;
+    quiz:Quiz;
     constructor(private router: Router, private dataService: DataService,private route: ActivatedRoute )  {
         if(dataService.user != null)
         {
             this.user = dataService.user;
+            this.quiz = dataService.newQuiz;
         }
-        this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.mquizid=+p);
-        this.route.params.switchMap((params: Params) => params['qtid']).subscribe(p=>this.quiztypeid=+p);
-        this.route.params.switchMap((params: Params) => params['qid']).subscribe(p=>this.quizid=+p);
+        this.getQuiz();
+        this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.quiztypeid=+p);
         switch(this.quiztypeid)
         {
             case 1:
-            router.navigateByUrl("/multiqanda/"+this.mquizid+"/"+this.quizid);
+            router.navigateByUrl("/addquizcontent");
             break;
             case 2:
-            router.navigateByUrl("/multicloze/"+this.mquizid+"/"+this.quizid);
-            break;
-            case 3:
-            router.navigateByUrl("/multirightorwrong/"+this.mquizid+"/"+this.quizid);
+            router.navigateByUrl("/home");
             break;
 
         }
     }
 
-
+    getQuiz(){
+        this.dataService.getQuizWithUserAndName().subscribe(data =>{
+        this.quiz = data;
+        })
+    }
+  
      ngOnInit() {
         
         
@@ -48,6 +49,7 @@ export class Multiswitch implements OnInit {
       ngOnDestroy()
      {
          this.dataService.user = this.user;
+         this.dataService.newQuiz = this.quiz;
      }
 
 

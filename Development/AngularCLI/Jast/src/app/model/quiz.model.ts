@@ -16,17 +16,47 @@ export class Quiz{
 
     getJson()
     {
+        this.test();
         return "{"+
             "\"id\": "+this.id+","+
             "\"age\": "+this.age+","+
             "\"creationDate\": 1489490100000,"+
             "\"description\": \""+this.description+"\","+
-            "\"multiplay\": 0,"+
+            "\"multiplay\": "+this.multiplay+","+
             "\"name\": \""+this.name+"\","+
             "\"picture\": null,"+
-            "\"category\": "+this.category.getJson()+","+
-            "\"quiztype\": "+this.quizType.getJson()+","+
-           "\"user\": "+this.user.getJson()+
+            "\"category\": {"+
+                "\"id\": "+this.category.id+","+
+                "\"name\": \""+this.category.name+"\""+
+            "},"+
+            "\"quiztype\": {"+
+                "\"id\": "+this.quizType.id+","+
+               " \"name\": \""+this.quizType.name+"\""+
+            "},"+
+            "\"user\": {"+
+                "\"id\": "+this.user.id+","+
+                "\"dateOfBirth\": \""+this.user.dateOfBirth+"\","+
+                "\"email\": \""+this.user.email+"\","+
+                "\"firstname\": \""+this.user.firstName+"\","+
+                "\"gender\": \""+this.user.gender+"\","+
+                "\"password\": \""+this.user.password+"\","+
+                "\"picture\": null,"+
+                "\"lastname\": \""+this.user.lastName+"\","+
+                "\"username\": \""+this.user.username+"\","+
+                "\"multiplay\": null"+
+            "}"+
         "}";
+    }
+
+    test()
+    {
+         if(this.multiplay == undefined || this.multiplay == null)
+        {
+            this.multiplay = 0;
+        }
+        if(this.id == undefined || this.id == null)
+        {
+            this.id = 0;
+        }
     }
 }

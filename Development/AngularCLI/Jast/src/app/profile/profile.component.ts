@@ -1,6 +1,6 @@
+import { User } from 'app/model/user.model';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/data.service';
-import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -13,36 +13,54 @@ export class ProfileComponent implements OnInit {
     this.ReadOnly = true;
   }
   text:string = "Hallo Gast!";
-  newUser:User;
-  outPutUser: User;
-  oldUser:User;
+  user:User;
   count:number = 0;
   ReadOnly: boolean = false;
   birthday:Date;
+
+  passw:String ="";
   constructor(private dataService:DataService)
   {
     if(dataService.user != null)
     {
-      this.birthday = new Date(dataService.user.dateOfBirth.toString());
         this.toOutPutUser(dataService.user);
     }
     
   }
    
   toOutPutUser(u: User) {
-    //this.oldUser = this.outPutUser;
-    this.outPutUser = this.oldUser;
+    this.user = this.dataService.user;
   }
   edit()
   {
       this.ReadOnly =false;
+      this.passw = "";
+  }
+
+  cancel()
+  {
+      this.ReadOnly =true;
+      this.passw = "";
   }
   save()
   {
+    if(this.user.password == this.passw)
+    {
       this.ReadOnly =true;
+      this.dataService.user = this.user;
+      this.saveChange();
+      this.passw = "";
+    }
+  }
+  saveChange(){
+    let u : String = this.user.getJson();
+    console.log(u);
+    this.dataService.updateUser(this.user).subscribe(data =>{
+    
+    });
   }
   ngOnDestroy()
   {
-      this.dataService.user = this.newUser;
+      this.dataService.user = this.user;
   }
 }

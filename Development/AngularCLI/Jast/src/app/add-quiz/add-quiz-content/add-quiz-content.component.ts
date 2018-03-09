@@ -16,18 +16,33 @@ export class AddQuizContentComponent implements OnInit{
   quiz: Quiz = new Quiz;
   quizes: Quiz [] = [];
   user: User;
+  canSave:boolean = false;
   
-  constructor(private dataService: DataService, router: Router) {
+  constructor(private dataService: DataService,private router: Router) {
       this.user =dataService.user;
       this.getQuiz();
-      dataService.newQuiz.id = this.quiz.id;
-      this.quiz = dataService.newQuiz;
+      this.timeout();
   }
+
+  timeout() {
+    setTimeout(() => {
+        if(this.quiz.id == 0 ||this.quiz.id == undefined || this.quiz == undefined ) 
+        {
+            console.log("Loading ...");
+            this.timeout();
+        }
+        else{
+            this.dataService.newQuiz.id = this.quiz.id;
+            this.quiz = this.dataService.newQuiz;
+            this.canSave = true;
+        }
+    }, 1000);
+} 
 
 
   ngOnInit(): void
   {
-      
+
   }
   ngOnDestroy()
   {
@@ -38,7 +53,6 @@ export class AddQuizContentComponent implements OnInit{
       this.dataService.getQuizWithUserAndName().subscribe(data =>{
       this.quiz = data;
       })
-      //this.quiz = this.quizes[0];
   }
 
   
@@ -64,16 +78,16 @@ export class AddQuizContentComponent implements OnInit{
 
   saveContent()
   {
-      this.newContents.forEach((content, index) =>{
+        this.newContents.forEach((content, index) =>{
           content.quiz = this.quiz;
           this.dataService.insertContent(content)
           .subscribe(data => {
           },
           error => {
-          alert("Speichern fehlgeschlagen: " + error);
-      })
-      })
-     
+          //alert("Speichern fehlgeschlagen: " + error);
+        })
+      });
+      this.router.navigateByUrl("/home");
   }
 
 }
