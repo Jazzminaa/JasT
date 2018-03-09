@@ -1,0 +1,8 @@
+<h1 id="header">{{multiplay?.name}}</h1>
+<div *ngFor="let content of contents; let i=index">
+  <app-rightorwrongbutton [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
+    (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-rightorwrongbutton>
+</div>
+
+
+<router-outlet></router-outlet>
