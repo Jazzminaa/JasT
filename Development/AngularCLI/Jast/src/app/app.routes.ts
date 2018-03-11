@@ -1,3 +1,5 @@
+import { AddRightorwrongComponent } from './add-quiz/add-rightorwrong/add-rightorwrong.component';
+import { AddClozeComponent } from './add-quiz/add-cloze/add-cloze.component';
 import { AddSwitch } from './add-quiz/addswitch';
 import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
 import { QuizType } from './model/quiztype.model';
@@ -39,6 +41,8 @@ const appRoutes: Routes = [
     {path: 'qandainput', component: QandainputComponent},
     {path: 'qandascore', component: QandascoreComponent},
     {path: 'addquizcontent', component: AddQuizContentComponent},
+    {path: 'addcloze', component: AddClozeComponent},
+    {path: 'addrightorwrong', component: AddRightorwrongComponent},
     {path: 'play/:id/:qid', component: PlayComponent},
     {path: 'chat', component: ChatComponent},
     {path: 'profile', component: ProfileComponent},
