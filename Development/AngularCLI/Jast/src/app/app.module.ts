@@ -66,7 +66,7 @@ import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
     AddSwitch,
     AddRightorwrongComponent,
     AddClozeComponent,
-    AddMemoryComponent
+    AddMemoryComponent,
     PlayRightandWrongComponent,
     AddSwitch,
     MemoryComponent

@@ -44,7 +44,7 @@ const appRoutes: Routes = [
     {path: 'addquizcontent', component: AddQuizContentComponent},
     {path: 'addcloze', component: AddClozeComponent},
     {path: 'addrightorwrong', component: AddRightorwrongComponent},
-    {path: 'play/:id/:qid', component: PlayComponent},
+    {path: 'play/:id/:qid', component: ChatComponent},
     {path: 'chat', component: ChatComponent},
     {path: 'profile', component: ProfileComponent},
     {path:'add-multiplay',component:AddMultiplayComponent},
