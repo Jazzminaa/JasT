@@ -34,6 +34,9 @@ import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
 import { PlayRightandWrongComponent } from './websocket/play/play-rightand-wrong/play-rightand-wrong.component';
 import { AddSwitch } from './add-quiz/addswitch';
 import { MemoryComponent } from './memory/memory.component';
+import { AddRightorwrongComponent } from './add-quiz/add-rightorwrong/add-rightorwrong.component';
+import { AddClozeComponent } from './add-quiz/add-cloze/add-cloze.component';
+import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,10 @@ import { MemoryComponent } from './memory/memory.component';
     RightorwrongComponent,
     RightorwrongbuttonComponent,
     QuiztypeinfoComponent,
+    AddSwitch,
+    AddRightorwrongComponent,
+    AddClozeComponent,
+    AddMemoryComponent
     PlayRightandWrongComponent,
     AddSwitch,
     MemoryComponent

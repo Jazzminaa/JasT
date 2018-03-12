@@ -17,8 +17,8 @@
 
 <div>
 <input #input1 placeholder="Frage" />
-<input #input2 placeholder="Antwort" />
-<button (click)="addContentToList(input1.value, input2.value)">Add Content</button>
+<button (click)="addRightContentToList(input1.value)">Richtig</button>
+<button (click)="addWrongContentToList(input1.value)">Falsch</button>
 </div>
 
 <button (click)="saveContent()">Speichern</button> 

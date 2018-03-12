@@ -60,7 +60,7 @@ export class AddQuizComponent implements OnInit {
     console.log("Es müssen alle Daten eingegeben werden!")}
   else {
     this.errorText = "";
-    this.dataService.insertQuiz(this.newQuiz)
+   this.dataService.insertQuiz(this.newQuiz)
       .subscribe(data => {
       },
       error => {
@@ -71,8 +71,8 @@ export class AddQuizComponent implements OnInit {
       this.dataService.newQuiz = this.newQuiz;
       this.newQuiz = new Quiz();
       this.router.navigateByUrl("/addswitch/"+ this.dataService.newQuiz.quizType.id);
+  }
       
-      }
   }
 
 }
