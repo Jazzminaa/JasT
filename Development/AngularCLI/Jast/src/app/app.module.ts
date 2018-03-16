@@ -37,6 +37,8 @@ import { MemoryComponent } from './memory/memory.component';
 import { AddRightorwrongComponent } from './add-quiz/add-rightorwrong/add-rightorwrong.component';
 import { AddClozeComponent } from './add-quiz/add-cloze/add-cloze.component';
 import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
+import { MultichoiceComponent } from './multichoice/multichoice.component';
+
 
 @NgModule({
   declarations: [
@@ -69,7 +71,8 @@ import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
     AddMemoryComponent,
     PlayRightandWrongComponent,
     AddSwitch,
-    MemoryComponent
+    MemoryComponent,
+    MultichoiceComponent
   ],
   imports: [
     BrowserModule,
