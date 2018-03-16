@@ -1,3 +1,4 @@
+import { MultichoiceComponent } from './multichoice/multichoice.component';
 import { AddRightorwrongComponent } from './add-quiz/add-rightorwrong/add-rightorwrong.component';
 import { AddClozeComponent } from './add-quiz/add-cloze/add-cloze.component';
 import { PlayRightandWrongComponent } from './websocket/play/play-rightand-wrong/play-rightand-wrong.component';
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
     {path: 'qanda/:id', component: QandaComponent},
     {path: 'qandainput', component: QandainputComponent},
     {path: 'qandascore', component: QandascoreComponent},
+    {path: 'multichoice/:id', component: MultichoiceComponent},
     {path: 'addquizcontent', component: AddQuizContentComponent},
     {path: 'addcloze', component: AddClozeComponent},
     {path: 'addrightorwrong', component: AddRightorwrongComponent},
@@ -57,7 +59,6 @@ const appRoutes: Routes = [
     {path: 'multiswitch/:qtid/:qid/:id', component: Multiswitch},
     {path: 'multiqanda/:id/:qid', component: PlayqandaComponent},
     {path: 'multicloze/:id/:qid', component: PlayclozeComponent},
-    {path: 'rightorwrongbutton', component: RightorwrongbuttonComponent},
     {path: 'quiztypeinfo', component: QuiztypeinfoComponent},
     {path: 'multirightorwrong/:id/:qid', component: PlayRightandWrongComponent},
     {path: 'quiztypeinfo', component: QuiztypeinfoComponent},
