@@ -62,29 +62,48 @@ export class MultichoiceComponent implements OnInit {
        
             if(this.contents == undefined)
             {
-                this.dataService.getContentById(this.quizId).subscribe
-                (data=>{this.contents=data;},
-                error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})
+                this.loadContent();
             }
-                                 
-            this.searchSpaces();
-            console.log("hi");
+            this.waitForContent();            
+
                 
          }
+
+         waitForContent() {
+            setTimeout(() => {
+                if(this.contents == undefined)
+                {
+                    this.waitForContent();
+                }
+                else
+                {
+                    this.searchSpaces();
+                }
+                
+            }, 1000/60);
+        } 
 
         searchSpaces()
         {
             this.content = this.contents[0];
-            for(var i = 0;i<this.content.input1.length;i++)
+            this.newString = " ";
+            for(var i = 0;i<this.content.input2.length;i++)
             {
-                if(this.content.input1[i] == "/+")
+                let str = this.content.input2[i]+ this.content.input2[i+1];
+                let str2 = this.content.input2[i-1]+ this.content.input2[i];
+                console.log(str);
+                if(str == "/+"|| str == "/-"||str2 == "/+"|| str2 == "/-")
                 {
-                    this.newString += this.content.input1[i].replace("/+", "y");
+                    if(this.content.input2[i] == '/'||this.content.input2[i] == '+'||this.content.input2[i] == '-')
+                    {
+                        this.newString += this.content.input2[i].replace(this.content.input2[i], " ");
+                    }
                 }
                 else
                 {
-                    this.newString += this.content.input1[i];
+                    this.newString += this.content.input2[i];
                 }
+                
             }
 
         }
@@ -108,11 +127,19 @@ export class MultichoiceComponent implements OnInit {
         wrongGuess() {
         this.wrongCounter++;
         }
+
+        loadContent()
+        {
+            this.dataService.getContentById(this.quizId).subscribe
+                (data=>{this.contents=data;},
+                error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})
+        }
     
 
         constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute) {
              this.user= this.dataService.user;
              this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.quizId=+p);
+             this.loadContent();
         }
 
 }
