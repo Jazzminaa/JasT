@@ -1,3 +1,4 @@
+import { MultichoiceChoiceComponent } from './multichoice/multichoice-choice/multichoice-choice.component';
 import { MultichoiceComponent } from './multichoice/multichoice.component';
 import { AddRightorwrongComponent } from './add-quiz/add-rightorwrong/add-rightorwrong.component';
 import { AddClozeComponent } from './add-quiz/add-cloze/add-cloze.component';
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     {path: 'qandainput', component: QandainputComponent},
     {path: 'qandascore', component: QandascoreComponent},
     {path: 'multichoice/:id', component: MultichoiceComponent},
+    {path: 'multichoice-choice', component: MultichoiceChoiceComponent},
     {path: 'addquizcontent', component: AddQuizContentComponent},
     {path: 'addcloze', component: AddClozeComponent},
     {path: 'addrightorwrong', component: AddRightorwrongComponent},

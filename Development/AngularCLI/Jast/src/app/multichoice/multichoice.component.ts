@@ -28,6 +28,12 @@ export class MultichoiceComponent implements OnInit {
         selQuiz: Quiz;
         content: Content = new Content;
         newString: string;
+        checkAnswer: boolean = false;
+        
+        check()
+        {
+            this.checkAnswer = true;
+        }
 
         openModal(){
             this.display='block';
@@ -63,50 +69,11 @@ export class MultichoiceComponent implements OnInit {
             if(this.contents == undefined)
             {
                 this.loadContent();
-            }
-            this.waitForContent();            
-
+            }         
                 
          }
 
-         waitForContent() {
-            setTimeout(() => {
-                if(this.contents == undefined)
-                {
-                    this.waitForContent();
-                }
-                else
-                {
-                    this.searchSpaces();
-                }
-                
-            }, 1000/60);
-        } 
-
-        searchSpaces()
-        {
-            this.content = this.contents[0];
-            this.newString = " ";
-            for(var i = 0;i<this.content.input2.length;i++)
-            {
-                let str = this.content.input2[i]+ this.content.input2[i+1];
-                let str2 = this.content.input2[i-1]+ this.content.input2[i];
-                console.log(str);
-                if(str == "/+"|| str == "/-"||str2 == "/+"|| str2 == "/-")
-                {
-                    if(this.content.input2[i] == '/'||this.content.input2[i] == '+'||this.content.input2[i] == '-')
-                    {
-                        this.newString += this.content.input2[i].replace(this.content.input2[i], " ");
-                    }
-                }
-                else
-                {
-                    this.newString += this.content.input2[i];
-                }
-                
-            }
-
-        }
+       
 
          getQuizFromContent()
          {
@@ -114,18 +81,13 @@ export class MultichoiceComponent implements OnInit {
             this.selQuiz = this.contents[0].quiz;
          }
 
-        givenUp(index: number) {
-        this.actIndex=index+1;
-        this.givenUpCounter++;
-        }
-
         correctGuess(index: number) {
-        this.actIndex=index+1;
-        this.correctCounter++;
+            this.actIndex=index+1;
+            this.correctCounter++;
         }
 
         wrongGuess() {
-        this.wrongCounter++;
+            this.wrongCounter++;
         }
 
         loadContent()

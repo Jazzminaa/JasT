@@ -4,11 +4,11 @@
   <h3>Gesamtpunkte: {{getPoints()}}</h3>
 </div>
 <div *ngFor="let content of contents; let i=index">
-  {{content.input1}}
-<input type="checkbox"/>{{content.input2}}
+  <app-multichoice-choice [isEnabled]="actIndex==i" [content]="content" [check]="checkAnswer" (correctGuess)="correctGuess(i)"
+      (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-multichoice-choice> 
 </div>
 
-{{newString}}
+<button (click)="check()">Fertig</button>>
 
 <button type="button" class="btn btn-warning btn-lg" (click)="openModal();saveScore();">Speichern</button>
 

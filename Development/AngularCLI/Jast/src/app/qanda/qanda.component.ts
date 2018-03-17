@@ -50,8 +50,6 @@ export class QandaComponent  implements OnInit {
             this.score = new Score();
             this.score.id = 1;
             this.score.points = this.finalPoints;
-            this.score.category = this.selCategory;
-            this.score.quizType = this.selQuizType;
 
            
             this.dataService.insertScore(this.score).subscribe(data => {
