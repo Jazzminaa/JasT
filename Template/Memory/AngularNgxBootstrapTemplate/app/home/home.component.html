@@ -1,9 +1,6 @@
 
   <link href="style.css" rel="stylesheet" type="text/css">
 
-<script>
-    document.getElementById("demo").innerHTML = "Hello JavaScript!";
-</script> 
     <div id="memory_board">
     <table >
             <tr >
@@ -15,12 +12,11 @@
             <tr >
                 <td *ngFor="let content of row3;let i = index"><button (click)="showContent(3,i)" id="card"><div *ngIf="checkBoolean(3,i)">{{content}}</div></button></td>
             </tr>
-            <tr >
-                <td *ngFor="let content of row4;let i = index"><button (click)="showContent(4,i)" id="card"><div *ngIf="checkBoolean(4,i)">{{content}}</div></button></td>
-            </tr>
-            <tr >
-                <td *ngFor="let content of row5;let i = index"><button (click)="showContent(5,i)" id="card"><div *ngIf="checkBoolean(5,i)">{{content}}</div></button></td>
-            </tr>
     </table>
+    </div>
+    <div id="scoreArea">
+        <div id="scoreHeader">Score</div>
+        <div id="scoreText">100</div>
+        <div id="scoreTime">Sanduhr</div>
     </div>
 
