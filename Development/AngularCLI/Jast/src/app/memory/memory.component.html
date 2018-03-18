@@ -1,3 +1,20 @@
-<p>
-  memory works!
-</p>
+
+    <div id="memory_board">
+    <table >
+            <tr >
+                <td *ngFor="let content of row1;let i = index"><button  (click)="showContent(0,i)"  id="card"><div *ngIf="checkBoolean(0,i)">{{content}}</div></button></td> <!-- (click)="myFunction()"-->
+            </tr>
+            <tr >
+                <td *ngFor="let content of row2;let i = index"><button (click)="showContent(1,i)" id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td>
+            </tr>
+            <tr >
+                <td *ngFor="let content of row3;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
+            </tr>
+    </table>
+    </div>
+    <div id="scoreArea">
+        <div id="scoreHeader">Score</div>
+        <div id="scoreText">{{score}}</div>
+        <div id="scoreTime">Sanduhr</div>
+    </div>
+

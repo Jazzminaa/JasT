@@ -1,0 +1,58 @@
+div#memory_board{
+    background:#DADADA;
+    border:#999 1px solid;
+    width: 1100px;
+    height: 560px;
+    padding: 24px;
+    margin: 0px auto;
+    float: left;
+    margin-left: 70px;
+    margin-top: 50px;
+    border-radius: 10px;
+  }
+  
+  button#card {
+    background: #C30303;
+    border: #000 1px solid;
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin: 12px;
+    padding: 20px;
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  #scoreArea{
+    width: 200px;
+    height: 630px;
+    position: relative;
+    float: right;
+    background:#DADADA;
+    margin-top: 10px;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 65px;
+  }
+  
+  #scoreHeader{
+    font-family:'Conv_comic',Sans-Serif;
+    margin:0 auto;
+    text-align:center;
+    font-size:1.5em;
+    border-bottom:1px solid red;
+    margin-top:20px;
+  }
+  
+  #scoreText{
+    font-family:'Conv_KBZipaDeeDooDah';
+    margin:0 auto;
+    text-align:center;
+    font-size:8em;
+    margin-top:20px;
+    color:#C30303;
+  }
