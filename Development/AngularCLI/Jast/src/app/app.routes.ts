@@ -1,3 +1,4 @@
+import { MemoryComponent } from './memory/memory.component';
 import { MultichoiceChoiceComponent } from './multichoice/multichoice-choice/multichoice-choice.component';
 import { MultichoiceComponent } from './multichoice/multichoice.component';
 import { AddRightorwrongComponent } from './add-quiz/add-rightorwrong/add-rightorwrong.component';
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     {path: 'quiztypeinfo', component: QuiztypeinfoComponent},
     {path: 'multirightorwrong/:id/:qid', component: PlayRightandWrongComponent},
     {path: 'quiztypeinfo', component: QuiztypeinfoComponent},
-    {path: 'addswitch/:id', component: AddSwitch}
+    {path: 'addswitch/:id', component: AddSwitch},
+    {path: 'memory/:id', component: MemoryComponent}
 
 ];
 

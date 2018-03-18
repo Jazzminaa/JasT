@@ -1,3 +1,11 @@
+<h1>Quizübersicht</h1>
+
+<div id="filter" >
+    <label>Filter:</label>
+    <input size="15"  [(ngModel)]="filter"/>
+    <button (click)="filterQuiz()">Filtern nach Quizname</button>
+</div>
+
 <div>    
     <table class="table">
         <thead>
@@ -56,6 +64,4 @@
         </tbody>
     </table>
 </div>
-<label>{{name}}</label>
-<label>{{testId}}</label>
  <router-outlet></router-outlet>
