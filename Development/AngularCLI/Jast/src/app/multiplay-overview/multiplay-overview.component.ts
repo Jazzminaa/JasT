@@ -1,8 +1,8 @@
+import { Multiplay } from './../model/multiplay.model';
 import { Component, OnInit } from '@angular/core';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../shared/data.service';
 import { User } from '../model/user.model';
-import { Multiplay } from '../model/multiplay.model';
 
 @Component({
   selector: 'app-multiplay-overview',
@@ -15,6 +15,8 @@ export class MultiplayOverviewComponent implements OnInit {
   user: User;
   testId:number = 0;
   ageId: number = 0;
+  filter:string = "";
+  quizesBegin: Multiplay[];
   
   constructor(private router: Router, private dataService: DataService,private route: ActivatedRoute )  {
       
@@ -23,7 +25,18 @@ export class MultiplayOverviewComponent implements OnInit {
           this.user = dataService.user;
       }
   }
+  filterQuiz()
+    {
+        this.multiplays = [];
+        this.quizesBegin.forEach(quiz => {
+            if(quiz.name.startsWith(this.filter))
+            {
+                this.multiplays.push(quiz);
+            }
 
+        });
+
+    }
 
    ngOnInit() {
 
@@ -61,6 +74,7 @@ export class MultiplayOverviewComponent implements OnInit {
    {
       this.dataService.getMultiplays().subscribe(data =>{
       this.multiplays = data;
+      this.quizesBegin = data;
     });
    }
 

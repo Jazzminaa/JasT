@@ -1,3 +1,4 @@
+import { PlayMultichoiceComponent } from './websocket/play/play-multichoice/play-multichoice.component';
 import { MemoryComponent } from './memory/memory.component';
 import { MultichoiceChoiceComponent } from './multichoice/multichoice-choice/multichoice-choice.component';
 import { MultichoiceComponent } from './multichoice/multichoice.component';
@@ -30,6 +31,7 @@ import { ClozeComponent } from './cloze/cloze.component';
 import { ClozeinputComponent } from './cloze/clozeinput/clozeinput.component';
 import { SwitchComponent } from './quiz-overview/switch-quiztype';
 import { Multiswitch } from './multiplay-overview/multiswitch';
+import { PlayMemoryComponent } from './websocket/play/play-memory/play-memory.component';
 
 
 const appRoutes: Routes = [
@@ -65,6 +67,8 @@ const appRoutes: Routes = [
     {path: 'multirightorwrong/:id/:qid', component: PlayRightandWrongComponent},
     {path: 'quiztypeinfo', component: QuiztypeinfoComponent},
     {path: 'addswitch/:id', component: AddSwitch},
+    {path: 'multimultichoice/:id/:qid', component: PlayMultichoiceComponent},
+    {path: 'multimemory/:id/:qid', component: PlayMemoryComponent},
     {path: 'memory/:id', component: MemoryComponent}
 
 ];
