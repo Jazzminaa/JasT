@@ -26,6 +26,8 @@ export class MultichoiceChoiceComponent{
     contentcheck: boolean[] =[];
     answer: string[] =[];
     count:number =0;
+    con: boolean[] =[false];
+
     
 
     ngDoCheck(): void {
@@ -34,11 +36,7 @@ export class MultichoiceChoiceComponent{
           this.isDone =true;
         }
      }
-    giveUp() {
-        this.isGivenUp=true;
-        this.guessedContent=this.content.input2;
-        this.givenUp.emit(0);
-    }
+
      searchSpaces()
         {
             this.newString = " ";
@@ -86,20 +84,29 @@ export class MultichoiceChoiceComponent{
 
         }
 
-        checkForm(c:boolean, con:string)
+        checkForm(c:boolean)
         {
             if(c)
             {
                 this.isDone = c;
                 for(var i=0 ; i< this.contents.length ; i++)
                 {
-                    if(this.contentcheck[i]) // == seine eingabe
+                    if((this.contentcheck[i] && this.con[i])||(!this.contentcheck[i] && !this.con[i])) 
                     {
                         this.answer[i] = "Richtig";
+                        this.isWrong = false;
+                        this.isDone = true;
+                        this.isCorrect = true;
+                        this.correctGuess.emit(0);
+                        
                     }
                     else
                     {
                         this.answer[i] = "Falsch";
+                        this.isWrong = true;
+                        this.isCorrect = false;
+                        this.mistakes++;
+                        this.wrongGuess.emit(0);
                     }
                 }
             }
