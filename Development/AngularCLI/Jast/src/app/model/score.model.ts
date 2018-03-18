@@ -11,12 +11,12 @@ export class Score{
 
         if(this.quiz.user.multiplay == undefined)
         {
-            this.quiz.user.multiplay = " ";
+            this.quiz.user.multiplay = "null";
         }
 
         if(this.user.multiplay == undefined)
         {
-            this.user.multiplay = " ";
+            this.user.multiplay = "null";
         }
     }
     id: number;
