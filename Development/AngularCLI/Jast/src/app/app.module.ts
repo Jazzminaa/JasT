@@ -39,6 +39,8 @@ import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
 import { MultichoiceComponent } from './multichoice/multichoice.component';
 import { MultichoiceChoiceComponent } from './multichoice/multichoice-choice/multichoice-choice.component';
 import { MemoryComponent } from './memory/memory.component';
+import { PlayMemoryComponent } from './websocket/play/play-memory/play-memory.component';
+import { PlayMultichoiceComponent } from './websocket/play/play-multichoice/play-multichoice.component';
 
 
 @NgModule({
@@ -74,7 +76,9 @@ import { MemoryComponent } from './memory/memory.component';
     AddSwitch,
     MultichoiceComponent,
     MultichoiceChoiceComponent,
-    MemoryComponent
+    MemoryComponent,
+    PlayMemoryComponent,
+    PlayMultichoiceComponent
   ],
   imports: [
     BrowserModule,
