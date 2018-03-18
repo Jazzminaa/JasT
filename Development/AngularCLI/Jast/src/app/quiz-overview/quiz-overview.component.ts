@@ -20,6 +20,8 @@ export class QuizOverviewComponent implements OnInit {
     testId:number=0;
     age:number=0;
     quizTypeVar: string;
+    filter:string = "";
+    quizesBegin: Quiz[];
     
     constructor(private router: Router, private dataService: DataService,private route: ActivatedRoute )  {
         
@@ -31,7 +33,18 @@ export class QuizOverviewComponent implements OnInit {
         
     }
 
+    filterQuiz()
+    {
+        this.quizes = [];
+        this.quizesBegin.forEach(quiz => {
+            if(quiz.name.startsWith(this.filter))
+            {
+                this.quizes.push(quiz);
+            }
 
+        });
+
+    }
      ngOnInit() {
         this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.testId=+p);
         this.route.params.switchMap((params: Params) => params['age']).subscribe(p=>this.age=+p);
@@ -93,6 +106,7 @@ export class QuizOverviewComponent implements OnInit {
      {
         this.dataService.getQuizes().subscribe(data =>{
         this.quizes = data;
+        this.quizesBegin = data;
       });
      }
 

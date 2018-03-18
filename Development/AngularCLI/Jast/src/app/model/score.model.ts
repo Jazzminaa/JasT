@@ -3,64 +3,74 @@ import { QuizType } from './quiztype.model';
 import { Quiz } from './quiz.model';
 import { Category } from './category.model';
 export class Score{
+    test(): any {
+        if(this.quiz.multiplay == undefined)
+        {
+            this.quiz.multiplay = 0
+        }
+
+        if(this.quiz.user.multiplay == undefined)
+        {
+            this.quiz.user.multiplay = " ";
+        }
+
+        if(this.user.multiplay == undefined)
+        {
+            this.user.multiplay = " ";
+        }
+    }
     id: number;
     points: number;
-    category: Category;
-    quizType: QuizType;
     user: User;
+    quiz:Quiz;
 
-     getJson()
+    getJson()
     {
-        return {
-            "id": 1,
-            "points": "200",
-            "timestamp": 1520431560813,
-            "quiz": {
-                "id": 1,
-                "age": 8,
-                "creationDate": "2017-03-14",
-                "description": "Berrechne die Multiplikationen.",
-                "multiplay": 0,
-                "name": "Der Rechenkönig",
-                "picture": null,
-                "timestamp": 1520431449974,
-                "category": {
-                    "id": 1,
-                    "name": "Mathematik",
-                    "timestamp": 1520431449521
-                },
-                "quiztype": {
-                    "id": 1,
-                    "name": "QandA",
-                    "timestamp": 1520431449833
-                },
-                "user": {
-                    "id": 1,
-                    "dateOfBirth": "2012-02-20",
-                    "email": "m@test.com",
-                    "firstname": "muster",
-                    "gender": "m",
-                    "lastname": "mustermann",
-                    "password": "1234",
-                    "picture": null,
-                    "timestamp": 1520431449927,
-                    "username": "Musti",
-                    "multiplay": null
-                }
-            },
-            "user": {
-                "id": 1,
-                "dateOfBirth": "2012-02-20",
-                "email": "m@test.com",
-                "firstname": "muster",
-                "gender": "m",
-                "lastname": "mustermann",
-                "password": "1234",
-                "picture": null,
-                "timestamp": 1520431449927,
-                "username": "Musti",
-                "multiplay": null
-            }
-        };
+        this.test();
+        return "{"+
+            "\"id\": "+this.id+","+
+            "\"points\": \""+this.points+"\","+
+            "\"quiz\": {"+
+                "\"id\": "+this.quiz.id+","+
+                "\"age\": "+this.quiz.age+","+
+                "\"creationDate\": \""+this.quiz.creationDate+"\","+
+                "\"description\": \""+this.quiz.description+"\","+
+                "\"multiplay\": "+this.quiz.multiplay+","+
+                "\"name\": \""+this.quiz.name+"\","+
+                "\"picture\": null,"+
+                "\"category\": {"+
+                    "\"id\": "+this.quiz.category.id+","+
+                    "\"name\": \""+this.quiz.category.name+"\""+
+                "},"+
+                "\"quiztype\": {"+
+                    "\"id\": "+this.quiz.quizType.id+","+
+                    "\"name\": \""+this.quiz.quizType.name+"\""+
+                "},"+
+                "\"user\": {"+
+                    "\"id\": "+this.quiz.user.id+","+
+                    "\"dateOfBirth\": \""+this.quiz.user.dateOfBirth+"\","+
+                    "\"email\": \""+this.quiz.user.email+"\","+
+                    "\"firstname\": \""+this.quiz.user.firstName+"\","+
+                    "\"gender\": \""+this.quiz.user.gender+"\","+
+                    "\"password\": \""+this.quiz.user.password+"\","+
+                    "\"picture\": null,"+
+                    "\"lastname\": \""+this.quiz.user.lastName+"\","+
+                    "\"username\": \""+this.quiz.user.username+"\","+
+                    "\"multiplay\": "+this.quiz.user.multiplay+""+
+                "}"+
+            "},"+
+            "\"user\": {"+
+                "\"id\": "+this.user.id+","+
+                "\"dateOfBirth\": \""+this.user.dateOfBirth+"\","+
+                "\"email\": \""+this.user.email+"\","+
+                "\"firstname\": \""+this.user.firstName+"\","+
+                "\"gender\": \""+this.user.gender+"\","+
+                "\"password\": \""+this.user.password+"\","+
+                "\"picture\": null,"+
+                "\"lastname\": \""+this.user.lastName+"\","+
+                "\"username\": \""+this.user.username+"\","+
+                "\"multiplay\": "+this.user.multiplay+
+            "}"+
+        "}"
     }
 }

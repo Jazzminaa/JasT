@@ -33,7 +33,15 @@ import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/r
 import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
 import { PlayRightandWrongComponent } from './websocket/play/play-rightand-wrong/play-rightand-wrong.component';
 import { AddSwitch } from './add-quiz/addswitch';
+import { AddRightorwrongComponent } from './add-quiz/add-rightorwrong/add-rightorwrong.component';
+import { AddClozeComponent } from './add-quiz/add-cloze/add-cloze.component';
+import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
+import { MultichoiceComponent } from './multichoice/multichoice.component';
+import { MultichoiceChoiceComponent } from './multichoice/multichoice-choice/multichoice-choice.component';
 import { MemoryComponent } from './memory/memory.component';
+import { PlayMemoryComponent } from './websocket/play/play-memory/play-memory.component';
+import { PlayMultichoiceComponent } from './websocket/play/play-multichoice/play-multichoice.component';
+
 
 @NgModule({
   declarations: [
@@ -60,9 +68,17 @@ import { MemoryComponent } from './memory/memory.component';
     RightorwrongComponent,
     RightorwrongbuttonComponent,
     QuiztypeinfoComponent,
+    AddSwitch,
+    AddRightorwrongComponent,
+    AddClozeComponent,
+    AddMemoryComponent,
     PlayRightandWrongComponent,
     AddSwitch,
-    MemoryComponent
+    MultichoiceComponent,
+    MultichoiceChoiceComponent,
+    MemoryComponent,
+    PlayMemoryComponent,
+    PlayMultichoiceComponent
   ],
   imports: [
     BrowserModule,

@@ -1,23 +1,20 @@
-<h1>Willkommen beim Quiz " {{contents[0].quiz.name}} "</h1>
-<script>
-    document.getElementById("demo").innerHTML = "Hello JavaScript!";
-</script> 
+
     <div id="memory_board">
     <table >
             <tr >
-                <td *ngFor="let content of row1;let i = index"><button  (click)="showContent(1,i)"  id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td> <!-- (click)="myFunction()"-->
+                <td *ngFor="let content of row1;let i = index"><button  (click)="showContent(0,i)"  id="card"><div *ngIf="checkBoolean(0,i)">{{content}}</div></button></td> <!-- (click)="myFunction()"-->
             </tr>
             <tr >
-                <td *ngFor="let content of row2;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
+                <td *ngFor="let content of row2;let i = index"><button (click)="showContent(1,i)" id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td>
             </tr>
             <tr >
-                <td *ngFor="let content of row3;let i = index"><button (click)="showContent(3,i)" id="card"><div *ngIf="checkBoolean(3,i)">{{content}}</div></button></td>
-            </tr>
-            <tr >
-                <td *ngFor="let content of row4;let i = index"><button (click)="showContent(4,i)" id="card"><div *ngIf="checkBoolean(4,i)">{{content}}</div></button></td>
-            </tr>
-            <tr >
-                <td *ngFor="let content of row5;let i = index"><button (click)="showContent(5,i)" id="card"><div *ngIf="checkBoolean(5,i)">{{content}}</div></button></td>
+                <td *ngFor="let content of row3;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
             </tr>
     </table>
     </div>
+    <div id="scoreArea">
+        <div id="scoreHeader">Score</div>
+        <div id="scoreText">{{score}}</div>
+        <div id="scoreTime">Sanduhr</div>
+    </div>
+

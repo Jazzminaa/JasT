@@ -1,0 +1,27 @@
+<h4>Tipp: Wenn sich die Lücke in einem Satz befindet, führe ihn fort indem du einen neuen Content addest.</h4>
+<br> 
+<table class="table">
+  <tr>
+      <th>
+          Satz
+      </th>
+      <th>
+          Lücke
+      </th>
+  </tr>
+   <tr *ngFor="let content of newContents">
+      <td>{{content.input1}}</td> 
+      <td>{{content.input2}}</td>
+      <td><button (click)="removeContentFromList(content)">Delete</button></td>
+  </tr>
+</table>
+
+<div>
+<input #input1 placeholder="Satz" />
+<input #input2 placeholder="Lücke" />
+<button (click)="addContentToList(input1.value, input2.value)">Add Content</button>
+</div>
+
+<button    (click)="saveContent()">Speichern</button> 
+
+<router-outlet></router-outlet>

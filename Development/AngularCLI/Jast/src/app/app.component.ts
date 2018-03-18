@@ -26,15 +26,25 @@ export class AppComponent  implements OnInit,DoCheck{
     this.dataService.user = new User;
     this.dataService.user.username ="Gast"; 
     this.loggedIn = false;
+    this.waitForLogout();
   }
+  waitForLogout() {
+    setTimeout(() => {
+
+      if(  this.dataService.user.username !="Gast")
+      {
+        this.logOut();
+      }
+        
+    }, 1000/2);
+} 
   
   ngDoCheck(): void {
     if(this.dataService.user  != undefined && this.dataService.user.id != null)
     {
       this.loggedIn = true;
     }
-    
-}
+  }
   ngOnDestroy()
   {
       this.dataService.user = this.theUser;

@@ -8,6 +8,7 @@ export class User{
     gender: string;
     password: string;
     picture: string;
+    multiplay:string;
     
 
     getJson()
