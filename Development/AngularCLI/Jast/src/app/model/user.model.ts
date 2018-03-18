@@ -11,7 +11,8 @@ export class User{
     multiplay:string;
     
 
-    getJson()
+    
+    getJson():string
     {
         return "{"+
             "\"id\": "+this.id+","+
@@ -27,3 +28,4 @@ export class User{
         "}";
     }
 }
+

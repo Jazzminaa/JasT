@@ -3,6 +3,12 @@ import { QuizType } from './quiztype.model';
 import { Quiz } from './quiz.model';
 import { Category } from './category.model';
 export class Score{
+
+    id: number;
+    points: number;
+    user: User;
+    quiz:Quiz;
+    
     test(): any {
         if(this.quiz.multiplay == undefined)
         {
@@ -19,12 +25,9 @@ export class Score{
             this.user.multiplay = "null";
         }
     }
-    id: number;
-    points: number;
-    user: User;
-    quiz:Quiz;
+    
 
-    getJson()
+    getJson():string
     {
         this.test();
         return "{"+

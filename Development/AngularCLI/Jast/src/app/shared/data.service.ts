@@ -91,8 +91,8 @@ export class DataService {
     insertScore(score: Score)
     {
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(this.API_Url+"scores", score.getJson(), {headers: headers})
-        .map((res:Response) => res.json());
+        return this.http.post(this.API_Url+"scores", this.getJson(score), {headers: headers})
+        .map(data=>data.json() as Score);
     }
 
     insertContent(content: Content)
@@ -114,6 +114,76 @@ export class DataService {
         return this.http.put(this.API_Url+"users/"+user.id,user.getJson(),
         {headers:headers}).map(data=>data.json() as User);
     }
+    test(score:Score): any {
+        if(score.quiz.multiplay == undefined)
+        {
+            score.quiz.multiplay = 0
+        }
+
+        if(score.quiz.user.multiplay == undefined)
+        {
+            score.quiz.user.multiplay = "null";
+        }
+
+        if(score.user.multiplay == undefined)
+        {
+            score.user.multiplay = "null";
+        }
+    }
+    
+
+    getJson(score:Score):string
+    {
+        this.test(score);
+        let r = "{"+
+            "\"id\": "+score.id+","+
+            "\"points\": \""+score.points+"\","+
+            "\"quiz\": {"+
+                "\"id\": "+score.quiz.id+","+
+                "\"age\": "+score.quiz.age+","+
+                "\"creationDate\": \""+score.quiz.creationDate+"\","+
+                "\"description\": \""+score.quiz.description+"\","+
+                "\"multiplay\": "+score.quiz.multiplay+","+
+                "\"name\": \""+score.quiz.name+"\","+
+                "\"picture\": null,"+
+                "\"category\": {"+
+                    "\"id\": "+score.quiz.category.id+","+
+                    "\"name\": \""+score.quiz.category.name+"\""+
+                "},"+
+                "\"quiztype\": {"+
+                    "\"id\": "+score.quiz.quizType.id+","+
+                    "\"name\": \""+score.quiz.quizType.name+"\""+
+                "},"+
+                "\"user\": {"+
+                    "\"id\": "+score.quiz.user.id+","+
+                    "\"dateOfBirth\": \""+score.quiz.user.dateOfBirth+"\","+
+                    "\"email\": \""+score.quiz.user.email+"\","+
+                    "\"firstname\": \""+score.quiz.user.firstName+"\","+
+                    "\"gender\": \""+score.quiz.user.gender+"\","+
+                    "\"password\": \""+score.quiz.user.password+"\","+
+                    "\"picture\": null,"+
+                    "\"lastname\": \""+score.quiz.user.lastName+"\","+
+                    "\"username\": \""+score.quiz.user.username+"\","+
+                    "\"multiplay\": "+score.quiz.user.multiplay+""+
+                "}"+
+            "},"+
+            "\"user\": {"+
+                "\"id\": "+score.user.id+","+
+                "\"dateOfBirth\": \""+score.user.dateOfBirth+"\","+
+                "\"email\": \""+score.user.email+"\","+
+                "\"firstname\": \""+score.user.firstName+"\","+
+                "\"gender\": \""+score.user.gender+"\","+
+                "\"password\": \""+score.user.password+"\","+
+                "\"picture\": null,"+
+                "\"lastname\": \""+score.user.lastName+"\","+
+                "\"username\": \""+score.user.username+"\","+
+                "\"multiplay\": "+score.user.multiplay+
+            "}"+
+        "}";
+
+        return r;
+    }
+
 
     
 }

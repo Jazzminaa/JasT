@@ -48,15 +48,24 @@ export class QandaComponent  implements OnInit {
         { 
             this.getQuizFromContent();
             this.score = new Score();
-            this.score.id = 1;
+            this.score.id = 0;
+            this.score.user = this.user;
+            this.score.quiz = this.selQuiz;
             this.score.points = this.finalPoints;
 
-           
-            this.dataService.insertScore(this.score).subscribe(data => {
-                },
-                error => {
-                    //alert("Speichern fehlgeschlagen: " + error);
-                });
+
+
+
+           console.log(this.dataService.getJson(this.score));
+           if(this.user != undefined)
+           {
+                this.dataService.insertScore(this.score).subscribe(data => {
+                    },
+                    error => {
+                        //alert("Speichern fehlgeschlagen: " + error);
+                    });
+            }
+            
             this.display='none';
         }
 
