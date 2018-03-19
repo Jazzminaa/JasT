@@ -32,7 +32,7 @@ export class MemoryComponent implements OnInit {
     score:number = 0;
     user:User;
     quizId: number;
-    duration:number= 180;
+    duration:number= 90;
     clockDisplay : string; 
     interval: number;
     
@@ -90,30 +90,30 @@ export class MemoryComponent implements OnInit {
     tickTick(){
         let minutes = "--";
         let seconds = "--";
-               if(this.duration > 0 || this.duration != undefined){
-                 setInterval( () => {this.duration = this.duration - 1;
-               
-                   if(this.duration % 60 < 10){
-                       seconds = "0"+this.duration%60;
-                   }else{
-                       seconds = (this.duration%60).toString();
-                   }
-   
-                   if(this.duration / 60 < 10 ){
-                       minutes = "0"+parseInt(""+this.duration/60,10);
-                   }else{
-                       minutes = ""+parseInt((this.duration / 60).toString(),10);
-                   }
-                   if(Number(seconds) >=0 && Number(minutes) >= 0)
-                   {
-                     this.clockDisplay = minutes + " : " + seconds;
-                   }
-                   },1000); 
-             }
-             else
-             {
-               clearInterval(this.interval);
-             }
+        if((this.duration > 0 || this.duration != undefined)&& this.clockDisplay != "00 : 00"){
+            setInterval( () => {this.duration = this.duration - 1;
+        
+            if(this.duration % 60 < 10){
+                seconds = "0"+this.duration%60;
+            }else{
+                seconds = (this.duration%60).toString();
+            }
+
+            if(this.duration / 60 < 10 ){
+                minutes = "0"+parseInt(""+this.duration/60,10);
+            }else{
+                minutes = ""+parseInt((this.duration / 60).toString(),10);
+            }
+            if(Number(seconds) >=0 && Number(minutes) >= 0)
+            {
+                this.clockDisplay = minutes + " : " + seconds;
+            }
+            },1000); 
+        }
+        else
+        {
+            clearInterval(this.interval);
+        }
        }
 
     waitForLoading() {
