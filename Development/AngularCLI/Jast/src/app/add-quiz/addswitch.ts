@@ -34,6 +34,12 @@ export class AddSwitch implements OnInit {
             case 3:
             router.navigateByUrl("/addrightorwrong");
             break;
+            case 4: 
+            router.navigateByUrl("/addmultichoice");
+            break;
+            case 5:
+            router.navigateByUrl("/addmemory");
+            break;
 
         }
     }
