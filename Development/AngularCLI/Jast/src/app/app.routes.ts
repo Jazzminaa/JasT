@@ -1,3 +1,4 @@
+import { StatisticsComponent } from './statistics/statistics.component';
 import { AddMultichoiceComponent } from './add-quiz/add-multichoice/add-multichoice.component';
 import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
 import { PlayMultichoiceComponent } from './websocket/play/play-multichoice/play-multichoice.component';
@@ -73,7 +74,8 @@ const appRoutes: Routes = [
     {path: 'addswitch/:id', component: AddSwitch},
     {path: 'multimultichoice/:id/:qid', component: PlayMultichoiceComponent},
     {path: 'multimemory/:id/:qid', component: PlayMemoryComponent},
-    {path: 'memory/:id', component: MemoryComponent}
+    {path: 'memory/:id', component: MemoryComponent},
+    {path: 'statistics', component: StatisticsComponent}
 
 ];
 

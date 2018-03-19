@@ -64,7 +64,7 @@ export class AppComponent  implements OnInit,DoCheck{
 
   ngOnInit(){
       this.getAllCategories();
-      this.tickTick();
+   //   this.tickTick();
 
   }
 
@@ -82,7 +82,7 @@ export class AppComponent  implements OnInit,DoCheck{
 
 
 
-    tickTick(){
+   /* tickTick(){
             if(this.duration > 0 || this.duration != undefined){
               setInterval( () => {this.duration = this.duration - 1;
             
@@ -103,6 +103,6 @@ export class AppComponent  implements OnInit,DoCheck{
           {
             clearInterval(this.interval);
           }
-    }
+    }*/
 
 }
