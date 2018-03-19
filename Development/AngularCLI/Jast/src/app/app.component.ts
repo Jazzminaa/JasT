@@ -14,6 +14,16 @@ export class AppComponent  implements OnInit,DoCheck{
   id: number = 0;
   age: number = 0;
   theUser: User;
+
+    timeString : string;
+    duration:number= 5;
+    seconds = "--";
+    minutes = "--";   
+    clockDisplay : string; 
+    interval: number;
+
+ 
+
   constructor(private dataService:DataService)
   {
     if(dataService.user != null)
@@ -54,6 +64,8 @@ export class AppComponent  implements OnInit,DoCheck{
 
   ngOnInit(){
       this.getAllCategories();
+      this.tickTick();
+
   }
 
   change(newid: number)
@@ -67,5 +79,30 @@ export class AppComponent  implements OnInit,DoCheck{
     })
 
   }
+
+
+
+    tickTick(){
+            if(this.duration > 0 || this.duration != undefined){
+              setInterval( () => {this.duration = this.duration - 1;
+            
+                if(this.duration % 60 < 10){
+                    this.seconds = "0"+this.duration%60;
+                }else{
+                    this.seconds = (this.duration%60).toString();
+                }
+
+                if(this.duration / 60 < 10 ){
+                    this.minutes = "0"+parseInt(""+this.duration/60,10);
+                }else{
+                    this.minutes = ""+parseInt((this.duration / 60).toString(),10);
+                }
+                this.clockDisplay = this.minutes + " : " +this.seconds; },1000); 
+          }
+          else
+          {
+            clearInterval(this.interval);
+          }
+    }
 
 }
