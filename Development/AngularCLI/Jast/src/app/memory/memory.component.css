@@ -47,6 +47,12 @@ div#memory_board{
     border-bottom:1px solid red;
     margin-top:20px;
   }
+
+  #scoreTime{
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+  }
   
   #scoreText{
     font-family:'Conv_KBZipaDeeDooDah';
