@@ -88,7 +88,11 @@ export class RightorwrongComponent implements OnInit {
 
         constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute) {
              this.user= this.dataService.user;
-             this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.quizId=+p);
+             this.route.params.subscribe(
+                (params: Params) => {
+                    this.quizId = params['id'];
+                }
+                );
         }
 
 }

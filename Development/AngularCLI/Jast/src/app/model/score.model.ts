@@ -14,6 +14,10 @@ export class Score{
         {
             this.quiz.multiplay = 0
         }
+        if(this.id == undefined)
+        {
+            this.id=0;
+        }
 
         if(this.quiz.user.multiplay == undefined)
         {

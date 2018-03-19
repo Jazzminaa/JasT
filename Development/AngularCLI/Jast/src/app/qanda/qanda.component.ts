@@ -52,6 +52,12 @@ export class QandaComponent  implements OnInit {
             this.score.user = this.user;
             this.score.quiz = this.selQuiz;
             this.score.points = this.finalPoints;
+            this.score.quiz = this.selQuiz;
+            if(this.score.quiz == undefined)
+            {
+                this.score.quiz = this.contents[1].quiz;
+            }
+            this.score.user = this.user;
 
 
 
@@ -79,9 +85,9 @@ export class QandaComponent  implements OnInit {
          getQuizFromContent()
          {
         
-            this.selQuiz = this.contents[0].quiz;
-            this.selQuizType = this.contents[0].quiz.quizType;
-            this.selCategory = this.contents[0].quiz.category;
+            this.selQuiz = this.contents[1].quiz;
+            this.selQuizType = this.contents[1].quiz.quizType;
+            this.selCategory = this.contents[1].quiz.category;
          
          }
 

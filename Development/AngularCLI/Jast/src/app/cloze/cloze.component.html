@@ -33,3 +33,10 @@
 <div>
   <button type="button" routerLink="/home" routerLinkActive="active">Weiter</button>
 </div>
+
+
+<div id="board">
+  <div *ngFor="let content of mixedContents">
+    <label id="card">{{content}}</label>
+  </div>
+</div>
