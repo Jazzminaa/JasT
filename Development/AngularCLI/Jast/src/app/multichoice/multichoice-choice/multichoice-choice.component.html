@@ -1,8 +1,8 @@
 <div class="row">
-        <div class="col-xs-3">{{content.input1}}</div>
+        <div class="col-xs-3" class="format"><b>Frage:</b> {{content.input1}}</div>
         <div class="col-xs-9" *ngIf="searchSpaces()">
             <div class="row" *ngFor="let cont of contents; let i= index" > 
-                <input type="checkbox"[(disabled)]="isDone" (click)="con[i]=true" size="50" />
+                <input class="format2" type="checkbox"[(disabled)]="isDone" (click)="con[i]=true" size="50" />
                 {{cont}}
                 <label  *ngIf="checkForm(check)"> {{answer[i]}}</label>  {{content?.geloestVon}}
             </div>

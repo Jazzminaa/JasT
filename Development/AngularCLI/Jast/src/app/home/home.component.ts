@@ -8,7 +8,7 @@ import { DataService } from '../shared/data.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  text:string = "Hallo Gast!";
+  text:string = "Gast";
   user:User;
   count:number = 0;
   constructor(private dataService:DataService)
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     if(dataService.user != null)
     {
         this.user = dataService.user;
-        this.text = "Hallo "+this.user.username+ "!";
+        this.text = this.user.username;
     }
   }
 
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
       if(this.dataService.user  != undefined)
       {
           this.user = this.dataService.user;
-          this.text = "Hallo "+this.user.username+ "!";
+          this.text = this.user.username;
       }
   }
 
