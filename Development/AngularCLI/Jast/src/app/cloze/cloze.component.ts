@@ -17,6 +17,7 @@ import { WebsocketService } from '../websocket/websocket-service';
 export class ClozeComponent implements OnInit {
 
     contents: Content[];
+    mixedContents: string[] = [];
     content: Content = new Content;
     correctCounter: number=0;
     wrongCounter: number=0;
@@ -33,6 +34,7 @@ export class ClozeComponent implements OnInit {
     selCategory: Category;
     newString: string = "";
     check:boolean = false;
+    randomIndex: number;
   
     openModal(){
         this.display='block';
@@ -65,20 +67,37 @@ export class ClozeComponent implements OnInit {
         this.display='none';
     }
 
-        ngOnInit(): void {
-    
-            this.dataService.getContentById(this.quizId).subscribe
-                (data=>{this.contents=data;},
-                error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})
-            if(this.contents == undefined)
-            {
-                this.dataService.getContentById(this.quizId).subscribe
-                (data=>{this.contents=data;},
-                error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})
-            }
-        }
-    
-                                
+      loadContent()
+    {
+      console.log(this.quizId)
+      this.dataService.getContentById(this.quizId).subscribe
+      (data=>{this.contents=data;},
+      error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})
+    }
+
+    ngOnInit() {
+      if(this.contents == undefined)
+      {
+        this.loadContent();
+      }
+      
+      this.waitForLoading();
+      
+    }
+
+    waitForLoading() {
+      setTimeout(() => {
+          if(this.contents == undefined)
+          {
+            this.waitForLoading();
+          }
+          else{
+           this.mixStrings();
+          }
+          
+      }, 1000);
+  } 
+
 
     getContent(){
         if(this.contents == undefined)
@@ -122,6 +141,31 @@ export class ClozeComponent implements OnInit {
                 this.quizId = params['id'];
             }
             );
+    }
+
+    temp(){
+
+       for(var i = 0; i<this.contents.length; i++)
+       {
+           this.content = this.contents[i];
+           this.mixedContents.push(this.content.input2);
+       }
+
+     }
+
+      mixStrings() {
+      this.temp();
+      if(this.mixedContents != undefined){
+        var currentIndex = this.mixedContents.length, temporaryValue, randomIndex;
+        
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = this.mixedContents[currentIndex];
+            this.mixedContents[currentIndex] = this.mixedContents[randomIndex];
+            this.mixedContents[randomIndex] = temporaryValue;
+        }
+      }
     }
 
 

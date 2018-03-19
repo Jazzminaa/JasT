@@ -1,3 +1,5 @@
+import { AddMultichoiceComponent } from './add-quiz/add-multichoice/add-multichoice.component';
+import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
 import { PlayMultichoiceComponent } from './websocket/play/play-multichoice/play-multichoice.component';
 import { MemoryComponent } from './memory/memory.component';
 import { MultichoiceChoiceComponent } from './multichoice/multichoice-choice/multichoice-choice.component';
@@ -50,6 +52,8 @@ const appRoutes: Routes = [
     {path: 'addquizcontent', component: AddQuizContentComponent},
     {path: 'addcloze', component: AddClozeComponent},
     {path: 'addrightorwrong', component: AddRightorwrongComponent},
+    {path: 'addmemory', component: AddMemoryComponent},
+    {path: 'addmultichoice', component: AddMultichoiceComponent},
     {path: 'play/:id/:qid', component: ChatComponent},
     {path: 'chat', component: ChatComponent},
     {path: 'profile', component: ProfileComponent},
