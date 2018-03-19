@@ -31,8 +31,12 @@ export class PlayqandaComponent implements  OnInit{
       if(dataService.user != null)
       {
           this.theUser = dataService.user;
-          this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.multiplayId=+p);
-          this.route.params.switchMap((params: Params) => params['qid']).subscribe(p=>this.quizId=+p);
+          this.route.params.subscribe(
+            (params: Params) => {
+                this.quizId = params['qid'];
+                this.multiplayId = params['id'];
+            }
+            );
       }
       else{
           this.router.navigateByUrl("/login");

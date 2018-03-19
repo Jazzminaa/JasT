@@ -46,8 +46,8 @@ export class QuizOverviewComponent implements OnInit {
 
     }
      ngOnInit() {
-        this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.testId=+p);
-        this.route.params.switchMap((params: Params) => params['age']).subscribe(p=>this.age=+p);
+        this.route.params.subscribe((params: Params) => {this.testId= params['id'] ; this.age = params['age']
+        });
         this.GetCat();
      }
 
