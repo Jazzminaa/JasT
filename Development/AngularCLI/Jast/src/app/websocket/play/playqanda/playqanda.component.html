@@ -1,6 +1,6 @@
 <h1>Willkommen zur Lerngruppe: {{multiplay?.name}}</h1>
 <div id="game">
-    <div id="header">{{contents[0].quiz.name}}</div>
+    <h2 id="header">{{contents[0].quiz.name}}</h2>
     <div id="question" *ngFor="let content of contents; let i=index">
         <qandainput [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
             (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></qandainput>

@@ -1,14 +1,16 @@
-<h1>Lerngruppenübersicht</h1>
+<h1 class="glyphicon glyphicon-play">Lerngruppenübersicht</h1>
 
 <div id="filter" >
-    <label>Filter:</label>
-    <input size="15"  [(ngModel)]="filter"/>
-    <button (click)="filterQuiz()">Filtern nach Quizname</button>
+    <label>Filter Quiz:</label>
+    <label class="glyphicon glyphicon-zoom-in"></label>
+    <input size="30"  [(ngModel)]="filter" placeholder="Suche..."/>
 </div>
+<br>
+<hr class="one">
 
 <div>    
   <table class="table">
-      <tr>
+        <thead>
           <th>
               Gruppenname
           </th>
@@ -27,7 +29,9 @@
           <th>
               Teilnehmer
           </th>
-      </tr>
+        </thead>
+        
+        <tbody>
       <template ngFor let-multiplay [ngForOf]="multiplays">
           <tr>
               <td>
@@ -51,7 +55,9 @@
           </tr>
       </template>
       <tr [hidden]="user == undefined" ><a routerLink="/add-multiplay" routerLinkActive="active">Neue Lerngruppe erstellen</a></tr>
-  </table>
+  
+    </tbody>
+    </table>
 </div>
 
 <router-outlet></router-outlet>
