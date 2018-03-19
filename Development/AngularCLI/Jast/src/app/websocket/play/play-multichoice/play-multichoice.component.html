@@ -2,8 +2,8 @@
 <div id="game">
   <div id="header">{{contents[0].quiz.name}}</div>
   <div id="question" *ngFor="let content of contents; let i=index">
-    <app-rightorwrongbutton [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
-      (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-rightorwrongbutton>
+    <app-multichoice-choice [isEnabled]="actIndex==i" [content]="content" [check]="checkAnswer" (correctGuess)="correctGuess(i)"
+      (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-multichoice-choice> 
   </div>
 </div>
 
