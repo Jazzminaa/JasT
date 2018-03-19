@@ -32,6 +32,11 @@ export class MemoryComponent implements OnInit {
     score:number = 0;
     user:User;
     quizId: number;
+    duration:number= 180;
+    clockDisplay : string; 
+    interval: number;
+    
+    display: string;
     //#endregion
     
     constructor (private router: Router, private dataService: DataService, private route: ActivatedRoute)
@@ -44,6 +49,23 @@ export class MemoryComponent implements OnInit {
             );
         this.loadContent();
         
+    }
+
+    ngDoCheck(): void {
+        if(this.clockDisplay == "00 : 00")
+        {
+            this.openModal();
+            //saveScore();
+        }
+    }
+
+      openModal(){
+        this.display='block';
+    }
+
+    onCloseHandled()
+    {
+        this.router.navigateByUrl("/home");
     }
 
     loadContent()
@@ -61,8 +83,38 @@ export class MemoryComponent implements OnInit {
       }
       
       this.waitForLoading();
+      this.tickTick();
       
     }
+
+    tickTick(){
+        let minutes = "--";
+        let seconds = "--";
+               if(this.duration > 0 || this.duration != undefined){
+                 setInterval( () => {this.duration = this.duration - 1;
+               
+                   if(this.duration % 60 < 10){
+                       seconds = "0"+this.duration%60;
+                   }else{
+                       seconds = (this.duration%60).toString();
+                   }
+   
+                   if(this.duration / 60 < 10 ){
+                       minutes = "0"+parseInt(""+this.duration/60,10);
+                   }else{
+                       minutes = ""+parseInt((this.duration / 60).toString(),10);
+                   }
+                   if(Number(seconds) >=0 && Number(minutes) >= 0)
+                   {
+                     this.clockDisplay = minutes + " : " + seconds;
+                   }
+                   },1000); 
+             }
+             else
+             {
+               clearInterval(this.interval);
+             }
+       }
 
     waitForLoading() {
       setTimeout(() => {
