@@ -4,14 +4,18 @@
   <div id="question" *ngFor="let content of contents; let i=index">
       <app-multichoice-choice [isEnabled]="actIndex==i" [content]="content" [check]="checkAnswer" (correctGuess)="correctGuess(i)"
       (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-multichoice-choice> 
+      <button>Check</button>
   </div>
+
 </div>
 
 <div id="chatArea">
-    <div id="chatHeader">Chat</div>
-    <div id="chatText">{{chat}}</div>
+        <div id="chatHeader1">Anzahl der Spieler 1</div>
+        <div id="chatHeader1">Score 0</div>
+        <hr class="one">
+        <div id="chatHeader">Chat</div>
+        <div id="chatText">{{chat}}</div>
 </div>
-
 
 
 <router-outlet></router-outlet>
