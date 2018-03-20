@@ -147,11 +147,15 @@ export class ClozeComponent implements OnInit {
 
        for(var i = 0; i<this.contents.length; i++)
        {
-           this.content = this.contents[i];
-           this.mixedContents.push(this.content.input2);
+           if(this.content.input2 != null && this.content.input2 != undefined)
+           {
+                 this.content = this.contents[i];
+                 this.mixedContents.push(this.content.input2);
+           }
        }
+       console.log(this.mixedContents);
 
-     }
+    }
 
       mixStrings() {
       this.temp();

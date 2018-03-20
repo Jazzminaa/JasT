@@ -1,16 +1,14 @@
-<h1>Willkommen beim Quiz</h1>
+<h1>Willkommen beim Quiz <div class="colorText">{{contents[0].quiz.name}} </div></h1>
 
 <div>
   <h3>Gesamtpunkte: {{getPoints()}}</h3>
 </div>
-<div *ngFor="let content of contents; let i=index">
+<div class="box" *ngFor="let content of contents; let i=index">
   <app-multichoice-choice [isEnabled]="actIndex==i" [content]="content" [check]="checkAnswer" (correctGuess)="correctGuess(i)"
       (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-multichoice-choice> 
 </div>
 
-<button (click)="check()">Fertig</button>>
-
-<button type="button" class="btn btn-warning btn-lg" (click)="openModal();saveScore();">Speichern</button>
+<button type="button" class="btn btn-warning btn-lg" class="formatButton" (click)="check();openModal();saveScore();">Speichern</button>
 
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
 <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
@@ -24,12 +22,8 @@
         <p>You scored {{getPoints()}} points!</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)=" onCloseHandled()">Close</button>
+        <button type="button" class="btn btn-default" (click)=" onCloseHandled()" routerLink="/home" routerLinkActive="active">Close</button>
       </div>
     </div>
   </div>
-</div>
-
-<div>
-  <button type="button" routerLink="/home" routerLinkActive="active">Weiter</button>
 </div>

@@ -1,7 +1,14 @@
-#question{
-  margin-top: 10px;
-  font-size: 15px;
-  
+#chatHeader1{
+  font-family:'Conv_comic',Sans-Serif;
+  margin:0 auto;
+  font-size:1.5em;
+  margin-top:20px;
+  margin-left: 10px;
+}
+
+  #question{
+    margin-top: 10px;
+    
 }
 #header{
   font-family:'Conv_comic',Sans-Serif;

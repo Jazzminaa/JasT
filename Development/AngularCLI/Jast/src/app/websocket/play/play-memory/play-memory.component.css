@@ -8,6 +8,15 @@
   margin:0 auto;
   font-size:1.5em;
 }
+
+#chatHeader1{
+  font-family:'Conv_comic',Sans-Serif;
+  margin:0 auto;
+  font-size:1.5em;
+  margin-top:20px;
+  margin-left: 10px;
+}
+
 #game{
     width: 900px;
     height: 560px;
@@ -19,9 +28,49 @@
     border-radius: 10px;
 }
 
+div#memory_board{
+  background:#DADADA;
+  border:#999 1px solid;
+  width: 800px;
+  height: 670px;
+  padding: 24px;
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+button#card {
+  background: #C30303;
+  border: #000 1px solid;
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin: 12px;
+  padding: 20px;
+  font-size: 15px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#scoreArea{
+  width: 200px;
+  height: 630px;
+  position: relative;
+  float: right;
+  background:#DADADA;
+  margin-top: 10px;
+  border-radius: 10px;
+  margin-left: 5px;
+  margin-right: 65px;
+}
+
 #chatArea{
     width: 500px;
-    height: 630px;
+    height: 800px;
     position: relative;
     float: right;
     background:#DADADA;

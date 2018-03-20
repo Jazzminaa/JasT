@@ -1,10 +1,12 @@
-<h1>Quizübersicht</h1>
+<h1 class="glyphicon glyphicon-play">Quizübersicht</h1>
 
 <div id="filter" >
-    <label>Filter:</label>
-    <input size="15"  [(ngModel)]="filter"/>
-    <button (click)="filterQuiz()">Filtern nach Quizname</button>
+    <label>Filter Quiz:</label>
+    <label class="glyphicon glyphicon-zoom-in"></label>
+    <input size="30"  [(ngModel)]="filter" placeholder="Suche..."/>
 </div>
+<br>
+<hr class="one">
 
 <div>    
     <table class="table">
@@ -14,13 +16,13 @@
                     Titel
                 </th>
                 <th>
-                    Beschreibung
-                </th>
-                <th>
                     Fach
                 </th>
                 <th>
                     Typ
+                </th>
+                <th>
+                    Multiplayer
                 </th>
                 <th>
                     Information
@@ -30,18 +32,18 @@
         </thead>
         <tbody>
             <template ngFor let-quiz [ngForOf]="quizes">
-                    <tr>
-                        <td>
+                    <tr *ngIf="filter===undefined || quiz.name.indexOf(filter)==0">
+                        <td class="fontDesign">
                             <a routerLink="/switch/{{quiz.quiztype.id}}/{{quiz.id}}" routerLinkActive="active">{{quiz.name}}</a>
-                        </td>
-                        <td>
-                            {{quiz.description}}
                         </td>
                         <td>
                             {{quiz.category.name}}
                         </td>
-                        <td>
+                        <td> 
                         <a routerLink="/quiztypeinfo" routerLinkActive="active"> {{quiz.quiztype.name}}</a>
+                        </td>
+                        <td>
+                            <button id="buttonDesign"><a routerLink="/add-multiplay" routerLinkActive="active">+</a></button>
                         </td>
                         <td>
                             <button type="button" class="btn-danger" (click)="openModal()">Info</button>

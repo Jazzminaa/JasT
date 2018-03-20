@@ -16,7 +16,7 @@ import { User } from '../model/user.model';
 })
 export class QandaComponent  implements OnInit {
        
-   contents: Content[];
+        contents: Content[];
         correctCounter: number=0;
         wrongCounter: number=0;
         givenUpCounter: number=0;

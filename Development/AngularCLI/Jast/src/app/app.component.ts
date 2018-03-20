@@ -14,6 +14,7 @@ export class AppComponent  implements OnInit,DoCheck{
   id: number = 0;
   age: number = 0;
   theUser: User;
+
   constructor(private dataService:DataService)
   {
     if(dataService.user != null)
@@ -54,6 +55,7 @@ export class AppComponent  implements OnInit,DoCheck{
 
   ngOnInit(){
       this.getAllCategories();
+
   }
 
   change(newid: number)
@@ -67,5 +69,8 @@ export class AppComponent  implements OnInit,DoCheck{
     })
 
   }
+
+
+
 
 }

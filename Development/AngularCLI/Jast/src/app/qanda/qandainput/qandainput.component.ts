@@ -26,6 +26,7 @@ export class QandainputComponent  implements DoCheck {
       if(this.content.geloestVon != undefined)
       {
         this.isDone =true;
+        this.guessedContent = this.content.input2;
       }
    }
   giveUp() {

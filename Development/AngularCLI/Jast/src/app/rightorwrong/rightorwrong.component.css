@@ -1,0 +1,25 @@
+.box{
+    height: auto;
+    width: auto;
+    background: #f9f9f9;
+}
+
+.colorText{
+    color: #ff2828
+}
+
+.formatButton{
+    background-color: red; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    float:right;
+    margin-right: 30px;
+}
