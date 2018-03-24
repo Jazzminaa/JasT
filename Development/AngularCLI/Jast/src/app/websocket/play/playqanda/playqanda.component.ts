@@ -44,7 +44,7 @@ export class PlayqandaComponent implements  OnInit{
 
       if(this.multiplayId != undefined)
       {
-          this.socket = websocketService.createWebsocket(this.multiplayId);
+          this.socket = websocketService.createWebsocket(this.multiplayId.toString());
         
       }
      

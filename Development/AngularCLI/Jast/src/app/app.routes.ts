@@ -56,7 +56,7 @@ const appRoutes: Routes = [
     {path: 'addmemory', component: AddMemoryComponent},
     {path: 'addmultichoice', component: AddMultichoiceComponent},
     {path: 'play/:id/:qid', component: ChatComponent},
-    {path: 'chat', component: ChatComponent},
+    {path: 'chat/:catid/:ageid', component: ChatComponent},
     {path: 'profile', component: ProfileComponent},
     {path:'add-multiplay',component:AddMultiplayComponent},
     {path: 'cloze/:id', component: ClozeComponent},

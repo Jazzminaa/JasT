@@ -18,15 +18,30 @@ export class ChatComponent implements OnInit{
   private sentMessage: string;
   num: number;
   theUser:User;
-  constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService){
-      this.socket = websocketService.createWebsocket(0);
+  catid:number=0;
+  age:number=0;
+  hide:boolean=true;
+  constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute ){
+    this.route.params.subscribe((params: Params) => {
+        this.catid= params['catid'] ; 
+        this.age = params['ageid']
+    });
 
     if(dataService.user != null)
     {
         this.theUser = dataService.user;
     }
+    
+    if(this.catid !=0 && this.age !=0)
+    {
+        this.hide = !this.hide;
+        this.openWebsocket(websocketService);
+    }
   }
 
+  openWebsocket(websocketService:WebsocketService){
+    this.socket = websocketService.createWebsocket("chatroom"+this.catid+this.age);
+  }
   ngOnDestroy()
   {
       this.dataService.user = this.theUser;
