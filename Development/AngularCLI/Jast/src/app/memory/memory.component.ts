@@ -70,7 +70,6 @@ export class MemoryComponent implements OnInit {
 
     loadContent()
     {
-      console.log(this.quizId)
       this.dataService.getContentById(this.quizId).subscribe
       (data=>{this.contents=data;},
       error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})

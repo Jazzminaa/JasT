@@ -78,6 +78,7 @@ export class PlayMultichoiceComponent implements OnInit {
   ngOnDestroy()
   {
       this.dataService.user = this.theUser;
+      this.socket.complete();
   }
 
   ngOnInit(){

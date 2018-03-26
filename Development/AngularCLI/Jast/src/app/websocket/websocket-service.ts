@@ -19,6 +19,10 @@ public createWebsocket(id:string): Subject<MessageEvent> {
                     if (socket.readyState === WebSocket.OPEN) {
                         socket.send(JSON.stringify(data));
                     }
+                },
+                complete: ()=>
+                {
+                    socket.close();
                 }
         };
         return Subject.create(observer, observable);

@@ -66,6 +66,13 @@ export class DataService {
         return this.http.get(this.API_Url + "multiplays/"+id)
         .map((response:Response)=>response.json() as Multiplay);
     }
+
+    getCatById(id: number)
+    {
+        return this.http.get(this.API_Url + "categories/"+id)
+        .map((response:Response)=>response.json() as Category);
+    }
+
     getQuizWithUserAndName(){
         return this.http.get(this.API_Url + "quizes/user/"+this.newQuiz.user.id+"/name/"+this.newQuiz.name)
         .map((response:Response)=>response.json() as Quiz);
@@ -114,6 +121,7 @@ export class DataService {
         return this.http.put(this.API_Url+"users/"+user.id,user.getJson(),
         {headers:headers}).map(data=>data.json() as User);
     }
+    
     test(score:Score): any {
         if(score.quiz.multiplay == undefined)
         {
