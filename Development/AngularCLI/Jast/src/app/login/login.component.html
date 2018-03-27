@@ -8,6 +8,7 @@
             <input  type="password"  [(ngModel)]="newUser.password" name="pass">
 
             <button name="login" (click)="checkUser()">LogIn</button>
+            <input type="checkbox" [(ngModel)]="rememberMe" /> Keep me logged in
             
             <input  [(ngModel)]="errorText" type="text" name="error"/>
             

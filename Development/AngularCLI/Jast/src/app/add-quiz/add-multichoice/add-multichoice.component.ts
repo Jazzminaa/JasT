@@ -68,6 +68,7 @@ export class AddMultichoiceComponent implements OnInit {
     this.newContents.push(this.content);
     this.content = new Content();
   }
+  
   addRightAnswerToList(input2: string):void{
     this.content.input2 += input2 + "/+";
   }
