@@ -1,5 +1,6 @@
 #question{
     margin-top: 10px;
+    font-size: 15px;
     
 }
 #game{
@@ -41,6 +42,12 @@
     margin-left: 10px;
   }
   
+  #header{
+    font-family:'Conv_comic',Sans-Serif;
+    margin:0 auto;
+    font-size:1.5em;
+  }
+
   #chatText{
     font-family:'Conv_KBZipaDeeDooDah';
     margin:0 auto;
