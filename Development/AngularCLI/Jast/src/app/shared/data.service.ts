@@ -6,7 +6,6 @@ import { Quiz } from './../model/quiz.model';
 import { Category } from './../model/category.model';
 import { Headers,Http,Response } from '@angular/http';
 import { Injectable } from "@angular/core";
-//import { Observable } from "@angular/core/src/facade/async";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of'
@@ -192,6 +191,11 @@ export class DataService {
         return r;
     }
 
+
+    deleteQuiz(id:number){
+        return this.http.delete(this.API_Url + "quiz/"+id)
+        .map((response:Response)=>response.json());
+    }
 
     
 }
