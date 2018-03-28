@@ -13,6 +13,7 @@ export class Quiz{
     quizType: QuizType;
     user: User;
     picture: string;
+    maxScore: number;
 
     getJson()
     {
