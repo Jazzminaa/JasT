@@ -14,6 +14,7 @@ export class AppComponent  implements OnInit,DoCheck{
   id: number = 0;
   age: number = 0;
   theUser: User;
+
   constructor(private dataService:DataService)
   {
     if(dataService.user != null)
@@ -26,15 +27,25 @@ export class AppComponent  implements OnInit,DoCheck{
     this.dataService.user = new User;
     this.dataService.user.username ="Gast"; 
     this.loggedIn = false;
+    this.waitForLogout();
   }
+  waitForLogout() {
+    setTimeout(() => {
+
+      if(  this.dataService.user.username !="Gast")
+      {
+        this.logOut();
+      }
+        
+    }, 1000/2);
+} 
   
   ngDoCheck(): void {
     if(this.dataService.user  != undefined && this.dataService.user.id != null)
     {
       this.loggedIn = true;
     }
-    
-}
+  }
   ngOnDestroy()
   {
       this.dataService.user = this.theUser;
@@ -44,6 +55,7 @@ export class AppComponent  implements OnInit,DoCheck{
 
   ngOnInit(){
       this.getAllCategories();
+
   }
 
   change(newid: number)
@@ -57,5 +69,8 @@ export class AppComponent  implements OnInit,DoCheck{
     })
 
   }
+
+
+
 
 }

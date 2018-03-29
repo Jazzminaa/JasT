@@ -1,8 +1,20 @@
-<h1 id="header">{{multiplay?.name}}</h1>
-<div *ngFor="let content of contents; let i=index">
-  <app-rightorwrongbutton [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
-    (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-rightorwrongbutton>
+<h1>Willkommen zur Lerngruppe: {{multiplay?.name}}</h1>
+<div id="game">
+  <h2 id="header">{{contents[0].quiz.name}}</h2>
+  <div id="question" *ngFor="let content of contents; let i=index">
+    <app-rightorwrongbutton [isEnabled]="actIndex==i" [content]="content"  (correctGuess)="correctGuess(i)"
+      (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-rightorwrongbutton>
+  </div>
 </div>
+
+<div id="chatArea">
+    <div id="chatHeader1">Anzahl der Spieler 2</div>
+    <div id="chatHeader1">Score 1</div>
+    <hr class="one">
+    <div id="chatHeader">Chat</div>
+    <div id="chatText">{{chat}}</div>
+</div>
+
 
 
 <router-outlet></router-outlet>

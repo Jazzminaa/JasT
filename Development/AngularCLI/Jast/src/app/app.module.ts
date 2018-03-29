@@ -33,7 +33,19 @@ import { RightorwrongbuttonComponent } from './rightorwrong/rightorwrongbutton/r
 import { QuiztypeinfoComponent } from './quiztypeinfo/quiztypeinfo.component';
 import { PlayRightandWrongComponent } from './websocket/play/play-rightand-wrong/play-rightand-wrong.component';
 import { AddSwitch } from './add-quiz/addswitch';
+import { AddRightorwrongComponent } from './add-quiz/add-rightorwrong/add-rightorwrong.component';
+import { AddClozeComponent } from './add-quiz/add-cloze/add-cloze.component';
+import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
+import { MultichoiceComponent } from './multichoice/multichoice.component';
+import { MultichoiceChoiceComponent } from './multichoice/multichoice-choice/multichoice-choice.component';
 import { MemoryComponent } from './memory/memory.component';
+import { PlayMemoryComponent } from './websocket/play/play-memory/play-memory.component';
+import { PlayMultichoiceComponent } from './websocket/play/play-multichoice/play-multichoice.component';
+import { AddMultichoiceComponent } from './add-quiz/add-multichoice/add-multichoice.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+
 
 @NgModule({
   declarations: [
@@ -60,16 +72,28 @@ import { MemoryComponent } from './memory/memory.component';
     RightorwrongComponent,
     RightorwrongbuttonComponent,
     QuiztypeinfoComponent,
+    AddSwitch,
+    AddRightorwrongComponent,
+    AddClozeComponent,
+    AddMemoryComponent,
     PlayRightandWrongComponent,
     AddSwitch,
-    MemoryComponent
+    MultichoiceComponent,
+    MultichoiceChoiceComponent,
+    MemoryComponent,
+    PlayMemoryComponent,
+    PlayMultichoiceComponent,
+    AddMultichoiceComponent,
+    StatisticsComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    JsonpModule,
+    JsonpModule
   ],
   providers: [DataService,WebsocketService],
   bootstrap: [AppComponent]

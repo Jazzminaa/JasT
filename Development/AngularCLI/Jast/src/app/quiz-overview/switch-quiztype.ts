@@ -36,7 +36,7 @@ export class SwitchComponent implements OnInit {
             router.navigateByUrl("/rightorwrong/"+this.quizid);
             break;
             case 4:
-            router.navigateByUrl("/home");
+            router.navigateByUrl("/multichoice/"+this.quizid);
             break;
             case 5:
             router.navigateByUrl("/memory/"+this.quizid);

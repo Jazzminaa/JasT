@@ -1,19 +1,24 @@
+import { Observable  } from 'rxjs/Rx';
 import { User } from './../model/user.model';
 import { Quiz } from './../model/quiz.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../shared/data.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
-  newUser: User = new User;
-  errorText: string;
-  getUser: User;
-  error:string = undefined;
+export class LoginComponent {
+    handleError: any;
+    http: any;
+    newUser: User = new User;
+    errorText: string;
+    getUser: User;
+    error:string = undefined;
+
 
   constructor(private router: Router , private dataService: DataService)  {
 
@@ -72,5 +77,4 @@ export class LoginComponent{
         
     }, 1000/60);
 } 
-  
 }

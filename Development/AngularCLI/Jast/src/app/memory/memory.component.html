@@ -1,23 +1,40 @@
-<h1>Willkommen beim Quiz " {{contents[0].quiz.name}} "</h1>
-<script>
-    document.getElementById("demo").innerHTML = "Hello JavaScript!";
-</script> 
+<h1>Willkommen zur Lerngruppe: {{multiplay?.name}}</h1>
     <div id="memory_board">
     <table >
             <tr >
-                <td *ngFor="let content of row1;let i = index"><button  (click)="showContent(1,i)"  id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td> <!-- (click)="myFunction()"-->
+                <td *ngFor="let content of row1;let i = index"><button  (click)="showContent(0,i)"  id="card"><div *ngIf="checkBoolean(0,i)">{{content}}</div></button></td> <!-- (click)="myFunction()"-->
             </tr>
             <tr >
-                <td *ngFor="let content of row2;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
+                <td *ngFor="let content of row2;let i = index"><button (click)="showContent(1,i)" id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td>
             </tr>
             <tr >
-                <td *ngFor="let content of row3;let i = index"><button (click)="showContent(3,i)" id="card"><div *ngIf="checkBoolean(3,i)">{{content}}</div></button></td>
-            </tr>
-            <tr >
-                <td *ngFor="let content of row4;let i = index"><button (click)="showContent(4,i)" id="card"><div *ngIf="checkBoolean(4,i)">{{content}}</div></button></td>
-            </tr>
-            <tr >
-                <td *ngFor="let content of row5;let i = index"><button (click)="showContent(5,i)" id="card"><div *ngIf="checkBoolean(5,i)">{{content}}</div></button></td>
+                <td *ngFor="let content of row3;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
             </tr>
     </table>
     </div>
+    <div id="scoreArea">
+        <div id="scoreHeader">Score</div>
+        <div id="scoreText">{{score}}</div>
+        <div id="scoreTime">{{clockDisplay}}</div>
+    </div>
+
+
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Final Score</h4>
+      </div>
+      <div class="modal-body">
+        <p>You scored {{score}} points!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

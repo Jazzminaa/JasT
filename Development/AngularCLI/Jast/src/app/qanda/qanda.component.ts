@@ -16,7 +16,7 @@ import { User } from '../model/user.model';
 })
 export class QandaComponent  implements OnInit {
        
-   contents: Content[];
+        contents: Content[];
         correctCounter: number=0;
         wrongCounter: number=0;
         givenUpCounter: number=0;
@@ -48,17 +48,30 @@ export class QandaComponent  implements OnInit {
         { 
             this.getQuizFromContent();
             this.score = new Score();
-            this.score.id = 1;
+            this.score.id = 0;
+            this.score.user = this.user;
+            this.score.quiz = this.selQuiz;
             this.score.points = this.finalPoints;
-            this.score.category = this.selCategory;
-            this.score.quizType = this.selQuizType;
+            this.score.quiz = this.selQuiz;
+            if(this.score.quiz == undefined)
+            {
+                this.score.quiz = this.contents[1].quiz;
+            }
+            this.score.user = this.user;
 
-           
-            this.dataService.insertScore(this.score).subscribe(data => {
-                },
-                error => {
-                    //alert("Speichern fehlgeschlagen: " + error);
-                });
+
+
+
+           console.log(this.dataService.getJson(this.score));
+           if(this.user != undefined)
+           {
+                this.dataService.insertScore(this.score).subscribe(data => {
+                    },
+                    error => {
+                        //alert("Speichern fehlgeschlagen: " + error);
+                    });
+            }
+            
             this.display='none';
         }
 
@@ -72,9 +85,9 @@ export class QandaComponent  implements OnInit {
          getQuizFromContent()
          {
         
-            this.selQuiz = this.contents[0].quiz;
-            this.selQuizType = this.contents[0].quiz.quizType;
-            this.selCategory = this.contents[0].quiz.category;
+            this.selQuiz = this.contents[1].quiz;
+            this.selQuizType = this.contents[1].quiz.quizType;
+            this.selCategory = this.contents[1].quiz.category;
          
          }
 

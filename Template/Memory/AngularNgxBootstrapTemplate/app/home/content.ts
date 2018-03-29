@@ -1,5 +1,5 @@
 export class Content{
     id: number;
-    input: string;
+    input1: string;
     input2: string;
 }

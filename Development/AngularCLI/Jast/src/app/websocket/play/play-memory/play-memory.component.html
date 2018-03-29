@@ -1,0 +1,34 @@
+<h1>Willkommen zur Lerngruppe: {{multiplay?.name}}</h1>
+<div id="game">
+  <h2 id="header">{{contents[0].quiz.name}}</h2>
+  <div id="memory_board">
+      <table >
+              <tr >
+                  <td *ngFor="let content of row1;let i = index"><button item-width="100px"  item-height="100px"  (click)="showContent(0,i)"  id="card"><div *ngIf="checkBoolean(0,i)">{{content}}</div></button></td> <!-- (click)="myFunction()"-->
+              </tr>
+              <tr >
+                  <td *ngFor="let content of row2;let i = index"><button (click)="showContent(1,i)" id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td>
+              </tr>
+              <tr >
+                  <td *ngFor="let content of row3;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
+              </tr>
+              <tr >
+                  <td *ngFor="let content of row2;let i = index"><button (click)="showContent(1,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
+              </tr>
+              <tr >
+                  <td *ngFor="let content of row3;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
+              </tr>
+      </table>
+  </div>
+</div>
+
+<div id="chatArea">
+    <div id="chatHeader1">Anzahl der Spieler: 1</div>
+    <div id="chatHeader1">Score: 0</div>
+    <hr class="one">
+    <div id="chatHeader">Chat</div>
+    <div id="chatText">{{chat}}</div>
+</div>
+
+
+<router-outlet></router-outlet>

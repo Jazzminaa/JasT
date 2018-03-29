@@ -2,22 +2,22 @@
 <h1 align="center">Registrieren</h1>
 <div>
  <form class="form" action="">
-            <label>Username</label>
+            <label>Benutzername</label>
             <input [(ngModel)]="newUser.username" required minlength="5" type="text" name="name"/>
             <div [hidden]="validationUsername" 
                     class="alert alert-danger">
                 Name ist zu kurz.  Es muss mindestens 5 Zeichen lang sein
             </div>
-            <label>Firstname</label>
+            <label>Vorname</label>
             <input [(ngModel)]="newUser.firstName" required  type="text" name="fn"/>
 
-            <label>Lastname</label>
+            <label>Nachname</label>
             <input [(ngModel)]="newUser.lastName" required type="text" name="ln"/>
 
-            <label>Birthday</label>
+            <label>Geburtsdatum</label>
             <input [(ngModel)]="newUser.dateOfBirth" required type="date" name="birth"/>
 
-            <label>Gender</label>
+            <label>Geschlecht</label>
             <div>
                 <input (click)="setGender(1)" type="radio" name="gender" value="m" checked> männlich
                 <input  (click)="setGender(2)" type="radio" name="gender" value="w"> weiblich
@@ -31,11 +31,11 @@
                 {{emailError}}
             </div>
 
-            <label>Password</label>
+            <label>Passwort</label>
             <input  type="password" [(ngModel)]="newUser.password" name="pass">
         
 
-            <label>Retry-Password</label>
+            <label>Passwort bestätigen</label>
             <input  type="password" [(ngModel)]="password" name="pass">
             <div [hidden]="validationPass" 
                     class="alert alert-danger">

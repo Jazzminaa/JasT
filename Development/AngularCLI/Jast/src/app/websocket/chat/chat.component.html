@@ -1,12 +1,18 @@
-<h1>Hallo</h1>
 
-  <p>
-    Received: {{message}}
-  </p>
-  <input [(ngModel)]="sentMessage" type="text" name="name"/>  
-  <button (click)="send()"></button>
+<div [hidden]="hide" id="chatArea">
+    <div id="chatHeader">{{header}}</div>
+    <div>
+        <table class="table">
+             <tr *ngFor="let message of messages">
+                <td>Name:</td> 
+                <td>{{message.message}}</td>
+            </tr>
+          </table>
+    </div>
+</div>
 
-
+<input [hidden]="hide" id="text"  [(ngModel)]="sentMessage" type="text" name="name"/>  
+<button [hidden]="hide" id="button" (click)="send()"> Senden</button>
 
 <router-outlet></router-outlet>
   

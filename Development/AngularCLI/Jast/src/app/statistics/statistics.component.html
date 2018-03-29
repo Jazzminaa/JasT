@@ -1,0 +1,39 @@
+<div class="userbox">
+    <h1>{{user.username}}</h1>
+</div>
+<div id="filter">
+    <label>Filter:</label>
+    <label class="glyphicon glyphicon-zoom-in"></label>
+    <button class="button" (click)="filterByPositivePass()">Positiv abgeschlossen</button>
+    <button class="btn btn-danger" (click)="displayAllScores()">Alle</button>
+</div>
+
+
+<h1>Zuletzt gespieltes Spiel: {{score.quiz.name}}</h1>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>Spiel</th>
+            <th>erreichte Punkte</th>
+            <th></th>
+            <th>Datum</th>
+        </tr>
+        <template ngFor let-sc [ngForOf]="scores">
+            <tr>
+                <td>
+                    {{sc.quiz.name}}
+                </td>
+                <td>
+                    {{sc.points}} / {{sc.quiz.maxScore}}
+                </td>
+                <td>
+                   <label *ngIf="sc.points>=(sc.quiz.maxScore/2)"> positiv <span class="glyphicon glyphicon-ok"></span></label>
+                </td>
+                <td>
+                    {{sc.playDay}}
+                </td>
+            </tr>
+        </template>
+    </table>
+</div>

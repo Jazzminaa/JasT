@@ -35,6 +35,12 @@ export class Multiswitch implements OnInit {
             case 3:
             router.navigateByUrl("/multirightorwrong/"+this.mquizid+"/"+this.quizid);
             break;
+            case 4:
+            router.navigateByUrl("/multimultichoice/"+this.mquizid+"/"+this.quizid);
+            break;
+            case 5:
+            router.navigateByUrl("/multimemory/"+this.mquizid+"/"+this.quizid);
+            break;
 
         }
     }

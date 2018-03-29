@@ -1,0 +1,58 @@
+#question{
+    margin-top: 10px;
+    font-size: 15px;
+    
+}
+#game{
+    width: 900px;
+    height: 560px;
+    padding: 24px;
+    margin: 0px auto;
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+#chatArea{
+    width: 500px;
+    height: 630px;
+    position: relative;
+    float: right;
+    background:#DADADA;
+    margin-top: 5px;
+    border-radius: 10px;
+    margin-right: 65px;
+  }
+  
+  #chatHeader{
+    font-family:'Conv_comic',Sans-Serif;
+    margin:0 auto;
+    text-align:center;
+    font-size:1.5em;
+    border-bottom:1px solid red;
+    margin-top:20px;
+  }
+
+  #chatHeader1{
+    font-family:'Conv_comic',Sans-Serif;
+    margin:0 auto;
+    font-size:1.5em;
+    margin-top:20px;
+    margin-left: 10px;
+  }
+  
+  #header{
+    font-family:'Conv_comic',Sans-Serif;
+    margin:0 auto;
+    font-size:1.5em;
+  }
+
+  #chatText{
+    font-family:'Conv_KBZipaDeeDooDah';
+    margin:0 auto;
+    text-align:center;
+    font-size:8em;
+    margin-top:20px;
+    color:#C30303;
+  }

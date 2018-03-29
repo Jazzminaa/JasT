@@ -1,0 +1,26 @@
+
+<table class="table">
+  <tr>
+      <th>
+          Frage
+      </th>
+      <th>
+          Antwort
+      </th>
+  </tr>
+   <tr *ngFor="let content of newContents">
+      <td>{{content.input1}}</td> 
+      <td>{{content.input2}}</td>
+      <td><button (click)="removeContentFromList(content)">Delete</button></td>
+  </tr>
+</table>
+
+<div>
+<input #input1 placeholder="Frage" />
+<button (click)="addRightContentToList(input1.value)">Richtig</button>
+<button (click)="addWrongContentToList(input1.value)">Falsch</button>
+</div>
+
+<button (click)="saveContent()">Speichern</button> 
+
+<router-outlet></router-outlet>
