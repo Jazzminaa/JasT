@@ -10,6 +10,12 @@
     margin-top: 10px;
     
 }
+#header{
+  font-family:'Conv_comic',Sans-Serif;
+  margin:0 auto;
+  font-size:1.5em;
+}
+
 #game{
     width: 900px;
     height: 560px;
@@ -20,6 +26,8 @@
     margin-top: 5px;
     border-radius: 10px;
 }
+
+
 
 #chatArea{
     width: 500px;

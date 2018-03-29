@@ -3,6 +3,13 @@ import { QuizType } from './quiztype.model';
 import { Quiz } from './quiz.model';
 import { Category } from './category.model';
 export class Score{
+
+    id: number;
+    points: number;
+    user: User;
+    quiz:Quiz;
+    playDay: Date;
+    
     test(): any {
         if(this.quiz.multiplay == undefined)
         {
@@ -15,20 +22,17 @@ export class Score{
 
         if(this.quiz.user.multiplay == undefined)
         {
-            this.quiz.user.multiplay = " ";
+            this.quiz.user.multiplay = "null";
         }
 
         if(this.user.multiplay == undefined)
         {
-            this.user.multiplay = " ";
+            this.user.multiplay = "null";
         }
     }
-    id: number;
-    points: number;
-    user: User;
-    quiz:Quiz;
+    
 
-    getJson()
+    getJson():string
     {
         this.test();
         return "{"+

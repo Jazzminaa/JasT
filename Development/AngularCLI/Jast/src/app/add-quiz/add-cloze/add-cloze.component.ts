@@ -17,6 +17,7 @@ export class AddClozeComponent implements OnInit {
   quizes: Quiz [] = [];
   user: User;
   canSave:boolean = false;
+  contentCounter: number;
   
   constructor(private dataService: DataService,private router: Router) {
       this.user =dataService.user;
@@ -74,12 +75,20 @@ export class AddClozeComponent implements OnInit {
       this.newContents.splice(index, 1);
   }
 
+  getMaximumPoints()
+  {
+      this.newContents.forEach((content, index) =>{
+        this.contentCounter++;
+     })
+  }
 
 
   saveContent()
   {
+      this.getMaximumPoints();
         this.newContents.forEach((content, index) =>{
           content.quiz = this.quiz;
+          content.quiz.maxScore = this.contentCounter*2;
           this.dataService.insertContent(content)
           .subscribe(data => {
           },

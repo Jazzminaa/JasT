@@ -23,11 +23,11 @@
     </li>
     
    
-    <li><a routerLink="/home" routerLinkActive="active"><span>About</span></a></li>
-    <li><a routerLink="/home" routerLinkActive="active"><span>Kontakt</span></a></li>
+    <li><a routerLink="/about" routerLinkActive="active"><span>About</span></a></li>
+    <li><a routerLink="/contact" routerLinkActive="active"><span>Kontakt</span></a></li>
     <li [hidden]="!loggedIn" ><a routerLink="/addquiz" routerLinkActive="active"><span>+</span></a></li>
     <li [hidden]="!loggedIn"  style="float:right"><a  routerLink="/home" routerLinkActive="active" ><span (click)="logOut()">LogOut</span></a></li>
-    <li [hidden]="!loggedIn" style="float:right"><a routerLink="/chat" routerLinkActive="active"><span>Chat</span></a></li>
+    <li [hidden]="!loggedIn" style="float:right"><a routerLink="/chat/{{id}}/{{age}}" routerLinkActive="active"><span>Chat</span></a></li>
     
     <li [hidden]="loggedIn" style="float:right"><a routerLink="/login" routerLinkActive="active"><span>Login</span></a></li>
     <li [hidden]="loggedIn"  style="float:right"><a routerLink="/register" routerLinkActive="active"><span>Registrieren</span></a></li>

@@ -1,25 +1,25 @@
 <h1 align="center">Profil</h1>
 <div>
  <form class="form" action="">
-            <label>Username</label>
+            <label>Benutzername</label>
             <input [(disabled)]="ReadOnly" [(ngModel)]="user.username" type="text" name="name"/>
 
-            <label>Firstname</label>
+            <label>Vorname</label>
             <input [(disabled)]="ReadOnly"  [(ngModel)]="user.firstname" type="text" name="fn"/>
 
-            <label>Lastname</label>
+            <label>Nachname</label>
             <input  [(disabled)]="ReadOnly"  [(ngModel)]="user.lastname" type="text" name="ln"/>
 
-            <label>Birthday</label>
+            <label>Geburtstag</label>
             <input [(disabled)]="ReadOnly"  [(ngModel)]="user.dateOfBirth" type="date" name="birth"/>
 
-            <label>Gender</label>
+            <label>Geschlecht</label>
             <input [(disabled)]="ReadOnly"  [(ngModel)]="user.gender" type="text" name="gender"/>
         
             <label>E-mail</label>
             <input [(disabled)]="ReadOnly"  [(ngModel)]="user.email" type="text" name="email"/>
 
-            <label [hidden]="ReadOnly">Password</label>
+            <label [hidden]="ReadOnly">Passwort</label>
             <input [hidden]="ReadOnly" type="password" [(ngModel)]="passw" name="pass">
 
             <button [hidden]="ReadOnly"  (click)="edit()">Passwort ändern</button>

@@ -1,3 +1,5 @@
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { AddMultichoiceComponent } from './add-quiz/add-multichoice/add-multichoice.component';
 import { AddMemoryComponent } from './add-quiz/add-memory/add-memory.component';
@@ -56,7 +58,7 @@ const appRoutes: Routes = [
     {path: 'addmemory', component: AddMemoryComponent},
     {path: 'addmultichoice', component: AddMultichoiceComponent},
     {path: 'play/:id/:qid', component: ChatComponent},
-    {path: 'chat', component: ChatComponent},
+    {path: 'chat/:catid/:ageid', component: ChatComponent},
     {path: 'profile', component: ProfileComponent},
     {path:'add-multiplay',component:AddMultiplayComponent},
     {path: 'cloze/:id', component: ClozeComponent},
@@ -75,7 +77,9 @@ const appRoutes: Routes = [
     {path: 'multimultichoice/:id/:qid', component: PlayMultichoiceComponent},
     {path: 'multimemory/:id/:qid', component: PlayMemoryComponent},
     {path: 'memory/:id', component: MemoryComponent},
-    {path: 'statistics', component: StatisticsComponent}
+    {path: 'statistics', component: StatisticsComponent},
+    {path: 'contact', component: ContactComponent},
+    {path: 'about', component: AboutComponent}
 
 ];
 

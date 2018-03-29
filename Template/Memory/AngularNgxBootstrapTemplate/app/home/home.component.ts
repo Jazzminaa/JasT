@@ -1,5 +1,6 @@
-import { Component } from '@angular/core'
-import { Content } from './content';
+import { Component, SecurityContext } from '@angular/core';
+import { SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
+//import { DomSanitizationService } from '@angular/platform-browser';
 
 @Component(
     {
@@ -11,190 +12,17 @@ export class HomeComponent {
 
     //#region  Variablen
     //contents:Content[] = [{id:0,input1:"A",input2:"A"},{id:1,input1:"B",input2:"B"},{id:1,input1:"C",input2:"C"}];
-    contents:Content[] = [{id:0,input1:"A",input2:"A"},{id:1,input1:"B",input2:"B"},{id:1,input1:"C",input2:"C"},{id:1,input1:"D",input2:"D"},
-                            {id:0,input1:"A1",input2:"A1"},{id:1,input1:"B1",input2:"B1"},{id:1,input1:"C1",input2:"C1"},{id:1,input1:"D1",input2:"D1"},
-                            {id:0,input1:"A2",input2:"A2"},{id:1,input1:"B2",input2:"B2"},{id:1,input1:"C2",input2:"C2"},{id:1,input1:"D2",input2:"D2"}
-                        ];
-    contentsmixed:string[]=[];
-    row1:string[]=[];
-    row2:string[]=[];
-    row3:string[]=[];
-    rowContents: string[][] =[[null],[null],[null],[null],[null],[null],[null],[null],[null]];
-    rowOfCard1:number;
-    colOfCard1:number;
-    rowOfCard2:number;
-    colOfCard2:number;
-    r1:number = 0;
-    r2:number = 0;
-    content:Content=new Content;
-    isTrue:boolean[][]=[[false],[false],[false],[false],[false],[false],[false],[false],[false]];
-    enableCard:boolean[][]=[[false],[false],[false],[false],[false],[false],[false],[false],[false]];
-    count:number = 0;
-    checkIfClosed:boolean = false;
-    score:number = 0;
+
     //#endregion
-    
-    constructor()
-    {
-        this.shuffle(this.contents)
-        this.fillTable();
-        
-    }
-    //#region FillContent
-    fillTable()
-    {
-        for(var i= 0; i < 9; i++)
-        {
-            this.contentsmixed.push(this.contents[i].input1);
-            this.contentsmixed.push(this.contents[i].input2);
-        }
-        this.shuffle(this.contentsmixed);
-        for (var i=0; i< this.contentsmixed.length; i+=3) {
-             this.row1.push(this.contentsmixed[i]);
-             this.row2.push(this.contentsmixed[i+1]);
-             this.row3.push(this.contentsmixed[i+2]);
-        }
-        for (var i=0; i< this.row1.length; i++) {
-            this.rowContents[0][i] = this.row1[i];
-            this.rowContents[1][i] = this.row2[i];
-            this.rowContents[2][i] = this.row3[i];
-        }
 
-        
-    }  
-                      
-    shuffle(array:any[]) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-    
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-    
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-    
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-    
-        return array;
-    }
-    //#endregion                      
-    checkBoolean(row:number,col:number)
-    {
-        if(this.isTrue[row][col])
-        {
-            return this.isTrue[row][col];
-        }
-        return this.enableCard[row][col];
-    }
+    bild:string="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\n";
+    private _htmlProperty: string = '<input type="text" name="name">';
 
-    showContent(row:number,col:number)
-    {
-        if(!this.isTrue[row][col])
-        {
-            this.enableCard[row][col] = true;
-            this.CloseIfNotCLosed();
-            if(this.rowOfCard1 == undefined)
-            {
-                this.rowOfCard1 = row;
-                this.colOfCard1 = col;
-            }
-            else if(this.rowOfCard2 == undefined)
-            {
+    /*public get htmlProperty() : SafeHtml {
+      // return this._sanitizer.bypassSecurityTrustHtml(this._htmlProperty);
+    }*/
 
-                if(!(this.rowOfCard1 == row && this.colOfCard1 == col))
-                {
-                    this.rowOfCard2 = row;
-                    this.colOfCard2 = col;
-                    this.proof();
-                }
-            }
-        }
-        
-    }
+    //constructor(private _sanitizer: DomSanitizationService){}
 
-    proof() {
-        this.checkIfClosed = true;
-        this.content = this.getContent();
-        if(this.content.input2 == this.rowContents[this.rowOfCard2][this.colOfCard2])
-        {
-            this.isTrue[this.rowOfCard1][this.colOfCard1] = true;
-            this.isTrue[this.rowOfCard2][this.colOfCard2] = true;
-            console.log(this.rowContents[this.rowOfCard1][this.colOfCard1]+"&& " +this.rowContents[this.rowOfCard2][this.colOfCard2]);
-            this.rowOfCard1 = undefined;
-            this.rowOfCard2 = undefined;
-            this.score += 2;
-        }
-        else{
-            this.r1 = this.rowOfCard1;
-            this.r2 = this.rowOfCard2;
-            this.rowOfCard1 = undefined;
-            this.rowOfCard2 = undefined;
-            this.timeout();
-        }
-
-    }
-
-    timeout() {
-        setTimeout(() => {
-            console.log(this.checkIfClosed)
-            if(this.rowOfCard1 == undefined)
-            {
-                if(this.count < 3)
-                {
-                    console.log("Loading....")
-                    this.timeout();
-                }
-                else{
-                    this.CloseIfNotCLosed();
-                    this.checkIfClosed = false;
-                    this.count = 0;
-                }
-                this.count++;
-            }
-            else{
-                this.CloseIfNotCLosed();
-                this.checkIfClosed = false;
-                this.count = 0;
-                return;
-            }
-            
-        }, 1000);
-    } 
-    CloseIfNotCLosed(): any {
-        
-        if(this.checkIfClosed)
-        {
-            console.log("Close")
-            if(this.colOfCard1 != undefined && this.colOfCard2!= undefined)
-            {
-                this.enableCard[this.r1][this.colOfCard1] = false;
-                this.enableCard[this.r2][this.colOfCard2] = false;
-            }
-            this.checkIfClosed = false;
-        }
-    }
-        
-    getContent():any {
-        /*this.contents.forEach(content => {
-            console.log(this.contents[0].input1);
-            if(content.input1 == this.rowContents[this.rowOfCard1][this.colOfCard1])
-            {
-                return content;
-            }
-        });*/
-
-        for (var i=0; i< this.contents.length; i++) {
-            if(this.contents[i].input1 == this.rowContents[this.rowOfCard1][this.colOfCard1])
-            {
-                return this.contents[i];
-            }
-        }
-
-    }
-        
 }
 
