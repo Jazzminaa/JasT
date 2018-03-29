@@ -8,6 +8,7 @@ export class Score{
     points: number;
     user: User;
     quiz:Quiz;
+    playDay: Date;
     
     test(): any {
         if(this.quiz.multiplay == undefined)

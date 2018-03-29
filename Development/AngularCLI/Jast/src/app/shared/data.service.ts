@@ -1,6 +1,6 @@
+import { User } from 'app/model/user.model';
 import { Score } from './../model/score.model';
 import { Content } from './../model/content.model';
-import { User } from './../model/user.model';
 import { QuizType } from './../model/quiztype.model';
 import { Quiz } from './../model/quiz.model';
 import { Category } from './../model/category.model';
@@ -137,7 +137,12 @@ export class DataService {
             score.user.multiplay = "null";
         }
     }
-    
+
+    getScoreByUser(userId:number)
+    {
+        return this.http.get(this.API_Url + "scores/user/"+userId)
+        .map((response:Response)=>response.json() as Score[]);
+    }    
 
     getJson(score:Score):string
     {
