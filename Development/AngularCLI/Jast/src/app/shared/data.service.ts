@@ -1,12 +1,11 @@
+import { User } from 'app/model/user.model';
 import { Score } from './../model/score.model';
 import { Content } from './../model/content.model';
-import { User } from './../model/user.model';
 import { QuizType } from './../model/quiztype.model';
 import { Quiz } from './../model/quiz.model';
 import { Category } from './../model/category.model';
 import { Headers,Http,Response } from '@angular/http';
 import { Injectable } from "@angular/core";
-//import { Observable } from "@angular/core/src/facade/async";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of'
@@ -138,7 +137,12 @@ export class DataService {
             score.user.multiplay = "null";
         }
     }
-    
+
+    getScoreByUser(userId:number)
+    {
+        return this.http.get(this.API_Url + "scores/user/"+userId)
+        .map((response:Response)=>response.json() as Score[]);
+    }    
 
     getJson(score:Score):string
     {
@@ -192,6 +196,11 @@ export class DataService {
         return r;
     }
 
+
+    deleteQuiz(id:number){
+        return this.http.delete(this.API_Url + "quiz/"+id)
+        .map((response:Response)=>response.json());
+    }
 
     
 }

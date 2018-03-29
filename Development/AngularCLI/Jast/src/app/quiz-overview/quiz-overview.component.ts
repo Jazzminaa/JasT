@@ -120,6 +120,10 @@ export class QuizOverviewComponent implements OnInit {
                  this.router.navigateByUrl("/cloze/"+id);  
             case "rightorwrong":
                  this.router.navigateByUrl("/rightorwrong/"+id);  
+             case "memory":
+                this.router.navigateByUrl("/memory/"+id);  
+            case "multichoice":
+                this.router.navigateByUrl("/multichoice/"+id);  
          }
 
 

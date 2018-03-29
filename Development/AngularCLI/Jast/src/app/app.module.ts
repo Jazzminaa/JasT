@@ -43,6 +43,8 @@ import { PlayMemoryComponent } from './websocket/play/play-memory/play-memory.co
 import { PlayMultichoiceComponent } from './websocket/play/play-multichoice/play-multichoice.component';
 import { AddMultichoiceComponent } from './add-quiz/add-multichoice/add-multichoice.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -82,14 +84,16 @@ import { StatisticsComponent } from './statistics/statistics.component';
     PlayMemoryComponent,
     PlayMultichoiceComponent,
     AddMultichoiceComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    JsonpModule,
+    JsonpModule
   ],
   providers: [DataService,WebsocketService],
   bootstrap: [AppComponent]
