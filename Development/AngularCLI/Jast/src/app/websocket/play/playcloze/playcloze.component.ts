@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, PipeTransform, Pipe, DoCheck } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Content } from '../../../model/content.model';
@@ -29,6 +29,11 @@ export class PlayclozeComponent implements  OnInit{
     theUser:User;
     messages:Message[]=[];
     private sendMessage: string;
+    isfinish: boolean = false;
+    
+    display: string;
+
+
 
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
       
@@ -62,6 +67,15 @@ export class PlayclozeComponent implements  OnInit{
 
   }
 
+    openModal(){
+        this.display='block';
+    }
+
+    onCloseHandled(){
+        this.display='none';
+        this.router.navigateByUrl('/home')
+    }
+
   
   ngDoCheck(): void {
     if(this.contents  != undefined)
@@ -77,12 +91,12 @@ export class PlayclozeComponent implements  OnInit{
               this.messages.push(m);
               this.message ="add";
             }
-            else if(this.message.includes('+'))
+            else if(this.message == "+")
             {
                   this.numOfPerson++;
                   this.message ="add";
             }
-            else if(this.message.includes('-'))
+            else if(this.message == "-")
             {
                   this.numOfPerson--;
                   this.message ="add";
@@ -92,7 +106,7 @@ export class PlayclozeComponent implements  OnInit{
                   this.numOfPerson= Number(this.message.split(':')[1]);
                   this.message ="add";
             }
-            else{
+            else if(this.message !="add"){
               this.data =this.message.split(';');
               if(this.data[1]!= undefined)
               {
@@ -104,8 +118,23 @@ export class PlayclozeComponent implements  OnInit{
               {
                   
                   this.contents[Number(num)].geloestVon ="Gelöst von: "+ this.data[1];
-                  this.message ="add";
-                  
+                  if(this.contents.length != 0)
+                  {
+                    this.isfinish = true;
+                    let n = 0;
+                    while(this.isfinish && n < this.contents.length-1)
+                    {
+                        if(this.contents[n].geloestVon == null || this.contents[n].geloestVon == undefined)
+                        {
+                            this.isfinish = false;
+                        }
+                        n++;
+                    }
+                    if(this.isfinish)
+                    {
+                        this.openModal();
+                    }
+                    }
               }
             }
 

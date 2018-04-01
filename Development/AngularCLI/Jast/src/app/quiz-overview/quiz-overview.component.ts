@@ -22,6 +22,8 @@ export class QuizOverviewComponent implements OnInit {
     quizTypeVar: string;
     filter:string = "";
     quizesBegin: Quiz[];
+    quizname:string ="Quiz";
+    quizdescription = "something";
     
     constructor(private router: Router, private dataService: DataService,private route: ActivatedRoute )  {
         
@@ -56,7 +58,10 @@ export class QuizOverviewComponent implements OnInit {
          this.dataService.user = this.user;
      }
 
-      openModal(){
+      openModal(i:number){
+            this.quizdescription = this.quizes[i].description;
+            this.quizname = this.quizes[i].name;
+          
             this.display='block';
         }
 
