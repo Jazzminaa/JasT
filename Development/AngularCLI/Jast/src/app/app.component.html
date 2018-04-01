@@ -5,8 +5,8 @@
     <li class='active has-sub'><a routerLink="/quizoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Quiz</span></a>
         <ul>
             <li [hidden]="!loggedIn"><a routerLink="/multiplayoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Lernräume</span></a></li>
-            <li [hidden]="!loggedIn" class='has-sub'><a><span>Meine Quiz</span></a>
-            <li [hidden]="!loggedIn" class='has-sub'><a><span>Mailbox</span></a>
+            <li [hidden]="!loggedIn" class='has-sub'><a routerLink="/my-quizoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Meine Quiz</span></a>
+            <li [hidden]="!loggedIn" class='has-sub'><a routerLink="/mailbox" routerLinkActive="active"><span>Mailbox</span></a>
         </ul>
     </li>
     <li class='active has-sub'><a (click)="change(0)"><span>Kategorien</span></a>
@@ -25,7 +25,7 @@
     </li>
     
    
-    <li><a routerLink="/about" routerLinkActive="active"><span>About</span></a></li>
+    <li><a routerLink="/about" routerLinkActive="active"><span>Über uns</span></a></li>
     <li><a routerLink="/contact" routerLinkActive="active"><span>Kontakt</span></a></li>
     <li [hidden]="!loggedIn" ><a routerLink="/addquiz" routerLinkActive="active"><span>+</span></a></li>
     <li [hidden]="!loggedIn"  style="float:right"><a  routerLink="/home" routerLinkActive="active" ><span (click)="logOut()">LogOut</span></a></li>

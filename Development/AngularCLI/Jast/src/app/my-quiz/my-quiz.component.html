@@ -1,4 +1,4 @@
-<h1 class="glyphicon glyphicon-play">Quizübersicht</h1>
+<h1 class="glyphicon glyphicon-play">Meine Quiz</h1>
 
 <div id="filter" >
     <label>Filter Quiz:</label>
@@ -35,7 +35,7 @@
         </thead>
         <tbody>
             <template ngFor let-quiz [ngForOf]="quizes">
-                    <tr *ngIf="filter===undefined || quiz.name.toUpperCase().indexOf(filter.toUpperCase())==0">
+                    <tr *ngIf="(filter===undefined || quiz.name.toUpperCase().indexOf(filter.toUpperCase())==0)&& getQuizesByCat(quiz.age)">
                         <td class="fontDesign">
                             <a routerLink="/switch/{{quiz.quiztype.id}}/{{quiz.id}}" routerLinkActive="active">{{quiz.name}}</a>
                         </td>
@@ -52,7 +52,7 @@
                             <button class="glyphicon glyphicon-share" routerLink="/share/{{quiz.id}}" routerLinkActive="active"></button>
                         </td>
                         <td>
-                            <button type="button" class="btn-danger" (click)="openModal(quiz.id -1)">Info</button>
+                            <button type="button" class="btn-danger" (click)="openModal(quiz.id)">Info</button>
                             <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -68,6 +68,12 @@
                                 </div>
                             </div>
                         </td>
+                        <td>
+                          <button class="glyphicon glyphicon-edit" >Bearbeiten</button>
+                        </td>
+                        <td>
+                            <button class="glyphicon glyphicon-remove" (click)="delete(quiz.id)" >Löschen</button>
+                          </td>
                     </tr>
             </template>
         </tbody>

@@ -11,7 +11,7 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./quiz-overview.component.css']
 })
 export class QuizOverviewComponent implements OnInit {
-        display: string;
+    display: string;
 
  
     quizes: Quiz[];
@@ -22,6 +22,8 @@ export class QuizOverviewComponent implements OnInit {
     quizTypeVar: string;
     filter:string = "";
     quizesBegin: Quiz[];
+    quizname:string ="Quiz";
+    quizdescription = "something";
     
     constructor(private router: Router, private dataService: DataService,private route: ActivatedRoute )  {
         
@@ -37,7 +39,7 @@ export class QuizOverviewComponent implements OnInit {
     {
         this.quizes = [];
         this.quizesBegin.forEach(quiz => {
-            if(quiz.name.startsWith(this.filter))
+            if(quiz.name.toUpperCase().startsWith(this.filter.toUpperCase()))
             {
                 this.quizes.push(quiz);
             }
@@ -56,7 +58,15 @@ export class QuizOverviewComponent implements OnInit {
          this.dataService.user = this.user;
      }
 
-      openModal(){
+      openModal(i:number){
+        this.quizes.forEach(element => {
+            
+            if(element.id == i){
+              this.quizdescription = element.description;
+              this.quizname = element.name;
+            }
+          });
+              
             this.display='block';
         }
 
@@ -80,22 +90,20 @@ export class QuizOverviewComponent implements OnInit {
      {
          let minage = 0;
          let maxage=0;
-         switch(this.age)
+         switch(this.age.toString())
          {
-            case 1: maxage=6;
+            case "1": maxage=6; minage=0;
             break;
-            case 1: minage=7;  maxage=10;
+            case "2": minage=7;  maxage=10;
             break;
-            case 1: minage=11;  maxage=14;
+            case "3": minage=11;  maxage=14;
             break;
-            case 1: minage=15;  maxage=19;
+            case "4": minage=15;  maxage=19;
             break;
-            case 1: minage=20;  maxage=1000;
+            case "5": minage=20;  maxage=1000;
             break;
 
          }
-        
-
        
         this.dataService.getQuizesByCat(this.testId,minage,maxage).subscribe(data =>{
             this.quizes = data;
