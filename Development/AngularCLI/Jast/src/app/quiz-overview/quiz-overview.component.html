@@ -35,7 +35,7 @@
         </thead>
         <tbody>
             <template ngFor let-quiz [ngForOf]="quizes">
-                    <tr *ngIf="filter===undefined || quiz.name.indexOf(filter)==0">
+                    <tr *ngIf="filter===undefined || quiz.name.toUpperCase().indexOf(filter.toUpperCase())==0">
                         <td class="fontDesign">
                             <a routerLink="/switch/{{quiz.quiztype.id}}/{{quiz.id}}" routerLinkActive="active">{{quiz.name}}</a>
                         </td>
