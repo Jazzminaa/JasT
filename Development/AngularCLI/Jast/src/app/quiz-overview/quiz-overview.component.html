@@ -49,19 +49,19 @@
                             <button id="buttonDesign"><a routerLink="/add-multiplay" routerLinkActive="active">+</a></button>
                         </td>
                         <td>
-                            <button class="glyphicon glyphicon-share"><a routerLink="/home" routerLinkActive="active"></a></button>
+                            <button class="glyphicon glyphicon-share" routerLink="/home" routerLinkActive="active"></button>
                         </td>
                         <td>
-                            <button type="button" class="btn-danger" (click)="openModal()">Info</button>
+                            <button type="button" class="btn-danger" (click)="openModal(quiz.id -1)">Info</button>
                             <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">Information über Quiz {{quiz.name}}</h4>
+                                            <h4 class="modal-title">Information über Quiz {{quizname}}</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>{{quiz.description}}</p>
+                                            <p>{{quizdescription}}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -66,6 +66,7 @@ button#card {
   border-radius: 10px;
   margin-left: 5px;
   margin-right: 65px;
+  overflow-y: scroll;
 }
 
 #chatArea{
@@ -96,3 +97,19 @@ button#card {
     margin-top:20px;
     color:#C30303;
   }
+
+  #text{
+    margin-left: 970px;
+    border-radius: 5px;
+    margin-top: 5px;
+    width: 350px;
+    position: relative;
+}
+
+#button{
+    float: right;
+    width: 100px;
+    margin-top: 5px;
+    margin-right: 65px;
+    border-radius: 5px;
+}
