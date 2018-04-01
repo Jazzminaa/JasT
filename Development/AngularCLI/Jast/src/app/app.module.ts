@@ -45,6 +45,8 @@ import { AddMultichoiceComponent } from './add-quiz/add-multichoice/add-multicho
 import { StatisticsComponent } from './statistics/statistics.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { ShareComponent } from './share/share.component';
+import { MyQuizComponent } from './my-quiz/my-quiz.component';
 
 
 @NgModule({
@@ -86,7 +88,9 @@ import { ContactComponent } from './contact/contact.component';
     AddMultichoiceComponent,
     StatisticsComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ShareComponent,
+    MyQuizComponent
   ],
   imports: [
     BrowserModule,
