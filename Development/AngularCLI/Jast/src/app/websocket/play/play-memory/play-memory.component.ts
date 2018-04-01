@@ -6,6 +6,8 @@ import { Multiplay } from '../../../model/multiplay.model';
 import { User } from '../../../model/user.model';
 import { DataService } from '../../../shared/data.service';
 import { WebsocketService } from '../../websocket-service';
+import { Score } from '../../../model/score.model';
+import { Message } from 'app/model/message.model';
 
 @Component({
   selector: 'app-play-memory',
@@ -13,9 +15,8 @@ import { WebsocketService } from '../../websocket-service';
   styleUrls: ['./play-memory.component.css']
 })
 export class PlayMemoryComponent implements OnInit {
-  private data: string[];
 
-  //#region  Variablen
+  //#region  Variablen game
   contents:Content[];
   contentsmixed:string[]=[];
   row1:string[]=[];
@@ -33,7 +34,6 @@ export class PlayMemoryComponent implements OnInit {
   enableCard:boolean[][]=[[false],[false],[false],[false],[false],[false],[false],[false],[false]];
   count:number = 0;
   checkIfClosed:boolean = false;
-  score:number = 0;
   user:User;
   quizId: number;
   duration:number= 90;
@@ -42,18 +42,20 @@ export class PlayMemoryComponent implements OnInit {
   
   display: string;
   //#endregion
-  
+  //#region Variablen standard
+  private data: string[];
+
   private socket: Subject<any>;
   private counterSubscription: Subscription;
   private message: string;
-  private sentMessage: string;
-  num: number;
-  //quizId: number;
-  //contents: Content[];
+  numOfPerson: number = 0;
+  score:Score;
   multiplayId: number;
   multiplay: Multiplay;
   theUser:User;
-
+  messages:Message[]=[];
+  private sendMessage: string;
+    //#endregion    
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
   
       if(dataService.user != null)
@@ -65,6 +67,12 @@ export class PlayMemoryComponent implements OnInit {
                 this.multiplayId = params['id'];
             }
             );
+
+            this.score = new Score();
+            this.score.points=0;
+            this.score.id = 0;
+            this.score.playDay =  new Date();
+            this.score.user = this.theUser;
       }
       else{
           this.router.navigateByUrl("/login");
@@ -80,9 +88,62 @@ export class PlayMemoryComponent implements OnInit {
 
   }
 
+  
   ngDoCheck(): void {
-     
-      
+    if(this.contents  != undefined)
+    {
+        if(this.message != undefined)
+        {
+            if(this.message.includes("message") && this.message != "add")
+            {
+              this.data=this.message.split(';');
+              let m : Message = new Message;
+              m.name = this.data[1];
+              m.message = this.data[2].split('"')[0];
+              this.messages.push(m);
+              this.message ="add";
+            }
+            else if(this.message.includes('+'))
+            {
+                  this.numOfPerson++;
+                  this.message ="add";
+            }
+            else if(this.message.includes('-'))
+            {
+                  this.numOfPerson--;
+                  this.message ="add";
+            }
+            else if(this.message.includes('num'))
+            {
+                  this.numOfPerson= Number(this.message.split(':')[1]);
+                  this.message ="add";
+            }
+            else{
+              this.data =this.message.split(';');
+              if(this.data[1]!= undefined)
+              {
+                  
+                  this.data[1] = this.data[1].substring(0, this.data[1].length - 1);
+              }
+              let num:number = Number(this.data[0].match(/\d+/)[0]);
+              if(this.contents[ Number(num)] != undefined)
+              {
+                  
+                  this.contents[Number(num)].geloestVon ="Gelöst von: "+ this.data[1];
+                  this.message ="add";
+                  
+              }
+            }
+
+        }
+        
+    }
+    
+}
+
+send(){
+  this.socket.next("message;"+this.dataService.user.username + ";" +this.sendMessage);
+  this.sendMessage = "";
   }
   ngOnDestroy()
   {
@@ -236,7 +297,6 @@ export class PlayMemoryComponent implements OnInit {
           console.log(this.rowContents[this.rowOfCard1][this.colOfCard1]+"&& " +this.rowContents[this.rowOfCard2][this.colOfCard2]);
           this.rowOfCard1 = undefined;
           this.rowOfCard2 = undefined;
-          this.score += 2;
       }
       else{
           this.r1 = this.rowOfCard1;

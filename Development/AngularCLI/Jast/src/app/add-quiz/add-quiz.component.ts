@@ -19,7 +19,7 @@ export class AddQuizComponent implements OnInit {
     quizTypes: QuizType[] = [];
     user: User[] = [];
     hide: Boolean = true;
-    lo:boolean = false;
+    private:boolean = true;
     
     constructor(private router: Router, private dataService: DataService)  {
         this.getUsers();

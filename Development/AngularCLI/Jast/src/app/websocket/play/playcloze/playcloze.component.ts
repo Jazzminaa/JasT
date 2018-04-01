@@ -6,6 +6,8 @@ import { Multiplay } from '../../../model/multiplay.model';
 import { User } from '../../../model/user.model';
 import { DataService } from '../../../shared/data.service';
 import { WebsocketService } from '../../websocket-service';
+import { Score } from '../../../model/score.model';
+import { Message } from 'app/model/message.model';
 
 @Component({
   selector: 'app-playcloze',
@@ -13,18 +15,20 @@ import { WebsocketService } from '../../websocket-service';
   styleUrls: ['./playcloze.component.css']
 })
 export class PlayclozeComponent implements  OnInit{
-  private data: string[];
+    private data: string[];
 
-  private socket: Subject<any>;
-  private counterSubscription: Subscription;
-  private message: string;
-  private sentMessage: string;
-  num: number;
-  quizId: number;
-  contents: Content[];
-  multiplayId: number;
-  multiplay: Multiplay;
-  theUser:User;
+    private socket: Subject<any>;
+    private counterSubscription: Subscription;
+    private message: string;
+    numOfPerson: number = 0;
+    score:Score;
+    quizId: number;
+    contents: Content[];
+    multiplayId: number;
+    multiplay: Multiplay;
+    theUser:User;
+    messages:Message[]=[];
+    private sendMessage: string;
 
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
       
@@ -37,6 +41,12 @@ export class PlayclozeComponent implements  OnInit{
                 this.multiplayId = params['id'];
             }
             );
+
+            this.score = new Score();
+            this.score.points=0;
+            this.score.id = 0;
+            this.score.playDay =  new Date();
+            this.score.user = this.theUser;
       }
       else{
           this.router.navigateByUrl("/login");
@@ -52,11 +62,37 @@ export class PlayclozeComponent implements  OnInit{
 
   }
 
+  
   ngDoCheck(): void {
-      if(this.contents  != undefined)
-      {
-          if(this.message != undefined)
-          {
+    if(this.contents  != undefined)
+    {
+        if(this.message != undefined)
+        {
+            if(this.message.includes("message") && this.message != "add")
+            {
+              this.data=this.message.split(';');
+              let m : Message = new Message;
+              m.name = this.data[1];
+              m.message = this.data[2].split('"')[0];
+              this.messages.push(m);
+              this.message ="add";
+            }
+            else if(this.message.includes('+'))
+            {
+                  this.numOfPerson++;
+                  this.message ="add";
+            }
+            else if(this.message.includes('-'))
+            {
+                  this.numOfPerson--;
+                  this.message ="add";
+            }
+            else if(this.message.includes('num'))
+            {
+                  this.numOfPerson= Number(this.message.split(':')[1]);
+                  this.message ="add";
+            }
+            else{
               this.data =this.message.split(';');
               if(this.data[1]!= undefined)
               {
@@ -68,12 +104,20 @@ export class PlayclozeComponent implements  OnInit{
               {
                   
                   this.contents[Number(num)].geloestVon ="Gelöst von: "+ this.data[1];
+                  this.message ="add";
                   
               }
-          }
-          
-      }
-      
+            }
+
+        }
+        
+    }
+    
+}
+
+send(){
+  this.socket.next("message;"+this.dataService.user.username + ";" +this.sendMessage);
+  this.sendMessage = "";
   }
   ngOnDestroy()
   {
@@ -106,8 +150,8 @@ export class PlayclozeComponent implements  OnInit{
 
   correctGuess(i:number)
   {
-    console.log("r");
       this.socket.next(i+";"+this.dataService.user.username);
+      this.score.points +=2;
   }
 
 }
