@@ -21,6 +21,7 @@ export class DataService {
     newQuiz:Quiz;
     cat:string="";
     loggedIn: Boolean;
+    error:String="";
 
     constructor(private http:Http)
     {

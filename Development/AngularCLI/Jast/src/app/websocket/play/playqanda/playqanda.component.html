@@ -7,13 +7,23 @@
     </div>
 </div>
 
-<div id="chatArea">
-    <div id="chatHeader1">Anzahl der Spieler 2</div>
-    <div id="chatHeader1">Score 1</div>
+
+<div  id="chatArea">
+    <div id="chatHeader1">Anzahl der Spieler {{numOfPerson}}</div>
+    <div id="chatHeader1">Score {{score.points}}</div>
     <hr class="one">
-    <div id="chatHeader">Chat</div>
-    <div id="chatText">{{chat}}</div>
+    <div id="chatHeader">{{header}}</div>
+    <div>
+        <table class="table">
+                <tr *ngFor="let me of messages">
+                <td>{{me.name}}:</td> 
+                <td>{{me.message}}</td>
+            </tr>
+            </table>
+    </div>
 </div>
+<input  id="text"  [(ngModel)]="sendMessage" type="text" name="name"/>  
+<button  id="button" (click)="send()"> Senden</button>
 
 
 <router-outlet></router-outlet>
