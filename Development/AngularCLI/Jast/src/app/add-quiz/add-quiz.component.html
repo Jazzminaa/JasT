@@ -26,6 +26,8 @@
             <label for="age">Altersempfehlung</label>
             <input  [(ngModel)]="newQuiz.age" type="number" min="0" max="99" name="age">
 
+            <input type="checkbox" [(ngModel)]="private" /> Privates Quiz!
+
             <button type="button" (click)="addQuiz()">Weiter</button> 
             
         </form>

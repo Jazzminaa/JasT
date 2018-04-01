@@ -21,6 +21,7 @@ export class DataService {
     newQuiz:Quiz;
     cat:string="";
     loggedIn: Boolean;
+    error:String="";
 
     constructor(private http:Http)
     {
@@ -51,6 +52,17 @@ export class DataService {
         return this.http.get(this.API_Url + "quizes")
         .map((response:Response)=>response.json() as Quiz[]);
     }
+
+    getQuiz(id:number){
+        return this.http.get(this.API_Url + "quizes"+id)
+        .map((response:Response)=>response.json() as Quiz);
+    }
+
+    getMyQuizes(){
+        return this.http.get(this.API_Url + "quizes/user/"+this.user.id)
+        .map((response:Response)=>response.json() as Quiz[]);
+    }
+
     getMultiplays() {
         return this.http.get(this.API_Url + "multiplays")
         .map((response:Response)=>response.json() as Multiplay[]);
@@ -97,7 +109,7 @@ export class DataService {
     insertScore(score: Score)
     {
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(this.API_Url+"scores", this.getJson(score), {headers: headers})
+        return this.http.post(this.API_Url+"scores", score.getJson(), {headers: headers})
         .map(data=>data.json() as Score);
     }
 
@@ -144,61 +156,8 @@ export class DataService {
         .map((response:Response)=>response.json() as Score[]);
     }    
 
-    getJson(score:Score):string
-    {
-        this.test(score);
-        let r = "{"+
-            "\"id\": "+score.id+","+
-            "\"points\": \""+score.points+"\","+
-            "\"quiz\": {"+
-                "\"id\": "+score.quiz.id+","+
-                "\"age\": "+score.quiz.age+","+
-                "\"creationDate\": \""+score.quiz.creationDate+"\","+
-                "\"description\": \""+score.quiz.description+"\","+
-                "\"multiplay\": "+score.quiz.multiplay+","+
-                "\"name\": \""+score.quiz.name+"\","+
-                "\"picture\": null,"+
-                "\"category\": {"+
-                    "\"id\": "+score.quiz.category.id+","+
-                    "\"name\": \""+score.quiz.category.name+"\""+
-                "},"+
-                "\"quiztype\": {"+
-                    "\"id\": "+score.quiz.quizType.id+","+
-                    "\"name\": \""+score.quiz.quizType.name+"\""+
-                "},"+
-                "\"user\": {"+
-                    "\"id\": "+score.quiz.user.id+","+
-                    "\"dateOfBirth\": \""+score.quiz.user.dateOfBirth+"\","+
-                    "\"email\": \""+score.quiz.user.email+"\","+
-                    "\"firstname\": \""+score.quiz.user.firstName+"\","+
-                    "\"gender\": \""+score.quiz.user.gender+"\","+
-                    "\"password\": \""+score.quiz.user.password+"\","+
-                    "\"picture\": null,"+
-                    "\"lastname\": \""+score.quiz.user.lastName+"\","+
-                    "\"username\": \""+score.quiz.user.username+"\","+
-                    "\"multiplay\": "+score.quiz.user.multiplay+""+
-                "}"+
-            "},"+
-            "\"user\": {"+
-                "\"id\": "+score.user.id+","+
-                "\"dateOfBirth\": \""+score.user.dateOfBirth+"\","+
-                "\"email\": \""+score.user.email+"\","+
-                "\"firstname\": \""+score.user.firstName+"\","+
-                "\"gender\": \""+score.user.gender+"\","+
-                "\"password\": \""+score.user.password+"\","+
-                "\"picture\": null,"+
-                "\"lastname\": \""+score.user.lastName+"\","+
-                "\"username\": \""+score.user.username+"\","+
-                "\"multiplay\": "+score.user.multiplay+
-            "}"+
-        "}";
-
-        return r;
-    }
-
-
     deleteQuiz(id:number){
-        return this.http.delete(this.API_Url + "quiz/"+id)
+        return this.http.delete(this.API_Url + "quizes/"+id)
         .map((response:Response)=>response.json());
     }
 

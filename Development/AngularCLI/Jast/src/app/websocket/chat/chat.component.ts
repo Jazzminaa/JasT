@@ -1,7 +1,7 @@
 import { Category } from './../../model/category.model';
 import { Message } from './../../model/message.model';
 import { WebsocketService } from './../websocket-service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DataService } from '../../shared/data.service';
@@ -17,34 +17,36 @@ export class ChatComponent implements OnInit{
 
   private socket: Subject<any>;
   private counterSubscription: Subscription;
+
   private message: string;
-  private sentMessage: string;
-  num: number;
+  private sendMessage: string;
+
   theUser:User;
   catid:number=0;
   age:number=0;
-  hide:boolean=true;
   messages:Message[]=[];
   header: string;
-  category:Category = new Category;
+  category:Category;
+  private data: string[];
 
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute ){
     this.route.params.subscribe((params: Params) => {
         this.catid= params['catid'] ; 
         this.age = params['ageid']
     });
-    
+    if(this.catid == 0 || this.age == 0)
+    {
+        this.dataService.error = "Suchen Sie zuerst in der Menüzeile einen Chat aus, mithilfe von den Filtern! Katergorie und Alter dürfen nicht 0 sein;";
+        this.router.navigateByUrl("/home");
+    }
     if(dataService.user != null)
     {
         this.theUser = dataService.user;
         this.loadCat();
       
     }
-    
     if(this.catid !=0 && this.age !=0)
     {
-        console.log("go on");
-        this.hide = false;
         if(this.category == undefined)
         {
             this.loadCat();
@@ -61,7 +63,6 @@ export class ChatComponent implements OnInit{
 
   waitForCat(websocketService:WebsocketService) {
     setTimeout(() => {
-        console.log("wait for cat");
         if(this.category == undefined)
         {
           this.waitForCat(websocketService);
@@ -79,13 +80,13 @@ export class ChatComponent implements OnInit{
   {
     this.dataService.getCatById(Number(this.catid)).subscribe
     (data=>{this.category=data;},
-    error=>{alert("Laden der Fragen fehlgeschlagen: "+error)});
+    );
   }
+
   getChatInfo()
   {
    
       this.header= this.category.name+" Chatroom für ";
-      console.log("ahe"+ this.age);
       switch(this.age.toString())
       {
         case "1": this.header+="Kinder bis 6 Jahre!"; 
@@ -104,8 +105,13 @@ export class ChatComponent implements OnInit{
         break;
       }
   }
+
   openWebsocket(websocketService:WebsocketService){
-    this.socket = websocketService.createWebsocket("chatroom"+this.catid+this.age);
+    this.socket = websocketService.createWebsocket("chatroomCat"+this.catid+"Age"+this.age);
+
+    this.socket.subscribe(
+        message => this.message = message.data
+        ); 
   }
 
   ngOnDestroy()
@@ -117,14 +123,24 @@ export class ChatComponent implements OnInit{
   }
 
   ngOnInit(){
-      if(this.catid !=0 && this.age !=0){
-      this.socket.subscribe(
-      message => this.message = message.data
-      );}
+     
   }
+
+  ngDoCheck(): void {
+        if(this.message != undefined && this.message != "add"  && this.message.startsWith("\"message"))
+        {
+            this.data=this.message.split(';');
+            let m : Message = new Message;
+            m.name = this.data[1];
+            m.message = this.data[2].split('"')[0];
+            this.messages.push(m);
+            this.message ="add";
+        }       
+    }
 
 
   send(){
-      //this.socket.next(this.dataService.user.username + ": " +this.sentMessage);
+      this.socket.next("message;"+this.dataService.user.username + ";" +this.sendMessage);
+      this.sendMessage = "";
   }
 }

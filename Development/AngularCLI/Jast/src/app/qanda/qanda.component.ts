@@ -59,10 +59,6 @@ export class QandaComponent  implements OnInit {
             }
             this.score.user = this.user;
 
-
-
-
-           console.log(this.dataService.getJson(this.score));
            if(this.user != undefined)
            {
                 this.dataService.insertScore(this.score).subscribe(data => {
