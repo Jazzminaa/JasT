@@ -49,6 +49,7 @@ import { ShareComponent } from './share/share.component';
 import { MyQuizComponent } from './my-quiz/my-quiz.component';
 import { DescribeComponent } from './describe/describe.component';
 import { MailboxComponent } from './mailbox/mailbox.component';
+import { ChangeQuizComponent } from './change-quiz/change-quiz.component';
 
 
 @NgModule({
@@ -94,7 +95,8 @@ import { MailboxComponent } from './mailbox/mailbox.component';
     ShareComponent,
     MyQuizComponent,
     DescribeComponent,
-    MailboxComponent
+    MailboxComponent,
+    ChangeQuizComponent
   ],
   imports: [
     BrowserModule,
