@@ -59,9 +59,14 @@ export class QuizOverviewComponent implements OnInit {
      }
 
       openModal(i:number){
-            this.quizdescription = this.quizes[i].description;
-            this.quizname = this.quizes[i].name;
-          
+        this.quizes.forEach(element => {
+            
+            if(element.id == i){
+              this.quizdescription = element.description;
+              this.quizname = element.name;
+            }
+          });
+              
             this.display='block';
         }
 
@@ -85,22 +90,20 @@ export class QuizOverviewComponent implements OnInit {
      {
          let minage = 0;
          let maxage=0;
-         switch(this.age)
+         switch(this.age.toString())
          {
-            case 1: maxage=6;
+            case "1": maxage=6; minage=0;
             break;
-            case 1: minage=7;  maxage=10;
+            case "2": minage=7;  maxage=10;
             break;
-            case 1: minage=11;  maxage=14;
+            case "3": minage=11;  maxage=14;
             break;
-            case 1: minage=15;  maxage=19;
+            case "4": minage=15;  maxage=19;
             break;
-            case 1: minage=20;  maxage=1000;
+            case "5": minage=20;  maxage=1000;
             break;
 
          }
-        
-
        
         this.dataService.getQuizesByCat(this.testId,minage,maxage).subscribe(data =>{
             this.quizes = data;

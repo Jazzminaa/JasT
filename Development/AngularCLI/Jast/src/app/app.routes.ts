@@ -1,3 +1,5 @@
+import { DescribeComponent } from './describe/describe.component';
+import { MailboxComponent } from './mailbox/mailbox.component';
 import { MyQuizComponent } from './my-quiz/my-quiz.component';
 import { ShareComponent } from './share/share.component';
 import { AboutComponent } from './about/about.component';
@@ -83,7 +85,9 @@ const appRoutes: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'about', component: AboutComponent},
     {path: 'share/:id', component: ShareComponent},
-    {path: 'my-quizoverview/:id/:age', component: MyQuizComponent}
+    {path: 'my-quizoverview/:id/:age', component: MyQuizComponent},
+    {path: 'mailbox', component: MailboxComponent},
+    {path: 'describe/:id', component: DescribeComponent}
 
 
 ];
