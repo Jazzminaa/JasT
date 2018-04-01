@@ -11,7 +11,7 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./quiz-overview.component.css']
 })
 export class QuizOverviewComponent implements OnInit {
-        display: string;
+    display: string;
 
  
     quizes: Quiz[];
@@ -37,7 +37,7 @@ export class QuizOverviewComponent implements OnInit {
     {
         this.quizes = [];
         this.quizesBegin.forEach(quiz => {
-            if(quiz.name.startsWith(this.filter))
+            if(quiz.name.toUpperCase().startsWith(this.filter.toUpperCase()))
             {
                 this.quizes.push(quiz);
             }
