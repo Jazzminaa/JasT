@@ -5,7 +5,7 @@
     <li class='active has-sub'><a routerLink="/quizoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Quiz</span></a>
         <ul>
             <li [hidden]="!loggedIn"><a routerLink="/multiplayoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Lernräume</span></a></li>
-            <li [hidden]="!loggedIn" class='has-sub'><a><span>Meine Quiz</span></a>
+            <li [hidden]="!loggedIn" class='has-sub'><a routerLink="/my-quizoverview/{{id}}/{{age}}" routerLinkActive="active"><span>Meine Quiz</span></a>
             <li [hidden]="!loggedIn" class='has-sub'><a><span>Mailbox</span></a>
         </ul>
     </li>

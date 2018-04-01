@@ -1,3 +1,5 @@
+import { MyQuizComponent } from './my-quiz/my-quiz.component';
+import { ShareComponent } from './share/share.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { StatisticsComponent } from './statistics/statistics.component';
@@ -79,7 +81,10 @@ const appRoutes: Routes = [
     {path: 'memory/:id', component: MemoryComponent},
     {path: 'statistics', component: StatisticsComponent},
     {path: 'contact', component: ContactComponent},
-    {path: 'about', component: AboutComponent}
+    {path: 'about', component: AboutComponent},
+    {path: 'share/:id', component: ShareComponent},
+    {path: 'my-quizoverview/:id/:age', component: MyQuizComponent}
+
 
 ];
 
