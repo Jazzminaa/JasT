@@ -1,6 +1,6 @@
 <h1>Willkommen zur Lerngruppe: {{multiplay?.name}}</h1>
 <div id="game">
-    <h2 id="header">{{contents[0].quiz.name}}</h2>
+    <h2 id="header">{{contents[0]?.quiz.name}}</h2>
     <div id="question" *ngFor="let content of contents; let i=index">
         <app-clozeinput [isEnabled]="actIndex==i" [content]="content" [check]="true" (correctGuess)="correctGuess(i)"
         (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-clozeinput>
@@ -10,14 +10,14 @@
 
 <div  id="chatArea">
         <div id="chatHeader1">Anzahl der Spieler {{numOfPerson}}</div>
-        <div id="chatHeader1">Score {{score.points}}</div>
+        <div id="chatHeader1">Score {{score?.points}}</div>
         <hr class="one">
         <div id="chatHeader">{{header}}</div>
         <div>
             <table class="table">
                     <tr *ngFor="let me of messages">
-                    <td>{{me.name}}:</td> 
-                    <td>{{me.message}}</td>
+                    <td>{{me?.name}}:</td> 
+                    <td>{{me?.message}}</td>
                 </tr>
                 </table>
         </div>
@@ -26,8 +26,6 @@
     <button  id="button" (click)="send()"> Senden</button>
 
     <body>
-        <button type="button" class="formatButton" (click)="openModal();saveScore();">Speichern</button>
-        
         <div class="backdrop" [ngStyle]="{'display':display}"></div>
         <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
           <div class="modal-dialog" role="document">
@@ -37,7 +35,7 @@
                 <h4 class="modal-title">Dein Punktestand</h4>
               </div>
               <div class="modal-body">
-                <p>Du hast {{score.points}} Punkte erreicht!</p>
+                <p>Du hast {{score?.points}} Punkte erreicht!</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" (click)="onCloseHandled()">Speichern</button>

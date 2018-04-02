@@ -5,15 +5,16 @@ import { Category } from './category.model';
 export class Quiz{
     id: number;
     age: number;
-    creationDate: number;
+    creationDate: Date;
     description: string;
     multiplay: number;
     name: string;
     category: Category;
-    quizType: QuizType;
+    quiztype: QuizType;
     user: User;
     picture: string;
     maxScore: number;
+    priority:number;
 
     getJson()
     {
@@ -21,31 +22,16 @@ export class Quiz{
         return "{"+
             "\"id\": "+this.id+","+
             "\"age\": "+this.age+","+
-            "\"creationDate\": 1489490100000,"+
+            "\"creationDate\": \""+this.creationDate+","+
             "\"description\": \""+this.description+"\","+
             "\"multiplay\": "+this.multiplay+","+
             "\"name\": \""+this.name+"\","+
             "\"picture\": null,"+
-            "\"category\": {"+
-                "\"id\": "+this.category.id+","+
-                "\"name\": \""+this.category.name+"\""+
-            "},"+
-            "\"quiztype\": {"+
-                "\"id\": "+this.quizType.id+","+
-               " \"name\": \""+this.quizType.name+"\""+
-            "},"+
-            "\"user\": {"+
-                "\"id\": "+this.user.id+","+
-                "\"dateOfBirth\": \""+this.user.dateOfBirth+"\","+
-                "\"email\": \""+this.user.email+"\","+
-                "\"firstname\": \""+this.user.firstName+"\","+
-                "\"gender\": \""+this.user.gender+"\","+
-                "\"password\": \""+this.user.password+"\","+
-                "\"picture\": null,"+
-                "\"lastname\": \""+this.user.lastName+"\","+
-                "\"username\": \""+this.user.username+"\","+
-                "\"multiplay\": null"+
-            "}"+
+            "\"category\": "+this.category.getJson()+","+
+            "\"quiztype\": "+this.quiztype.getJson()+","+
+            "\"user\": "+this.user.getJson()+","+
+            "\"maxScore\": "+this.maxScore+","+
+            "\"priority\": "+this.priority+
         "}";
     }
 
@@ -58,6 +44,10 @@ export class Quiz{
         if(this.id == undefined || this.id == null)
         {
             this.id = 0;
+        }
+        if(this.creationDate == undefined || null)
+        {
+            this.creationDate = new Date("2017-03-14");
         }
     }
 }

@@ -18,35 +18,7 @@ export class Content{
             "\"id\":"+this.id+","+
             "\"input1\": \""+this.input1+"\","+
             "\"input2\": \""+this.input2+"\"," +
-            "\"quiz\": "+"{"+
-                "\"id\": "+this.quiz.id+","+
-                "\"age\": "+this.quiz.age+","+
-                "\"creationDate\": 1489490100000,"+
-                "\"description\": \""+this.quiz.description+"\","+
-                "\"multiplay\": "+this.quiz.multiplay+","+
-                "\"name\": \""+this.quiz.name+"\","+
-                "\"picture\": null,"+
-                "\"category\": {"+
-                    "\"id\": "+this.quiz.category.id+","+
-                    "\"name\": \""+this.quiz.category.name+"\""+
-                "},"+
-                "\"quiztype\": {"+
-                    "\"id\": "+this.quiz.quizType.id+","+
-                " \"name\": \""+this.quiz.quizType.name+"\""+
-                "},"+
-                "\"user\": {"+
-                    "\"id\": "+this.quiz.user.id+","+
-                    "\"dateOfBirth\": \""+this.quiz.user.dateOfBirth+"\","+
-                    "\"email\": \""+this.quiz.user.email+"\","+
-                    "\"firstname\": \""+this.quiz.user.firstName+"\","+
-                    "\"gender\": \""+this.quiz.user.gender+"\","+
-                    "\"password\": \""+this.quiz.user.password+"\","+
-                    "\"picture\": null,"+
-                    "\"lastname\": \""+this.quiz.user.lastName+"\","+
-                    "\"username\": \""+this.quiz.user.username+"\","+
-                    "\"multiplay\": null"+
-                "}"+
-            "}"+
+            "\"quiz\": "+this.quiz+
         "}";
     }
 
