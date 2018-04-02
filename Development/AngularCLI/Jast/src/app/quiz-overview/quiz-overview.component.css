@@ -20,3 +20,10 @@ td.fontDesign{
      font-family: Verdana, Helvetica, sans-serif;
 }
 
+.changeButton{
+    border-radius: 8px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    background: red;
+    color: white;
+}

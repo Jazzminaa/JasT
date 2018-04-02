@@ -157,7 +157,7 @@ export class ClozeComponent implements OnInit {
 
     }
 
-      mixStrings() {
+    mixStrings() {
       this.temp();
       if(this.mixedContents != undefined){
         var currentIndex = this.mixedContents.length, temporaryValue, randomIndex;

@@ -2,7 +2,7 @@
     <div id="memory_board">
     <table >
             <tr >
-                <td *ngFor="let content of row1;let i = index"><button  (click)="showContent(0,i)"  id="card"><div *ngIf="checkBoolean(0,i)">{{content}}</div></button></td> <!-- (click)="myFunction()"-->
+                <td *ngFor="let content of row1;let i = index"><button  (click)="showContent(0,i)"  id="card"><div *ngIf="checkBoolean(0,i)">{{content}}</div></button></td> 
             </tr>
             <tr >
                 <td *ngFor="let content of row2;let i = index"><button (click)="showContent(1,i)" id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td>
