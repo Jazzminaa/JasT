@@ -33,7 +33,7 @@ export class MultichoiceChoiceComponent{
     ngDoCheck(): void {
         if(this.content.geloestVon != undefined)
         {
-          this.isDone =true;
+           this.isDone = true;
         }
      }
 
@@ -86,18 +86,16 @@ export class MultichoiceChoiceComponent{
 
         checkForm(c:boolean)
         {
-            if(c)
+            if(c && ! this.isDone)
             {
-                this.isDone = c;
+                this.isDone = true;
                 for(var i=0 ; i< this.contents.length ; i++)
                 {
-                    if((this.contentcheck[i] && this.con[i])||(!this.contentcheck[i] && !this.con[i])) 
+                    if(((this.contentcheck[i] && this.con[i]))||(!this.contentcheck[i] && !this.con[i])) 
                     {
                         this.answer[i] = "Richtig";
                         this.isWrong = false;
-                        this.isDone = true;
                         this.isCorrect = true;
-                        this.correctGuess.emit(0);
                         
                     }
                     else
@@ -108,6 +106,18 @@ export class MultichoiceChoiceComponent{
                         this.mistakes++;
                         this.wrongGuess.emit(0);
                     }
+                }
+
+                this.answer.forEach(element => {
+                    if( this.isDone && element == "Falsch" )
+                    {
+                        this.isDone = false;
+                    }
+                });
+
+                if(this.isDone)
+                {
+                     this.correctGuess.emit(this.content.id);
                 }
             }
             return c;

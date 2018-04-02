@@ -117,6 +117,7 @@ export class PlayMemoryComponent implements OnInit {
     {
         if(this.message != undefined)
         {
+            console.log(this.message)
             if(this.message.includes("message") && this.message != "add")
             {
               this.data=this.message.split(';');
@@ -171,7 +172,10 @@ send(){
   ngOnDestroy()
   {
       this.dataService.user = this.theUser;
-      this.socket.complete();
+      if(this.socket != undefined)
+      {
+         this.socket.complete();
+      }
   }
 
   ngOnInit(){
@@ -195,7 +199,7 @@ send(){
         {
           this.waitForLoading();
         }
-        else{
+        else if(this.contents.length != 0){
           this.shuffle(this.contents)
           this.fillTable();
         }
@@ -226,15 +230,14 @@ send(){
 
   correctGuess(i:number)
   {
-    console.log("r");
       this.socket.next(i+";"+this.dataService.user.username);
+      this.score.points += 2;
   }
 
 
   //#region FillContent
   fillTable()
   {
-    console.log("Fill data")
       for(var i= 0; i < 9; i++)
       {
           this.contentsmixed.push(this.contents[i].input1);

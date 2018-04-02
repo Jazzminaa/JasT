@@ -163,7 +163,10 @@ send(){
   ngOnDestroy()
   {
       this.dataService.user = this.theUser;
-      this.socket.complete();
+      if(this.socket != undefined)
+      {
+         this.socket.complete();
+      }
   }
 
   ngOnInit(){
