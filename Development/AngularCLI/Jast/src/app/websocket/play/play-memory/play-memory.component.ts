@@ -16,6 +16,7 @@ import { Message } from 'app/model/message.model';
 })
 export class PlayMemoryComponent implements OnInit {
 
+    myturn: number;
   //#region  Variablen game
   contents:Content[];
   contentsmixed:string[]=[];
@@ -140,6 +141,7 @@ export class PlayMemoryComponent implements OnInit {
             else if(this.message.includes('num'))
             {
                   this.numOfPerson= Number(this.message.split(':')[1]);
+                  this.myturn = Number(this.message.split(':')[1]);
                   this.message ="add";
             }
             else{
