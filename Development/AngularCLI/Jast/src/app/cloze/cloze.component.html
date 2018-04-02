@@ -24,7 +24,7 @@
         <p>You scored {{getPoints()}} points!</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()" routerLink="/home" routerLinkActive="active">Close</button>
       </div>
     </div>
   </div>
@@ -33,6 +33,6 @@
 </body>
 <div id="board">
   <div *ngFor="let content of mixedContents">
-    <label id="card">{{content}}</label>
+    <label id="card" *ngIf="content!=undefined || content !=null">{{content}}</label>
   </div>
 </div>

@@ -45,10 +45,11 @@ export class RightorwrongComponent implements OnInit {
         saveScore()
         { 
             this.getQuizFromContent();
-            this.score = new Score();
-            this.score.id = 1;
-            this.score.points = this.finalPoints;
 
+            this.score = new Score();
+            this.score.points=this.finalPoints;;
+            this.score.id = 0;
+            this.score.playDay =  new Date();
            
             this.dataService.insertScore(this.score).subscribe(data => {
                 },
@@ -87,7 +88,6 @@ export class RightorwrongComponent implements OnInit {
 
 
         constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute) {
-             this.user= this.dataService.user;
              this.route.params.subscribe(
                 (params: Params) => {
                     this.quizId = params['id'];
