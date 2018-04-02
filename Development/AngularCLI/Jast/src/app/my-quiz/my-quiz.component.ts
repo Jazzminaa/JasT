@@ -121,7 +121,7 @@ export class MyQuizComponent implements OnInit {
          this.dataService.deleteQuiz(id).subscribe();
          //this.getQuizById(6);
          this.dataService.deleteQuiz(id).subscribe();
-         this.waitOfDelete(id);
+         //this.waitOfDelete(id);
        }
 
        waitOfDelete(id:number)

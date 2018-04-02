@@ -1,17 +1,17 @@
 <h1>Willkommen zur Lerngruppe: {{multiplay?.name}}</h1>
 <div id="game">
-  <h2 id="header">{{contents[0].quiz.name}}</h2>
+  <h2 id="header">{{contents[0]?.quiz.name}}</h2>
   <div id="question" *ngFor="let content of contents; let i=index">
-      <app-multichoice-choice [isEnabled]="actIndex==i" [content]="content" [check]="checkAnswer" (correctGuess)="correctGuess(i)"
+      <app-multichoice-choice [isEnabled]="actIndex==i" [content]="content" [check]="checkAnswer[i]" (correctGuess)="correctGuess(i)"
       (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></app-multichoice-choice> 
-      <button>Check</button>
+      <button (click)="check(i)">Check</button>
   </div>
 
 </div>
 
 <div  id="chatArea">
     <div id="chatHeader1">Anzahl der Spieler {{numOfPerson}}</div>
-    <div id="chatHeader1">Score {{score.points}}</div>
+    <div id="chatHeader1">Score {{score?.points}}</div>
     <hr class="one">
     <div id="chatHeader">{{header}}</div>
     <div>
@@ -25,6 +25,27 @@
 </div>
 <input  id="text"  [(ngModel)]="sendMessage" type="text" name="name"/>  
 <button  id="button" (click)="send()"> Senden</button>
+
+<body>    
+    <div class="backdrop" [ngStyle]="{'display':display}"></div>
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Dein Punktestand</h4>
+          </div>
+          <div class="modal-body">
+            <p>Du hast {{score?.points}} Punkte erreicht!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="onCloseHandled()">Speichern</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </body>
 
 
 <router-outlet></router-outlet>

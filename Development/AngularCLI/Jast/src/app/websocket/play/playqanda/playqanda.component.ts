@@ -1,6 +1,6 @@
 import { Score } from './../../../model/score.model';
 import { Message } from './../../../model/message.model';
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, PipeTransform, Pipe, DoCheck } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Content } from '../../../model/content.model';
@@ -29,6 +29,8 @@ export class PlayqandaComponent implements  OnInit{
   theUser:User;
   messages:Message[]=[];
   private sendMessage: string;
+  isfinish: boolean = false;
+  display: string;
 
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
       
@@ -60,8 +62,30 @@ export class PlayqandaComponent implements  OnInit{
 
   }
 
+    openModal(){
+        this.display='block';
+        this.score.quiz = this.contents[0].quiz;
+    }
+
+    onCloseHandled(){
+        this.display='none';
+        console.log(this.score.getJson());
+        this.saveScore();
+        this.router.navigateByUrl('/home')
+    }
+
+    saveScore()
+    {
+      
+      this.dataService.insertScore(this.score).subscribe(data => {
+      },
+      error => {
+        //alert("Speichern fehlgeschlagen: " + error);
+      });
+    }
+
   ngDoCheck(): void {
-      if(this.contents  != undefined)
+      if(this.contents  != undefined && !this.isfinish)
       {
           if(this.message != undefined)
           {
@@ -102,6 +126,24 @@ export class PlayqandaComponent implements  OnInit{
                     
                     this.contents[Number(num)].geloestVon ="Gelöst von: "+ this.data[1];
                     this.message ="add";
+
+                    if(this.contents.length != 0)
+                    {
+                      this.isfinish = true;
+                      let n = 0;
+                      while(this.isfinish && n < this.contents.length)
+                      {
+                          if(this.contents[n].geloestVon == null || this.contents[n].geloestVon == undefined)
+                          {
+                              this.isfinish = false;
+                          }
+                          n++;
+                      }
+                      if(this.isfinish)
+                      {
+                          this.openModal();
+                      }
+                      }
                     
                 }
               }
@@ -119,7 +161,10 @@ export class PlayqandaComponent implements  OnInit{
   ngOnDestroy()
   {
       this.dataService.user = this.theUser;
-      this.socket.complete();
+      if(this.socket != undefined)
+      {
+         this.socket.complete();
+      }
   }
 
   ngOnInit(){

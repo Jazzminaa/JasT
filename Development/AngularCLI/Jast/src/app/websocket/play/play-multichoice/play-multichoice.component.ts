@@ -1,4 +1,6 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Score } from './../../../model/score.model';
+import { Message } from './../../../model/message.model';
+import { Component, OnInit, AfterViewInit, Input, PipeTransform, Pipe, DoCheck } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Content } from '../../../model/content.model';
@@ -6,8 +8,6 @@ import { Multiplay } from '../../../model/multiplay.model';
 import { User } from '../../../model/user.model';
 import { DataService } from '../../../shared/data.service';
 import { WebsocketService } from '../../websocket-service';
-import { Score } from '../../../model/score.model';
-import { Message } from 'app/model/message.model';
 
 @Component({
   selector: 'app-play-multichoice',
@@ -29,6 +29,10 @@ export class PlayMultichoiceComponent implements OnInit {
     theUser:User;
     messages:Message[]=[];
     private sendMessage: string;
+    checkAnswer:boolean[]=[];
+    
+    isfinish: boolean = false;
+    display: string;
 
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
       
@@ -52,6 +56,7 @@ export class PlayMultichoiceComponent implements OnInit {
           this.router.navigateByUrl("/login");
       }
     
+      
 
       if(this.multiplayId != undefined)
       {
@@ -62,9 +67,32 @@ export class PlayMultichoiceComponent implements OnInit {
 
   }
 
+    openModal(){
+        this.display='block';
+        this.score.quiz = this.contents[0].quiz;
+    }
+
+    onCloseHandled(){
+        this.display='none';
+        console.log(this.score.getJson());
+        this.saveScore();
+        this.router.navigateByUrl('/home')
+    }
+
+    saveScore()
+    {
+    
+        this.dataService.insertScore(this.score).subscribe(data => {
+        },
+        error => {
+            //alert("Speichern fehlgeschlagen: " + error);
+        });
+    }
  
+
   ngDoCheck(): void {
-    if(this.contents  != undefined)
+      console.log("do check" + this.message)
+    if(this.contents  != undefined && !this.isfinish)
     {
         if(this.message != undefined)
         {
@@ -96,15 +124,31 @@ export class PlayMultichoiceComponent implements OnInit {
               this.data =this.message.split(';');
               if(this.data[1]!= undefined)
               {
-                  
                   this.data[1] = this.data[1].substring(0, this.data[1].length - 1);
               }
               let num:number = Number(this.data[0].match(/\d+/)[0]);
+              console.log(num);
               if(this.contents[ Number(num)] != undefined)
               {
                   
                   this.contents[Number(num)].geloestVon ="Gelöst von: "+ this.data[1];
-                  this.message ="add";
+                  if(this.contents.length != 0)
+                  {
+                    this.isfinish = true;
+                    let n = 0;
+                    while(this.isfinish && n < this.contents.length)
+                    {
+                        if(this.contents[n].geloestVon == null || this.contents[n].geloestVon == undefined)
+                        {
+                            this.isfinish = false;
+                        }
+                        n++;
+                    }
+                    if(this.isfinish)
+                    {
+                        this.openModal();
+                    }
+                    }
                   
               }
             }
@@ -122,7 +166,10 @@ send(){
   ngOnDestroy()
   {
       this.dataService.user = this.theUser;
-      this.socket.complete();
+      if(this.socket != undefined)
+      {
+         this.socket.complete();
+      }
   }
 
   ngOnInit(){
@@ -146,12 +193,26 @@ send(){
       (data=>{this.contents=data;},
       error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})
 
+      if(this.contents.length !=0)
+      {
+          this.contents.forEach(element => {
+              this.checkAnswer[element.id] = false;
+          });
+      }
+
   }
 
   correctGuess(i:number)
   {
-    console.log("r");
+      console.log(i)
       this.socket.next(i+";"+this.dataService.user.username);
+      this.score.points += 2;
   }
+
+  check(i:number)
+  {
+      this.checkAnswer[i]= true;
+  }
+  
 
 }

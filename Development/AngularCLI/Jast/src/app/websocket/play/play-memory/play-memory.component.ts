@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, PipeTransform, Pipe, DoCheck } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Content } from '../../../model/content.model';
@@ -16,6 +16,7 @@ import { Message } from 'app/model/message.model';
 })
 export class PlayMemoryComponent implements OnInit {
 
+    myturn: number;
   //#region  Variablen game
   contents:Content[];
   contentsmixed:string[]=[];
@@ -55,6 +56,8 @@ export class PlayMemoryComponent implements OnInit {
   theUser:User;
   messages:Message[]=[];
   private sendMessage: string;
+    
+  isfinish: boolean = false;
     //#endregion    
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
   
@@ -88,12 +91,34 @@ export class PlayMemoryComponent implements OnInit {
 
   }
 
+    openModal(){
+        this.display='block';
+        this.score.quiz = this.contents[0].quiz;
+    }
+
+    onCloseHandled(){
+        this.display='none';
+        console.log(this.score.getJson());
+        this.saveScore();
+        this.router.navigateByUrl('/home')
+    }
+
+    saveScore()
+    {
+    
+    this.dataService.insertScore(this.score).subscribe(data => {
+    },
+    error => {
+        //alert("Speichern fehlgeschlagen: " + error);
+    });
+    }
   
   ngDoCheck(): void {
     if(this.contents  != undefined)
     {
         if(this.message != undefined)
         {
+            console.log(this.message)
             if(this.message.includes("message") && this.message != "add")
             {
               this.data=this.message.split(';');
@@ -116,6 +141,7 @@ export class PlayMemoryComponent implements OnInit {
             else if(this.message.includes('num'))
             {
                   this.numOfPerson= Number(this.message.split(':')[1]);
+                  this.myturn = Number(this.message.split(':')[1]);
                   this.message ="add";
             }
             else{
@@ -148,7 +174,10 @@ send(){
   ngOnDestroy()
   {
       this.dataService.user = this.theUser;
-      this.socket.complete();
+      if(this.socket != undefined)
+      {
+         this.socket.complete();
+      }
   }
 
   ngOnInit(){
@@ -172,7 +201,7 @@ send(){
         {
           this.waitForLoading();
         }
-        else{
+        else if(this.contents.length != 0){
           this.shuffle(this.contents)
           this.fillTable();
         }
@@ -203,15 +232,14 @@ send(){
 
   correctGuess(i:number)
   {
-    console.log("r");
       this.socket.next(i+";"+this.dataService.user.username);
+      this.score.points += 2;
   }
 
 
   //#region FillContent
   fillTable()
   {
-    console.log("Fill data")
       for(var i= 0; i < 9; i++)
       {
           this.contentsmixed.push(this.contents[i].input1);
