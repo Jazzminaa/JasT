@@ -10,13 +10,15 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of'
 import { Multiplay } from '../model/multiplay.model';
+import { Description } from '../model/description.model';
+import { Share } from '../model/share.model';
 
 
 @Injectable()
 export class DataService {
 
     API_Url: string ="http://vm86.htl-leonding.ac.at:8080/JAST/rest/";
-   // API_Url: string ="http://localhost:8080/JAST/rest/"; // zum testen
+    //API_Url: string ="http://localhost:8080/JAST/rest/"; // zum testen
     user:User;
     newQuiz:Quiz;
     cat:string="";
@@ -48,6 +50,18 @@ export class DataService {
         .map((response:Response)=>response.json() as QuizType[]);
     }
 
+    getShares(id:number)
+    {
+        return this.http.get(this.API_Url + "shared/user/"+id)
+        .map((response:Response)=>response.json() as Share[]);
+        
+    }
+    getChangeDesc()
+    {
+        return this.http.get(this.API_Url + "description")
+        .map((response:Response)=>response.json() as Description[]);
+    }
+
     getQuizes(){
         return this.http.get(this.API_Url + "quizes")
         .map((response:Response)=>response.json() as Quiz[]);
@@ -66,10 +80,6 @@ export class DataService {
     getMultiplays() {
         return this.http.get(this.API_Url + "multiplays")
         .map((response:Response)=>response.json() as Multiplay[]);
-    }
-    getMultiplaysByCat(arg0: number) {
-        //return Multiplay[];
-        return
     }
 
     getMultiplayById(id: number)
@@ -110,7 +120,7 @@ export class DataService {
     {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         return this.http.post(this.API_Url+"scores", score.getJson(), {headers: headers})
-        .map(data=>data.json() as Score);
+        .map((res:Response) => res.json());
     }
 
     insertContent(content: Content)
@@ -133,22 +143,6 @@ export class DataService {
         {headers:headers}).map(data=>data.json() as User);
     }
     
-    test(score:Score): any {
-        if(score.quiz.multiplay == undefined)
-        {
-            score.quiz.multiplay = 0
-        }
-
-        if(score.quiz.user.multiplay == undefined)
-        {
-            score.quiz.user.multiplay = "null";
-        }
-
-        if(score.user.multiplay == undefined)
-        {
-            score.user.multiplay = "null";
-        }
-    }
 
     getScoreByUser(userId:number)
     {

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, PipeTransform, Pipe, DoCheck } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Content } from '../../../model/content.model';
@@ -55,6 +55,8 @@ export class PlayMemoryComponent implements OnInit {
   theUser:User;
   messages:Message[]=[];
   private sendMessage: string;
+    
+  isfinish: boolean = false;
     //#endregion    
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
   
@@ -88,6 +90,27 @@ export class PlayMemoryComponent implements OnInit {
 
   }
 
+    openModal(){
+        this.display='block';
+        this.score.quiz = this.contents[0].quiz;
+    }
+
+    onCloseHandled(){
+        this.display='none';
+        console.log(this.score.getJson());
+        this.saveScore();
+        this.router.navigateByUrl('/home')
+    }
+
+    saveScore()
+    {
+    
+    this.dataService.insertScore(this.score).subscribe(data => {
+    },
+    error => {
+        //alert("Speichern fehlgeschlagen: " + error);
+    });
+    }
   
   ngDoCheck(): void {
     if(this.contents  != undefined)

@@ -69,16 +69,19 @@ export class PlayclozeComponent implements  OnInit{
 
     openModal(){
         this.display='block';
+        this.score.quiz = this.contents[0].quiz;
     }
 
     onCloseHandled(){
         this.display='none';
+        console.log(this.score.getJson());
+        this.saveScore();
         this.router.navigateByUrl('/home')
     }
 
   
   ngDoCheck(): void {
-    if(this.contents  != undefined)
+    if(this.contents  != undefined && !this.isfinish)
     {
         if(this.message != undefined)
         {
@@ -135,7 +138,7 @@ export class PlayclozeComponent implements  OnInit{
                         this.openModal();
                     }
                     }
-              }
+                }
             }
 
         }
@@ -152,6 +155,15 @@ send(){
   {
       this.dataService.user = this.theUser;
       this.socket.complete();
+  }
+  saveScore()
+  {
+    
+    this.dataService.insertScore(this.score).subscribe(data => {
+    },
+    error => {
+      //alert("Speichern fehlgeschlagen: " + error);
+    });
   }
 
   ngOnInit(){
