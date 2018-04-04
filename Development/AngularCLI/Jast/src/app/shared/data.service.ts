@@ -1,3 +1,4 @@
+import { Share } from './../model/share.model';
 import { User } from 'app/model/user.model';
 import { Score } from './../model/score.model';
 import { Content } from './../model/content.model';
@@ -11,7 +12,6 @@ import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of'
 import { Multiplay } from '../model/multiplay.model';
 import { Description } from '../model/description.model';
-import { Share } from '../model/share.model';
 
 
 @Injectable()
@@ -65,6 +65,12 @@ export class DataService {
     getQuizes(){
         return this.http.get(this.API_Url + "quizes")
         .map((response:Response)=>response.json() as Quiz[]);
+    }
+
+    
+    getShared(id:number): any {
+        return this.http.get(this.API_Url + "shared/user/"+id)
+        .map((response:Response)=>response.json() as Share[]);
     }
 
     getQuiz(id:number){
