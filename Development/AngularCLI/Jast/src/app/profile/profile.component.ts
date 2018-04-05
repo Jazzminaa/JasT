@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
   {
       this.ReadOnly =false;
       this.passw = "";
+
   }
 
   cancel()

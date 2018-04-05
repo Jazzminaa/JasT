@@ -16,6 +16,9 @@
                     Titel
                 </th>
                 <th>
+                    
+                </th>
+                <th>
                     Fach
                 </th>
                 <th>
@@ -38,6 +41,9 @@
                     <tr *ngIf="(filter===undefined || quiz.name.toUpperCase().indexOf(filter.toUpperCase())==0)&& getQuizesByCat(quiz.age)">
                         <td class="fontDesign">
                             <a routerLink="/switch/{{quiz.quiztype.id}}/{{quiz.id}}" routerLinkActive="active">{{quiz.name}}</a>
+                        </td>
+                        <td>
+                            <img *ngIf="quiz.priority == 1" class="img-responsive" src="assets/images/private.png">
                         </td>
                         <td>
                             {{quiz.category.name}}

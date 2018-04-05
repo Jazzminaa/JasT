@@ -377,14 +377,6 @@ send(){
   }
       
   getContent():any {
-      /*this.contents.forEach(content => {
-          console.log(this.contents[0].input1);
-          if(content.input1 == this.rowContents[this.rowOfCard1][this.colOfCard1])
-          {
-              return content;
-          }
-      });*/
-
       for (var i=0; i< this.contents.length; i++) {
           if(this.contents[i].input1 == this.rowContents[this.rowOfCard1][this.colOfCard1])
           {
