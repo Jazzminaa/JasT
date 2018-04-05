@@ -82,7 +82,7 @@ export class QandaComponent  implements OnInit {
          {
         
             this.selQuiz = this.contents[1].quiz;
-            this.selQuizType = this.contents[1].quiz.quizType;
+            this.selQuizType = this.contents[1].quiz.quiztype;
             this.selCategory = this.contents[1].quiz.category;
          
          }

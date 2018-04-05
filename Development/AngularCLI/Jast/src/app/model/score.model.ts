@@ -11,26 +11,21 @@ export class Score{
     playDay: Date;
     
     test(): any {
-        if(this.quiz.multiplay == undefined)
-        {
-            this.quiz.multiplay = 0
-        }
         if(this.id == undefined)
         {
             this.id=0;
         }
 
-        if(this.quiz.user.multiplay == undefined)
+        if(this.points == undefined)
         {
-            this.quiz.user.multiplay = "null";
+            this.points=0;
         }
 
-        if(this.user.multiplay == undefined)
+        if(this.playDay == undefined)
         {
-            this.user.multiplay = "null";
+            this.playDay= new Date("2018-03-07");
         }
     }
-    
 
     getJson():string
     {
@@ -38,47 +33,47 @@ export class Score{
         return "{"+
             "\"id\": "+this.id+","+
             "\"points\": \""+this.points+"\","+
-            "\"quiz\": {"+
-                "\"id\": "+this.quiz.id+","+
-                "\"age\": "+this.quiz.age+","+
-                "\"creationDate\": \""+this.quiz.creationDate+"\","+
-                "\"description\": \""+this.quiz.description+"\","+
-                "\"multiplay\": "+this.quiz.multiplay+","+
-                "\"name\": \""+this.quiz.name+"\","+
-                "\"picture\": null,"+
-                "\"category\": {"+
-                    "\"id\": "+this.quiz.category.id+","+
-                    "\"name\": \""+this.quiz.category.name+"\""+
-                "},"+
-                "\"quiztype\": {"+
-                    "\"id\": "+this.quiz.quizType.id+","+
-                    "\"name\": \""+this.quiz.quizType.name+"\""+
-                "},"+
-                "\"user\": {"+
-                    "\"id\": "+this.quiz.user.id+","+
-                    "\"dateOfBirth\": \""+this.quiz.user.dateOfBirth+"\","+
-                    "\"email\": \""+this.quiz.user.email+"\","+
-                    "\"firstname\": \""+this.quiz.user.firstName+"\","+
-                    "\"gender\": \""+this.quiz.user.gender+"\","+
-                    "\"password\": \""+this.quiz.user.password+"\","+
-                    "\"picture\": null,"+
-                    "\"lastname\": \""+this.quiz.user.lastName+"\","+
-                    "\"username\": \""+this.quiz.user.username+"\","+
-                    "\"multiplay\": "+this.quiz.user.multiplay+""+
-                "}"+
-            "},"+
-            "\"user\": {"+
-                "\"id\": "+this.user.id+","+
-                "\"dateOfBirth\": \""+this.user.dateOfBirth+"\","+
-                "\"email\": \""+this.user.email+"\","+
-                "\"firstname\": \""+this.user.firstName+"\","+
-                "\"gender\": \""+this.user.gender+"\","+
-                "\"password\": \""+this.user.password+"\","+
-                "\"picture\": null,"+
-                "\"lastname\": \""+this.user.lastName+"\","+
-                "\"username\": \""+this.user.username+"\","+
-                "\"multiplay\": "+this.user.multiplay+
-            "}"+
+            "\"playDay\": \""+this.playDay.getFullYear()+"-"+this.playDay.getMonth()+"-"+this.playDay.getDay()+"\","+
+            "\"quiz\": "+this.getQuiz(this.quiz)+","+
+            "\"user\":"+ this.getUser(this.user) +
         "}"
     }
+
+    getQuiz(q:Quiz)
+    {
+        return   "{  \"id\": "+q.id
+                        +",   \"age\": "+q.age
+                        +",    \"creationDate\": \""+q.creationDate
+                        +"\",   \"description\": \""+q.description
+                        +"\",  \"maxScore\": "+q.maxScore
+                        +",  \"multiplay\": "+q.multiplay
+                        +",\"name\": \""+q.name
+                        +"\",  \"picture\": "+null
+                        +",  \"priority\": "+q.priority
+                        +",   \"category\": {   \"id\": "+q.category.id+",  \"name\": \""+q.category.name+"\"  },"
+                        +"  \"quiztype\": { \"id\": "+q.quiztype.id+",  \"name\": \""+q.quiztype.name+"\"   }, "
+                        +"   \"user\": "+this.getUser(q.user)
+                +"}";
+    }
+
+    getUser(u:User)
+    {
+        if(u.multiplay == undefined)
+        {
+            u.multiplay = null;
+        }
+        return "{\"id\": "+u.id
+                    +", \"dateOfBirth\": \""+u.dateOfBirth
+                    +"\",\"email\": \""+u.email
+                    +"\", \"firstname\": \""+u.firstname
+                    +"\",  \"gender\": \""+u.gender
+                    +"\",  \"lastname\": \""+u.lastname
+                    +"\",  \"password\": \""+u.password
+                    +"\", \"picture\": "+null
+                    +",   \"username\": \""+u.username
+                    +"\",   \"multiplay\": "+u.multiplay
+                    +"}";
+            
+    }
+   
 }

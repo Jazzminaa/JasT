@@ -55,7 +55,7 @@ export class AddQuizComponent implements OnInit {
     }
 
     addQuiz() {
-      if (this.newQuiz.name == "" || this.newQuiz.category == null || this.newQuiz.quizType == null || this.newQuiz.age == null || this.newQuiz.description == "")
+      if (this.newQuiz.name == "" || this.newQuiz.category == null || this.newQuiz.quiztype == null || this.newQuiz.age == null || this.newQuiz.description == "")
           {this.errorText = "Es müssen alle Daten eingegeben werden!";
           console.log("Es müssen alle Daten eingegeben werden!")}
       else {
@@ -70,7 +70,7 @@ export class AddQuizComponent implements OnInit {
           
             this.dataService.newQuiz = this.newQuiz;
             this.newQuiz = new Quiz();
-            this.router.navigateByUrl("/addswitch/"+ this.dataService.newQuiz.quizType.id);
+            this.router.navigateByUrl("/addswitch/"+ this.dataService.newQuiz.quiztype.id);
     }
         
     }

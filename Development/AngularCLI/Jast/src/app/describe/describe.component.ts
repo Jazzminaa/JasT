@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../model/user.model';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-describe',
@@ -6,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./describe.component.css']
 })
 export class DescribeComponent implements OnInit {
+  user:User;
 
-  constructor() { }
+  constructor(private dataService:DataService)
+  {
+    if(dataService.user != null)
+    {
+        this.user = dataService.user;
+    }
+  }
 
-  ngOnInit() {
+  ngOnInit(){
+      
+  }
+  ngDoCheck(): void {
+
+  }
+
+  ngOnDestroy()
+  {
+      this.dataService.user = this.user;
   }
 
 }
