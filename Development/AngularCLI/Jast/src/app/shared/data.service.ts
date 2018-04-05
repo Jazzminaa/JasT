@@ -1,3 +1,4 @@
+import { Description } from './../model/description.model';
 import { DescribeComponent } from './../describe/describe.component';
 import { Share } from './../model/share.model';
 import { User } from 'app/model/user.model';
@@ -12,7 +13,6 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/observable/of'
 import { Multiplay } from '../model/multiplay.model';
-import { Description } from '../model/description.model';
 
 
 @Injectable()
@@ -74,6 +74,11 @@ export class DataService {
         .map((response:Response)=>response.json() as Share[]);
     }
 
+    getDesc(id:number): any {
+        return this.http.get(this.API_Url + "description/user/"+id)
+        .map((response:Response)=>response.json() as Description[]);
+    }
+
     getQuiz(id:number){
         return this.http.get(this.API_Url + "quizes/"+id)
         .map((response:Response)=>response.json() as Quiz);
@@ -112,20 +117,44 @@ export class DataService {
 
 
    insertQuiz(quiz: Quiz) {
+    if(quiz.id == undefined)
+    {
+        quiz.id = 0;
+    }
+    if(quiz.multiplay == undefined || quiz.multiplay == null)
+    {
+        quiz.multiplay = 0;
+    }
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(this.API_Url+"quizes", quiz.getJson(), {headers: headers})
+        return this.http.post(this.API_Url+"quizes", JSON.stringify(quiz), {headers: headers})
         .map((res:Response) => res.json());
     }
 
     insertShare(s: Share) {
+        if(s.id == undefined)
+        {
+            s.id = 0;
+        }
+        if(s.quiz.multiplay == undefined || s.quiz.multiplay == null)
+        {
+            s.quiz.multiplay = 0;
+        }
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(this.API_Url+"shared", s.getJson(), {headers: headers})
+        return this.http.post(this.API_Url+"shared", JSON.stringify(s), {headers: headers})
         .map((res:Response) => res.json());
     }
 
     inserDesc(d: Description) {
+        if(d.id == undefined)
+        {
+            d.id = 0;
+        }
+        if(d.quiz.multiplay == undefined || d.quiz.multiplay == null)
+        {
+            d.quiz.multiplay = 0;
+        }
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(this.API_Url+"description", d.getJson(), {headers: headers})
+        return this.http.post(this.API_Url+"description", JSON.stringify(d), {headers: headers})
         .map((res:Response) => res.json());
     }
 
@@ -137,30 +166,59 @@ export class DataService {
 
     insertScore(score: Score)
     {
+        if(score.id == undefined)
+        {
+            score.id = 0;
+        }
+        if(score.quiz.multiplay == undefined || score.quiz.multiplay == null)
+        {
+            score.quiz.multiplay = 0;
+        }
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(this.API_Url+"scores", score.getJson(), {headers: headers})
+        return this.http.post(this.API_Url+"scores", JSON.stringify(score), {headers: headers})
         .map((res:Response) => res.json());
     }
 
     insertContent(content: Content)
     {
+        if(content.id == undefined)
+        {
+            content.id = 0;
+        }
+        if(content.quiz.multiplay == undefined || content.quiz.multiplay == null)
+        {
+            content.quiz.multiplay = 0;
+        }
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        return this.http.post(this.API_Url+"content", content.getJson(), {headers: headers})
+        return this.http.post(this.API_Url+"content", JSON.stringify(content), {headers: headers})
         .map((res:Response) => res.json());
     }
 
  
     insertUser(user: User) {
-        let headers:Headers=new Headers({"Content-Type":"application/json"})
-        return this.http.post(this.API_Url+"users",user.getJson(),
+        if(user.id == undefined)
+        {
+            user.id = 0;
+        }
+        let headers:Headers=new Headers({"Content-Type":"application/json"});
+        return this.http.post(this.API_Url+"users",JSON.stringify(user),
         {headers:headers}).map(data=>data.json() as User);
     }
 
     updateUser(user: User) {
-        let headers:Headers=new Headers({"Content-Type":"application/json"})
-        return this.http.put(this.API_Url+"users/"+user.id,user.getJson(),
-        {headers:headers}).map(data=>data.json() as User);
+        let headers:Headers=new Headers({"Content-Type":"application/json"});
+        return this.http
+             .put(this.API_Url+"users/"+user.id, JSON.stringify(user), {headers: headers})
+             .map(res => res.json());
     }
+
+    updateQuiz(q: Quiz) {
+        let headers:Headers=new Headers({"Content-Type":"application/json"});
+        return this.http
+             .put(this.API_Url+"quizes/"+q.id, JSON.stringify(q), {headers: headers})
+             .map(res => res.json());
+    }
+    
     
 
     getScoreByUser(userId:number)

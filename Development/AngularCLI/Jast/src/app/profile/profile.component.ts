@@ -1,6 +1,7 @@
 import { User } from 'app/model/user.model';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../shared/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -17,20 +18,22 @@ export class ProfileComponent implements OnInit {
   count:number = 0;
   ReadOnly: boolean = false;
   birthday:Date;
+  changenewP:boolean = true;
 
   passw:String ="";
-  constructor(private dataService:DataService)
+  newpassword:string =" ";
+  retnewpassword:String =" ";
+
+  constructor(private router: Router,private dataService:DataService)
   {
     if(dataService.user != null)
     {
-        this.toOutPutUser(dataService.user);
+      this.user = this.dataService.user;
+      this.user.multiplay = null;
     }
     
   }
    
-  toOutPutUser(u: User) {
-    this.user = this.dataService.user;
-  }
   edit()
   {
       this.ReadOnly =false;
@@ -41,21 +44,34 @@ export class ProfileComponent implements OnInit {
   cancel()
   {
       this.ReadOnly =true;
+      this.dataService.getUserWithEmail(this.user.email).subscribe(data=>{this.user = data;})
       this.passw = "";
   }
   save()
   {
+
     if(this.user.password == this.passw)
     {
-      this.ReadOnly =true;
-      this.dataService.user = this.user;
-      this.saveChange();
-      this.passw = "";
+      if( this.newpassword == this.retnewpassword )
+      {
+        if(!this.changenewP)
+        {
+            this.user.password = this.newpassword;
+        }
+        this.changenewP = true;
+        this.ReadOnly =true;
+        this.saveChange();
+        this.passw = "";
+      }
+      else{
+        alert("Neues Passwort stimmt nicht mit der Bestätigung überein!")
+      }
+    }
+    else{
+      alert("Passwort stimmt nicht!")
     }
   }
   saveChange(){
-    let u : String = this.user.getJson();
-    console.log(u);
     this.dataService.updateUser(this.user).subscribe(data =>{
     
     });

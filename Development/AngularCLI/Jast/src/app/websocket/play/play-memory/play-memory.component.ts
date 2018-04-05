@@ -117,7 +117,6 @@ export class PlayMemoryComponent implements OnInit {
 
     onCloseHandled(){
         this.display='none';
-        console.log(this.score.getJson());
         this.saveScore();
         this.router.navigateByUrl('/home')
     }

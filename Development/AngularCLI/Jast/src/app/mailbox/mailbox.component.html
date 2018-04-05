@@ -1,11 +1,11 @@
 <h1 class="glyphicon glyphicon-play">Mailbox</h1>
 <hr class="one">
-<button id="sharedQuizBtn">Geteilte Quiz</button>
-<button id="changeDescBtn"> Änderungsvorschläge</button>
+<button id="sharedQuizBtn" (click)="isShared=true">Geteilte Quiz</button>
+<button id="changeDescBtn" (click)="isShared=false"> Änderungsvorschläge</button>
 
 <div id="MailContent">
-    <table class="table" [hidden]="!isShared">
-        <thead>
+    <table class="table" [hidden]="isShared">
+        <thead >
             <tr>
                 <th>
                     Username
@@ -26,7 +26,7 @@
     
         </thead>
         <tbody>
-                    <tr *ngFor="let tip of tips">
+                    <tr *ngFor="let tip of tips;let i=index">
                         <td>
                            {{tip.user1.username}}
                         </td>
@@ -37,13 +37,13 @@
                             {{tip.quiz.name}}
                         </td>
                         <td>
-                            <button (click)="use()" >Grund anzeigen</button>
+                            <button (click)="openModal(1,i)">Grund anzeigen</button>
                         </td>
                         <td>
-                            <button (click)="delete()">Änderungsvorschlag anzeigen</button>
+                            <button (click)="openModal(2,i)">Änderungsvorschlag anzeigen</button>
                         </td>
                         <td>
-                            <button (click)="use()" >Vorschlag übernehmen</button>
+                            <button (click)="use(i)" >Vorschlag übernehmen</button>
                         </td>
                         <td>
                             <button (click)="delete()">Löschen</button>
@@ -52,7 +52,7 @@
         </tbody>
     </table>
 
-    <table class="table" [hidden]="isShared">
+    <table class="table" [hidden]="!isShared">
         <thead>
             <tr>
                 <th>
@@ -77,39 +77,25 @@
     
         </thead>
         <tbody>
-                    <tr *ngFor="let share of shared">
+                    <tr *ngFor="let share of shared; let i = index">
                         <td>
-                           Sussi
+                           {{share.user1.username}}
                         </td>
                         <td>
-                            s@test.com
+                            {{share.user1.email}}
                         </td>
                         <td> 
-                            <a routerLink="/switch/{{share.quiz.quiztype.id}}/{{share.quiz.id}}" routerLinkActive="active">Dass/s</a>
+                            <a routerLink="/switch/{{share.quiz.quiztype.id}}/{{share.quiz.id}}" routerLinkActive="active">{{share.quiz.name}}</a>
                             
                         </td>
                         <td>
-                            Deutsch
+                                {{share.quiz.category.name}}
                         </td>
                         <td>
-                            QandA
+                                {{share.quiz.quiztype.name}}
                         </td>
                         <td>
-                            <button type="button" class="btn-danger" (click)="openModal(quiz.id)">Info</button>
-                            <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title">Information über Quiz {{quizname}}</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>{{quizdescription}}</p>
-                                        </div>
-                                        <button routerLink="/describe/{{quiz.id}}" routerLinkActive="active">Änderungsvorschlag schicken</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <button type="button" class="btn-danger" (click)="openModal(0,i)">Info</button>                         
                         </td>
                         <td>
                             <button (click)="delete()">Löschen</button>
@@ -118,3 +104,27 @@
         </tbody>
     </table>
 </div>
+
+<body>
+        <div class="backdrop" [ngStyle]="{'display':display}"></div>
+        <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{header}}</h4>
+              </div>
+              <div class="modal-body">
+                <p>{{content}}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandled()">Schließen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        </body>
+
+
+<router-outlet></router-outlet>

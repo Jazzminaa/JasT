@@ -37,7 +37,7 @@ export class DescribeComponent implements OnInit {
   loadQuiz(q:number)
   {
 
-    this.dataService.getQuiz(q).subscribe(data=>{this.tip.quiz=data;},
+    this.dataService.getQuiz(q).subscribe(data=>{this.tip.quiz=data; this.tip.user2=data.user},
       error=>{})
   }
 
@@ -53,6 +53,8 @@ export class DescribeComponent implements OnInit {
     else{
       alert("Änderungsvorschlag eintragen und Grund angeben!");
     }
+
+    this.router.navigateByUrl("\login")
       
   }
   ngOnInit(){

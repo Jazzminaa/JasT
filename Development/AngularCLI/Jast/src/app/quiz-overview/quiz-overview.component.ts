@@ -13,7 +13,7 @@ import 'rxjs/add/operator/switchMap';
 export class QuizOverviewComponent implements OnInit {
     display: string;
 
- 
+    qid:number =0;
     quizes: Quiz[];
     user: User;
     name:string = "Kein User";
@@ -64,6 +64,7 @@ export class QuizOverviewComponent implements OnInit {
             if(element.id == i){
               this.quizdescription = element.description;
               this.quizname = element.name;
+              this.qid = element.id;
             }
           });
               

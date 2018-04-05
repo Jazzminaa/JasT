@@ -17,12 +17,20 @@
             <input [(disabled)]="ReadOnly"  [(ngModel)]="user.gender" type="text" name="gender"/>
         
             <label>E-mail</label>
-            <input [(disabled)]="ReadOnly"  [(ngModel)]="user.email" type="text" name="email"/>
+            <input disabled="true"  [(ngModel)]="user.email" type="text" name="email"/>
+
+            
+            <label [hidden]="changenewP">Neues Passwort</label>
+            <input [hidden]="changenewP" type="password" [(ngModel)]="newpassword" name="pass">
+
+            <label [hidden]="changenewP">Neues Passwort bestätigen</label>
+            <input [hidden]="changenewP" type="password" [(ngModel)]="retnewpassword" name="pass">
 
             <label [hidden]="ReadOnly">Passwort</label>
+
             <input [hidden]="ReadOnly" type="password" [(ngModel)]="passw" name="pass">
 
-            <button [hidden]="ReadOnly"  (click)="edit()">Passwort ändern</button>
+            <button [hidden]="ReadOnly"  (click)="changenewP = false">Passwort ändern</button>
 
             <button [hidden]="!ReadOnly"  (click)="edit()">Ändern</button>
             <button [hidden]="ReadOnly"  (click)="save()">Speichern</button>
