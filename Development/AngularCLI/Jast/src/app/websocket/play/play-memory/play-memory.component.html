@@ -4,19 +4,19 @@
   <div id="memory_board">
       <table >
               <tr >
-                  <td *ngFor="let content of row1;let i = index"><button (click)="showContent(0,i)"  id="card"><div *ngIf="checkBoolean(0,i)">{{content}}</div></button></td> <!-- (click)="myFunction()"-->
+                  <td *ngFor="let content of row1;let i = index"><button  (click)="showContent(0,i)"  id="card"><div *ngIf="checkBoolean(0,i) == true">{{content}}</div></button></td> <!-- (click)="myFunction()"-->
               </tr>
               <tr >
-                  <td *ngFor="let content of row2;let i = index"><button (click)="showContent(1,i)" id="card"><div *ngIf="checkBoolean(1,i)">{{content}}</div></button></td>
+                  <td *ngFor="let content of row2;let i = index"><button (click)="showContent(1,i)" id="card"><div *ngIf="checkBoolean(1,i)== true">{{content}}</div></button></td>
               </tr>
               <tr >
-                  <td *ngFor="let content of row3;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
+                  <td *ngFor="let content of row3;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)== true">{{content}}</div></button></td>
               </tr>
               <tr >
-                  <td *ngFor="let content of row2;let i = index"><button (click)="showContent(1,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
+                  <td *ngFor="let content of row4;let i = index"><button (click)="showContent(3,i)" id="card"><div *ngIf="checkBoolean(3,i)== true">{{content}}</div></button></td>
               </tr>
               <tr >
-                  <td *ngFor="let content of row3;let i = index"><button (click)="showContent(2,i)" id="card"><div *ngIf="checkBoolean(2,i)">{{content}}</div></button></td>
+                  <td *ngFor="let content of row5;let i = index"><button (click)="showContent(4,i)" id="card"><div *ngIf="checkBoolean(4,i)== true">{{content}}</div></button></td>
               </tr>
       </table>
   </div>
@@ -40,8 +40,6 @@
     <button  id="button" (click)="send()"> Senden</button>
 
     <body>
-        <button type="button" class="formatButton" (click)="openModal();">Speichern</button>
-        
         <div class="backdrop" [ngStyle]="{'display':display}"></div>
         <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
           <div class="modal-dialog" role="document">

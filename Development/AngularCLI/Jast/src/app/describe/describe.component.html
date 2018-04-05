@@ -5,11 +5,11 @@
 <hr class="one">
 <div>
   <h4>Grund:</h4>
-  <textarea class="md-textarea form-control"></textarea>
+  <textarea [(ngModel)]="tip.reason" class="md-textarea form-control"></textarea>
 </div>
 <div>
   <h4>Vorschlag:</h4>
-  <textarea class="md-textarea form-control"></textarea>
+  <textarea [(ngModel)]="tip.description" class="md-textarea form-control"></textarea>
 </div>
 
 <button (click)="senden()">Senden</button>

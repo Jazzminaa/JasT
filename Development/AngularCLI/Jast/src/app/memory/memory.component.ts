@@ -35,6 +35,15 @@ export class MemoryComponent implements OnInit {
     duration:number= 90;
     clockDisplay : string; 
     interval: number;
+
+    width:string = "height: 150px; width: 150px;";
+    height:number = 150;
+
+
+    getId(id:boolean)
+    {
+        return "card"
+    }
     
     display: string;
     //#endregion

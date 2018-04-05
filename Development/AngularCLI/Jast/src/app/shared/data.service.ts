@@ -1,3 +1,4 @@
+import { DescribeComponent } from './../describe/describe.component';
 import { Share } from './../model/share.model';
 import { User } from 'app/model/user.model';
 import { Score } from './../model/score.model';
@@ -74,7 +75,7 @@ export class DataService {
     }
 
     getQuiz(id:number){
-        return this.http.get(this.API_Url + "quizes"+id)
+        return this.http.get(this.API_Url + "quizes/"+id)
         .map((response:Response)=>response.json() as Quiz);
     }
 
@@ -113,6 +114,18 @@ export class DataService {
    insertQuiz(quiz: Quiz) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         return this.http.post(this.API_Url+"quizes", quiz.getJson(), {headers: headers})
+        .map((res:Response) => res.json());
+    }
+
+    insertShare(s: Share) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url+"shared", s.getJson(), {headers: headers})
+        .map((res:Response) => res.json());
+    }
+
+    inserDesc(d: Description) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(this.API_Url+"description", d.getJson(), {headers: headers})
         .map((res:Response) => res.json());
     }
 

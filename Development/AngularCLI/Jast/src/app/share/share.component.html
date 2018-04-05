@@ -1,9 +1,15 @@
 <h1 class="glyphicon glyphicon-play">Teilen</h1>
+
+<div id="filter" >
+    <label>Filter User:</label>
+    <label class="glyphicon glyphicon-zoom-in"></label>
+    <input size="30"  [(ngModel)]="filter" placeholder="Suche..."/>
+</div>
+<br>
 <hr class="one">
 
-<h2>Quiz teilen mit ...</h2>
-
-<table class="table">
+<h2>Quiz "{{shareQuiz.quiz.name}}" teilen mit ...</h2>
+<table class="table" [hidden]="login">
   <thead>
     <th>
         Name
@@ -14,19 +20,17 @@
   </thead>
   
   <tbody>
-<!--<template ngFor let-multiplay [ngForOf]="multiplays">-->
-    <tr>
-        <td>
-           Sussi Sonne
+    <tr *ngFor="let u of reguser;let i = index" >
+        <td *ngIf="(filter===undefined || u.firstname.toUpperCase().indexOf(filter.toUpperCase())==0)&& this.user.id != u.id">
+           {{u.firstname}} {{u.lastname}}
         </td>
-        <td>
-            s@test.com
+        <td *ngIf="(filter===undefined || u.firstname.toUpperCase().indexOf(filter.toUpperCase())==0)&& this.user.id != u.id">
+            {{u.email}}
         </td>
-        <td>
-           <button>Teilen</button>
+        <td *ngIf="(filter===undefined || u.firstname.toUpperCase().indexOf(filter.toUpperCase())==0)&& this.user.id != u.id">
+           <button  (click)="share(i)">Teilen</button>
         </td>
     </tr>
-<!--</template>-->
 
 </tbody>
 </table>

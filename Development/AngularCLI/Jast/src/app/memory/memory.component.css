@@ -2,7 +2,7 @@ div#memory_board{
     background:#DADADA;
     border:#999 1px solid;
     width: 1100px;
-    height: 560px;
+    min-height: 560px;
     padding: 24px;
     margin: 0px auto;
     float: left;
@@ -14,8 +14,8 @@ div#memory_board{
   button#card {
     background: #C30303;
     border: #000 1px solid;
-    width: 150px;
-    height: 150px;
+    min-width: 150px;
+    min-height: 150px;
     float: left;
     margin: 12px;
     padding: 20px;
@@ -26,6 +26,8 @@ div#memory_board{
     text-align: center;
     border-radius: 10px;
   }
+
+
   
   #scoreArea{
     width: 200px;

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit, AfterViewInit, Input, PipeTransform, Pipe, DoCheck } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -16,7 +17,15 @@ import { Message } from 'app/model/message.model';
 })
 export class PlayMemoryComponent implements OnInit {
 
-    myturn: number;
+    myturn(): any {
+        for(var u=0; u <3;u++)
+        {
+            for(var o=0;o <=5;o++)
+            {
+                    this.enableCard[u][o]=false;
+            }
+        }
+    }
   //#region  Variablen game
   contents:Content[];
   contentsmixed:string[]=[];
@@ -31,8 +40,8 @@ export class PlayMemoryComponent implements OnInit {
   r1:number = 0;
   r2:number = 0;
   content:Content=new Content;
-  isTrue:boolean[][]=[[false],[false],[false],[false],[false],[false],[false],[false],[false]];
-  enableCard:boolean[][]=[[false],[false],[false],[false],[false],[false],[false],[false],[false]];
+  isTrue:boolean[][]=[[false],[false],[false]];
+  enableCard:boolean[][]=[[false],[false],[false]];
   count:number = 0;
   checkIfClosed:boolean = false;
   user:User;
@@ -58,6 +67,8 @@ export class PlayMemoryComponent implements OnInit {
   private sendMessage: string;
     
   isfinish: boolean = false;
+  reiheOf:number;
+  reihe: number;
     //#endregion    
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
   
@@ -85,6 +96,14 @@ export class PlayMemoryComponent implements OnInit {
       if(this.multiplayId != undefined)
       {
           this.socket = websocketService.createWebsocket(this.multiplayId.toString());
+          this.myturn();
+          for(var u=0; u <3;u++)
+            {
+                for(var o=0;o <=5;o++)
+                {
+                        this.isTrue[u][o]=false;
+                }
+            }
         
       }
      
@@ -103,17 +122,17 @@ export class PlayMemoryComponent implements OnInit {
         this.router.navigateByUrl('/home')
     }
 
-    saveScore()
-    {
+    saveScore() {
     
-    this.dataService.insertScore(this.score).subscribe(data => {
-    },
-    error => {
-        //alert("Speichern fehlgeschlagen: " + error);
-    });
+        this.dataService.insertScore(this.score).subscribe(data => {
+        },
+        error => {
+            //alert("Speichern fehlgeschlagen: " + error);
+        });
     }
   
   ngDoCheck(): void {
+      console.log("r: "+this.reihe)
     if(this.contents  != undefined)
     {
         if(this.message != undefined)
@@ -128,6 +147,22 @@ export class PlayMemoryComponent implements OnInit {
               this.messages.push(m);
               this.message ="add";
             }
+            else if(this.message.includes("memory;"))
+            {
+                this.contentsmixed = this.message.split(';')[1].split("\"")[0].split(',');
+                this.fillCard();
+                
+            }
+            else if(this.message.includes("reihe"))
+            {
+                if(this.reihe == undefined)
+                {
+                    this.reihe = 0;
+                }
+                this.myturn();
+                this.reiheOf = Number(this.message.split(';')[1].split("\"")[0]);
+                this.message = "add";
+            }
             else if(this.message.includes('+'))
             {
                   this.numOfPerson++;
@@ -141,24 +176,49 @@ export class PlayMemoryComponent implements OnInit {
             else if(this.message.includes('num'))
             {
                   this.numOfPerson= Number(this.message.split(':')[1]);
-                  this.myturn = Number(this.message.split(':')[1]);
+                  this.reihe = Number(this.message.split(':')[1]);
                   this.message ="add";
             }
-            else{
-              this.data =this.message.split(';');
-              if(this.data[1]!= undefined)
-              {
-                  
-                  this.data[1] = this.data[1].substring(0, this.data[1].length - 1);
-              }
-              let num:number = Number(this.data[0].match(/\d+/)[0]);
-              if(this.contents[ Number(num)] != undefined)
-              {
-                  
-                  this.contents[Number(num)].geloestVon ="Gelöst von: "+ this.data[1];
-                  this.message ="add";
-                  
-              }
+            else if(this.message != "add" && !this.message.includes("next")){
+                this.myturn();
+                if(this.message.includes('open'))
+                {
+
+                }
+                else if(this.message.includes('close')){
+                    
+                }
+                else{
+                            
+                    console.log("etwas gelöst");
+                    this.data =this.message.split(';');
+
+                    let num:number = Number(this.data[0].match(/\d+/)[0]);
+                    console.log(num);
+                    for(var e=0; e< this.contents.length;e++)
+                    {
+                        if(this.contents[e].id == num)
+                        {
+                            num=e;
+                            e=this.contents.length;
+                        }
+                    }
+                    if(this.contents[ Number(num)] != undefined)
+                    {
+                        
+                        this.contents[Number(num)].geloestVon ="Gelöst von: "+ this.data[this.data.length-1];
+                        let r1 :number = Number(this.data[1].match(/\d+/)[0]);
+                        let c1 :number = Number(this.data[2].match(/\d+/)[0]);
+                        let r2 :number = Number(this.data[3].match(/\d+/)[0]);
+                        let c2 :number = Number(this.data[4].match(/\d+/)[0]);
+                        console.log(r1+"/"+c1+"/"+r2+"/"+c2)
+                        this.isTrue[r1][c1] = true;
+                        this.isTrue[r2][c2] = true;
+                        this.message ="add";
+                    }
+                }
+              
+              this.message ="add";
             }
 
         }
@@ -195,7 +255,7 @@ send(){
 
   }
 
-  waitForLoading() {
+    waitForLoading() {
     setTimeout(() => {
         if(this.contents == undefined)
         {
@@ -230,35 +290,53 @@ send(){
 
   }
 
-  correctGuess(i:number)
+  correctGuess(id,r:number,c:number,r2:number,c2:number)
   {
-      this.socket.next(i+";"+this.dataService.user.username);
+
+      this.socket.next(id+";"+r+";"+c+";"+r2+";"+c2+";"+this.dataService.user.username);
       this.score.points += 2;
   }
+
+  
+  wrongGuess(id:string,r:number,c:number,r2:number,c2:number): any {
+    this.socket.next(id+";"+r+";"+c+";"+r2+";"+c2+";"+this.dataService.user.username);
+    }
 
 
   //#region FillContent
   fillTable()
   {
-      for(var i= 0; i < 9; i++)
+      if(this.contentsmixed == undefined || this.contentsmixed.length == 0)
       {
-          this.contentsmixed.push(this.contents[i].input1);
-          this.contentsmixed.push(this.contents[i].input2);
-      }
-      this.shuffle(this.contentsmixed);
-      for (var i=0; i< this.contentsmixed.length; i+=3) {
-           this.row1.push(this.contentsmixed[i]);
-           this.row2.push(this.contentsmixed[i+1]);
-           this.row3.push(this.contentsmixed[i+2]);
-      }
-      for (var i=0; i< this.row1.length; i++) {
-          this.rowContents[0][i] = this.row1[i];
-          this.rowContents[1][i] = this.row2[i];
-          this.rowContents[2][i] = this.row3[i];
-      }
-
+            for(var i= 0; i < 9; i++)
+            {
+                this.contentsmixed.push(this.contents[i].input1);
+                this.contentsmixed.push(this.contents[i].input2);
+            }
+            this.shuffle(this.contentsmixed);
+            this.socket.next("memory;"+this.contentsmixed.toString());
+            this.fillCard();
+    }
+    
       
   }  
+
+  fillCard()
+  {
+    this.row1 =[];
+    this.row2 =[];
+    this.row3 =[];
+    for (var i=0; i< this.contentsmixed.length; i+=3) {
+        this.row1.push(this.contentsmixed[i]);
+        this.row2.push(this.contentsmixed[i+1]);
+        this.row3.push(this.contentsmixed[i+2]);
+    }
+    for (var i=0; i< this.row1.length; i++) {
+        this.rowContents[0][i] = this.row1[i];
+        this.rowContents[1][i] = this.row2[i];
+        this.rowContents[2][i] = this.row3[i];
+    }
+  }
                     
   shuffle(array:any[]) {
     if(array != undefined){
@@ -283,58 +361,74 @@ send(){
   //#region  Game
   checkBoolean(row:number,col:number)
   {
-      if(this.isTrue[row][col])
-      {
-          return this.isTrue[row][col];
-      }
-      return this.enableCard[row][col];
+      
+    if(this.isTrue[row][col])
+    {
+        return this.isTrue[row][col];
+    }
+    if(this.reiheOf == this.reihe)
+    {
+        return this.enableCard[row][col];
+    }
+    return false;
   }
 
   showContent(row:number,col:number)
   {
-      if(!this.isTrue[row][col])
+      console.log("reihe:"+this.reihe+" == "+this.reiheOf);
+      if(this.reihe == this.reiheOf)
       {
-          this.enableCard[row][col] = true;
-          this.CloseIfNotCLosed();
-          if(this.rowOfCard1 == undefined)
-          {
-              this.rowOfCard1 = row;
-              this.colOfCard1 = col;
-          }
-          else if(this.rowOfCard2 == undefined)
-          {
+        if(!this.isTrue[row][col])
+        {
+            console.log("Karte zählt");
+            if(this.rowOfCard1 == undefined)
+            {
+                this.myturn();
+                this.rowOfCard1 = row;
+                this.colOfCard1 = col;
+                this.enableCard[row][col] = true;
+            }
+            else if(this.rowOfCard2 == undefined)
+            {
 
-              if(!(this.rowOfCard1 == row && this.colOfCard1 == col))
-              {
-                  this.rowOfCard2 = row;
-                  this.colOfCard2 = col;
-                  this.proof();
-              }
-          }
-      }
+                if(!(this.rowOfCard1 == row && this.colOfCard1 == col))
+                {
+                    this.rowOfCard2 = row;
+                    this.colOfCard2 = col;
+                    this.enableCard[row][col] = true;
+                    this.proof();
+                }
+            }
+        }
+    }
       
   }
 
   proof() {
       this.checkIfClosed = true;
       this.content = this.getContent();
-      if(this.content.input2 == this.rowContents[this.rowOfCard2][this.colOfCard2])
+      if(this.content != undefined)
       {
           this.isTrue[this.rowOfCard1][this.colOfCard1] = true;
           this.isTrue[this.rowOfCard2][this.colOfCard2] = true;
-          console.log(this.rowContents[this.rowOfCard1][this.colOfCard1]+"&& " +this.rowContents[this.rowOfCard2][this.colOfCard2]);
+          
+          this.correctGuess(this.content.id,this.rowOfCard1,this.colOfCard1,this.rowOfCard2,this.colOfCard2);
           this.rowOfCard1 = undefined;
           this.rowOfCard2 = undefined;
       }
       else{
           this.r1 = this.rowOfCard1;
           this.r2 = this.rowOfCard2;
+          this.wrongGuess("open",this.rowOfCard1,this.colOfCard1,this.rowOfCard2,this.colOfCard2);
           this.rowOfCard1 = undefined;
           this.rowOfCard2 = undefined;
+
           this.timeout();
       }
 
   }
+
+
 
   timeout() {
       setTimeout(() => {
@@ -348,14 +442,12 @@ send(){
               }
               else{
                   this.CloseIfNotCLosed();
-                  this.checkIfClosed = false;
                   this.count = 0;
               }
               this.count++;
           }
           else{
               this.CloseIfNotCLosed();
-              this.checkIfClosed = false;
               this.count = 0;
               return;
           }
@@ -366,24 +458,29 @@ send(){
       
       if(this.checkIfClosed)
       {
-          console.log("Close")
+          console.log("close")
+          
           if(this.colOfCard1 != undefined && this.colOfCard2!= undefined)
           {
               this.enableCard[this.r1][this.colOfCard1] = false;
               this.enableCard[this.r2][this.colOfCard2] = false;
+              this.socket.next("next");
+              this.wrongGuess("close",this.r1,this.colOfCard1,this.r2,this.colOfCard2);
           }
           this.checkIfClosed = false;
       }
   }
       
   getContent():any {
+    console.log("content holen");
       for (var i=0; i< this.contents.length; i++) {
-          if(this.contents[i].input1 == this.rowContents[this.rowOfCard1][this.colOfCard1])
+          console.log(this.contents[i].input1+" &&"+ this.rowContents[this.rowOfCard1][this.colOfCard1]);
+          if((this.contents[i].input1 == this.rowContents[this.rowOfCard1][this.colOfCard1]&& this.contents[i].input2 == this.rowContents[this.rowOfCard2][this.colOfCard2])||(this.contents[i].input2 == this.rowContents[this.rowOfCard1][this.colOfCard1]&& this.contents[i].input1 == this.rowContents[this.rowOfCard2][this.colOfCard2]))
           {
               return this.contents[i];
           }
       }
-
+      return undefined;
   }
   //#endregion
 
