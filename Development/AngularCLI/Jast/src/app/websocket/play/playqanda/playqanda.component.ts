@@ -32,6 +32,11 @@ export class PlayqandaComponent implements  OnInit{
   isfinish: boolean = false;
   display: string;
 
+  
+  header = "Dein Punktestand";
+  con = "Du hast {{score?.points}} Punkte erreicht!";
+  buttonText = "Speichern";
+
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
       
       if(dataService.user != null)
@@ -62,10 +67,23 @@ export class PlayqandaComponent implements  OnInit{
 
   }
 
-    openModal(){
-        this.display='block';
-        this.score.quiz = this.contents[0].quiz;
+  openModal(i:number){
+    this.display='block';
+    this.score.quiz = this.contents[0].quiz;
+
+    
+    if(i= 0)
+    {
+        this.header = "Dein Punktestand";
+        this.con = "Du hast "+this.score.points+"Punkte erreicht!";
+        this.buttonText = "Speichern";
     }
+    else{
+        this.header ="Warten";
+        this.con = "Warte auf einen weitern Spieler!";
+        this.buttonText = "Schließen";
+    }
+}
 
     onCloseHandled(){
         this.display='none';
@@ -84,6 +102,13 @@ export class PlayqandaComponent implements  OnInit{
     }
 
   ngDoCheck(): void {
+    if(this.numOfPerson <=1)
+    {
+        this.openModal(1);
+    }
+    else{
+        this.onCloseHandled();
+    }
       if(this.contents  != undefined && !this.isfinish)
       {
           if(this.message != undefined)
@@ -140,7 +165,7 @@ export class PlayqandaComponent implements  OnInit{
                       }
                       if(this.isfinish)
                       {
-                          this.openModal();
+                          this.openModal(0);
                       }
                       }
                     

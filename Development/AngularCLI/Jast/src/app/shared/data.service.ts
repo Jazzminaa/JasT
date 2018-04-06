@@ -219,5 +219,19 @@ export class DataService {
         .map((response:Response)=>response.json());
     }
 
+    deleteShare(id:number){
+        return this.http.delete(this.API_Url + "shared/"+id)
+        .map((response:Response)=>response.json());
+    }
+
+    deleteDesc(id:number){
+        return this.http.delete(this.API_Url + "description/"+id)
+        .map((response:Response)=>response.json());
+    }
+
+    deleteMulti(id:number){
+        return this.http.delete(this.API_Url + "multiplays/"+id)
+        .map((response:Response)=>response.json());
+    }
     
 }
