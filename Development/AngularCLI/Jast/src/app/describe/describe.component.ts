@@ -54,7 +54,7 @@ export class DescribeComponent implements OnInit {
       alert("Änderungsvorschlag eintragen und Grund angeben!");
     }
 
-    this.router.navigateByUrl("\login")
+    this.router.navigateByUrl("\home")
       
   }
   ngOnInit(){

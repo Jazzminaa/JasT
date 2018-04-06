@@ -73,7 +73,6 @@ export class PlayRightandWrongComponent implements  OnInit{
 
     onCloseHandled(){
         this.display='none';
-        console.log(this.score.getJson());
         this.saveScore();
         this.router.navigateByUrl('/home')
     }
@@ -116,7 +115,7 @@ export class PlayRightandWrongComponent implements  OnInit{
                   this.numOfPerson= Number(this.message.split(':')[1]);
                   this.message ="add";
             }
-            else{
+            else if (this.message !="add" &&!this.message.includes('reihe')){
               this.data =this.message.split(';');
               if(this.data[1]!= undefined)
               {

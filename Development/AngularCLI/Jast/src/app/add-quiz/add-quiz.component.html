@@ -17,16 +17,19 @@
             <input  [(ngModel)]="newQuiz.description" type="text" name="descrip">
 
             <label>Quiz Typ</label>
-             <select [(ngModel)]="newQuiz.quizType" name="quiz">
+             <select [(ngModel)]="newQuiz.quiztype" name="quiz">
                <option *ngFor="let quiza of quizTypes" [ngValue]="quiza">
                     {{quiza.name}}
                 </option>
             </select>
 
+            <label for="age">Maximaler Punktestand</label>
+            <input  [(ngModel)]="newQuiz.maxScore" type="number" min="0" max="99" name="age">
+
             <label for="age">Altersempfehlung</label>
             <input  [(ngModel)]="newQuiz.age" type="number" min="0" max="99" name="age">
 
-            <input type="checkbox" [(ngModel)]="private" /> Privates Quiz!
+            <input type="checkbox" (click)="change()" /> Privates Quiz!
 
             <button type="button" (click)="addQuiz()">Weiter</button> 
             

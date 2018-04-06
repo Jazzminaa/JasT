@@ -74,7 +74,6 @@ export class PlayclozeComponent implements  OnInit{
 
     onCloseHandled(){
         this.display='none';
-        console.log(this.score.getJson());
         this.saveScore();
         this.router.navigateByUrl('/home')
     }
@@ -109,7 +108,7 @@ export class PlayclozeComponent implements  OnInit{
                   this.numOfPerson= Number(this.message.split(':')[1]);
                   this.message ="add";
             }
-            else if(this.message !="add"){
+            else if(this.message !="add" &&!this.message.includes('reihe')){
               this.data =this.message.split(';');
               if(this.data[1]!= undefined)
               {

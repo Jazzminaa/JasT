@@ -17,20 +17,30 @@ export class AddQuizComponent implements OnInit {
     errorText: string;
     categories: Category[] = [];
     quizTypes: QuizType[] = [];
-    user: User[] = [];
     hide: Boolean = true;
     private:boolean = true;
     
     constructor(private router: Router, private dataService: DataService)  {
-        this.getUsers();
         if(dataService.user != null){
           this.hide = false;
           this.newQuiz.user = dataService.user;
           this.newQuiz.id = 0;
+          this.newQuiz.priority = 0;
+          let day= new Date();
+          this.newQuiz.maxScore = 25;
         }
 
     }
-
+    change()
+    {
+        if(this.newQuiz.priority == 0)
+        {
+            this.newQuiz.priority = 1;
+        }
+        else{
+            this.newQuiz.priority = 0;
+        }
+    }
     ngOnInit() { 
         this.getAllCategories();
         this.getAllQuizTypes();
@@ -48,14 +58,8 @@ export class AddQuizComponent implements OnInit {
       })
     }
 
-    getUsers(){
-        this.dataService.getUsers().subscribe(data =>{
-        this.user = data;
-    })
-    }
-
     addQuiz() {
-      if (this.newQuiz.name == "" || this.newQuiz.category == null || this.newQuiz.quiztype == null || this.newQuiz.age == null || this.newQuiz.description == "")
+      if (this.newQuiz.name == "" || this.newQuiz.category == null || this.newQuiz.quiztype == null || this.newQuiz.age == null || this.newQuiz.description == "" || this.newQuiz.maxScore == 0)
           {this.errorText = "Es müssen alle Daten eingegeben werden!";
           console.log("Es müssen alle Daten eingegeben werden!")}
       else {

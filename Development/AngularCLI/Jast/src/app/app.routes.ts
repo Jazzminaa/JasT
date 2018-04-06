@@ -64,7 +64,7 @@ const appRoutes: Routes = [
     {path: 'play/:id/:qid', component: ChatComponent},
     {path: 'chat/:catid/:ageid', component: ChatComponent},
     {path: 'profile', component: ProfileComponent},
-    {path:'add-multiplay',component:AddMultiplayComponent},
+    {path:'add-multiplay/:id',component:AddMultiplayComponent},
     {path: 'cloze/:id', component: ClozeComponent},
     {path: 'clozeinput', component: ClozeinputComponent},
     {path: 'switch/:qid/:id', component: SwitchComponent},

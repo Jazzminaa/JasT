@@ -84,6 +84,8 @@ export class AddQuizContentComponent implements OnInit{
 
   saveContent()
   {
+      if(this.canSave)
+      {
         this.getMaximumPoints();
         this.newContents.forEach((content, index) =>{
           content.quiz = this.quiz;
@@ -96,6 +98,10 @@ export class AddQuizContentComponent implements OnInit{
         })
       });
       this.router.navigateByUrl("/home");
+    }
+    else{
+        this.getQuiz();
+    }
   }
 
 }

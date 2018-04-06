@@ -129,9 +129,27 @@ export class PlayMemoryComponent implements OnInit {
             //alert("Speichern fehlgeschlagen: " + error);
         });
     }
+    checkFinsh()
+    {
+        let a = true;
+
+        this.isTrue.forEach(element => {
+            element.forEach(b => {
+                if(!b)
+                {
+                    a=false;
+                }
+            });
+        });
+
+        if(a)
+        {
+            this.openModal();
+        }
+    }
   
   ngDoCheck(): void {
-      console.log("r: "+this.reihe)
+    this.checkFinsh();
     if(this.contents  != undefined)
     {
         if(this.message != undefined)
@@ -182,10 +200,20 @@ export class PlayMemoryComponent implements OnInit {
                 this.myturn();
                 if(this.message.includes('open'))
                 {
-
+                    let r1 :number = Number(this.data[1].match(/\d+/)[0]);
+                        let c1 :number = Number(this.data[2].match(/\d+/)[0]);
+                        let r2 :number = Number(this.data[3].match(/\d+/)[0]);
+                        let c2 :number = Number(this.data[4].match(/\d+/)[0]);
+                        this.enableCard[r1][c1] = true;
+                        this.enableCard[r2][c2] = true;
                 }
                 else if(this.message.includes('close')){
-                    
+                    let r1 :number = Number(this.data[1].match(/\d+/)[0]);
+                        let c1 :number = Number(this.data[2].match(/\d+/)[0]);
+                        let r2 :number = Number(this.data[3].match(/\d+/)[0]);
+                        let c2 :number = Number(this.data[4].match(/\d+/)[0]);
+                        this.enableCard[r1][c1] = false;
+                        this.enableCard[r2][c2] = false;
                 }
                 else{
                             

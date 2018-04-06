@@ -46,7 +46,7 @@
                         <a routerLink="/quiztypeinfo" routerLinkActive="active"> {{quiz.quiztype.name}}</a>
                         </td>
                         <td>
-                            <button id="buttonDesign"><a routerLink="/add-multiplay" routerLinkActive="active">+</a></button>
+                            <button id="buttonDesign"><a routerLink="/add-multiplay/{{quiz.id}}" routerLinkActive="active">+</a></button>
                         </td>
                         <td>
                             <button class="glyphicon glyphicon-share" routerLink="/share/{{quiz.id}}" routerLinkActive="active"></button>
