@@ -108,7 +108,8 @@ export class PlayMultichoiceComponent implements OnInit {
   ngDoCheck(): void {
     if(this.numOfPerson <=1)
     {
-        //this.openModal(1);
+        //
+        this.openModal(1);
     }
     else{
         this.onCloseHandled();
