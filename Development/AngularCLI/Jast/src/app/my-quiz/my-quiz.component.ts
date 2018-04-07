@@ -48,7 +48,9 @@ export class MyQuizComponent implements OnInit {
   
       }
        ngOnInit() {
-          this.route.params.subscribe((params: Params) => {this.testId= params['id'] ; this.age = params['age']
+          this.route.params.subscribe((params: Params) => {
+              this.testId= params['id'] ; 
+              this.age = params['age']
           });
           this.GetCat();
        }

@@ -20,25 +20,27 @@ export class SwitchComponent implements OnInit {
             this.user = dataService.user;
             console.log("hab einen User");
         }
-        
-        this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.quizid=+p);
-        
-        this.route.params.switchMap((params: Params) => params['qid']).subscribe(p=>this.quiztypeid=+p);
-        switch(this.quiztypeid)
+
+        this.route.params.subscribe((params: Params) => {
+            this.quizid= params['id'] ; 
+            this.quiztypeid = params['qid']
+        });
+
+        switch(this.quiztypeid.toString())
         {
-            case 1:
+            case "1":
             router.navigateByUrl("/qanda/"+this.quizid);
             break;
-            case 2:
+            case "2":
             router.navigateByUrl("/cloze/"+this.quizid);
             break;
-            case 3:
+            case "3":
             router.navigateByUrl("/rightorwrong/"+this.quizid);
             break;
-            case 4:
+            case "4":
             router.navigateByUrl("/multichoice/"+this.quizid);
             break;
-            case 5:
+            case "5":
             router.navigateByUrl("/memory/"+this.quizid);
             break;
         }

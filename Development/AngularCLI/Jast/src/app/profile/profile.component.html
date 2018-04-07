@@ -30,7 +30,7 @@
 
             <input [hidden]="ReadOnly" type="password" [(ngModel)]="passw" name="pass">
 
-            <button [hidden]="ReadOnly"  (click)="changenewP = false">Passwort ändern</button>
+            <button [hidden]="ReadOnly"  (click)="changenewP = !changenewP">Passwort ändern</button>
 
             <button [hidden]="!ReadOnly"  (click)="edit()">Ändern</button>
             <button [hidden]="ReadOnly"  (click)="save()">Speichern</button>

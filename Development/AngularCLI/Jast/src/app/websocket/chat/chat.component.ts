@@ -36,7 +36,7 @@ export class ChatComponent implements OnInit{
     });
     if(this.catid == 0 || this.age == 0)
     {
-        this.dataService.error = "Suchen Sie zuerst in der Menüzeile einen Chat aus, mithilfe von den Filtern! Katergorie und Alter dürfen nicht 0 sein;";
+        alert("Suchen Sie zuerst in der Menüzeile einen Chat aus, mithilfe von den Filtern! Katergorie und Alter müssen ausgewählt werden")
         this.router.navigateByUrl("/home");
     }
     if(dataService.user != null)

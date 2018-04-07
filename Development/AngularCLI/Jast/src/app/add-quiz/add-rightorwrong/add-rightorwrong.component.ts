@@ -55,19 +55,6 @@ export class AddRightorwrongComponent implements OnInit {
       this.quiz = data;
       })
   }
-
-  
-
-/*  addContentToList(input1: string, input2:string): void
-  {
-      let content = new Content();
-      content.id = 0;
-      content.input1 = input1;
-      content.input2 = input2;
-      content.quiz = this.quiz;
-      this.newContents.push(content);
-
-  }*/
   addRightContentToList(input1:string):void
   {
       let content = new Content();

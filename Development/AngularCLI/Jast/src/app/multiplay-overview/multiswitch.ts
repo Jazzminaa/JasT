@@ -21,24 +21,27 @@ export class Multiswitch implements OnInit {
         {
             this.user = dataService.user;
         }
-        this.route.params.switchMap((params: Params) => params['id']).subscribe(p=>this.mquizid=+p);
-        this.route.params.switchMap((params: Params) => params['qtid']).subscribe(p=>this.quiztypeid=+p);
-        this.route.params.switchMap((params: Params) => params['qid']).subscribe(p=>this.quizid=+p);
-        switch(this.quiztypeid)
+        this.route.params.subscribe((params: Params) => {
+            
+            this.mquizid= params['id'] ;
+            this.quiztypeid= params['qtid'] ;
+            this.quizid= params['qid'] ;
+      });
+        switch(this.quiztypeid.toString())
         {
-            case 1:
+            case "1":
             router.navigateByUrl("/multiqanda/"+this.mquizid+"/"+this.quizid);
             break;
-            case 2:
+            case "2":
             router.navigateByUrl("/multicloze/"+this.mquizid+"/"+this.quizid);
             break;
-            case 3:
+            case "3":
             router.navigateByUrl("/multirightorwrong/"+this.mquizid+"/"+this.quizid);
             break;
-            case 4:
+            case "4":
             router.navigateByUrl("/multimultichoice/"+this.mquizid+"/"+this.quizid);
             break;
-            case 5:
+            case "5":
             router.navigateByUrl("/multimemory/"+this.mquizid+"/"+this.quizid);
             break;
 

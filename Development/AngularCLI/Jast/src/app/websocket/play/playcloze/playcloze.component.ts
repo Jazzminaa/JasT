@@ -93,7 +93,10 @@ export class PlayclozeComponent implements  OnInit{
     onCloseHandled(){
         this.display='none';
         this.saveScore();
-        this.router.navigateByUrl('/home')
+        if(this.numOfPerson == 1)
+        {
+            this.router.navigateByUrl('/home')
+        }
     }
 
   

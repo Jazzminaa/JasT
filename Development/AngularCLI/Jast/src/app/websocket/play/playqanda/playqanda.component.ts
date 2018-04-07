@@ -87,8 +87,12 @@ export class PlayqandaComponent implements  OnInit{
 
     onCloseHandled(){
         this.display='none';
-        this.saveScore();
-        this.router.navigateByUrl('/home')
+        this.saveScore()
+        if(this.numOfPerson == 1)
+        {
+            this.router.navigateByUrl('/home')
+        }
+        
     }
 
     saveScore()
@@ -102,11 +106,11 @@ export class PlayqandaComponent implements  OnInit{
     }
 
   ngDoCheck(): void {
-    if(this.numOfPerson <=1)
+    if(this.numOfPerson <= 1)
     {
         this.openModal(1);
     }
-    else{
+    else if (this.numOfPerson >= 2){
         this.onCloseHandled();
     }
       if(this.contents  != undefined && !this.isfinish)
