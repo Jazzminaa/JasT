@@ -55,7 +55,7 @@ export class ClozeComponent implements OnInit {
         this.check = true;
         this.getQuizFromContent();
         this.score = new Score();
-        this.score.id = 1;
+        this.score.id = 0;
         this.score.points = this.finalPoints;
         
         

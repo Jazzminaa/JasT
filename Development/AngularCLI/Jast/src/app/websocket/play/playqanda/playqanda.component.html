@@ -1,4 +1,5 @@
 <h1>Willkommen zur Lerngruppe: {{multiplay?.name}}</h1>
+<button id="finish" (click)="openModal(0)">Beenden</button>
 <div id="game">
     <h2 id="header">{{contents[0].quiz.name}}</h2>
     <div id="question" *ngFor="let content of contents; let i=index">
@@ -12,7 +13,7 @@
     <div id="chatHeader1">Anzahl der Spieler {{numOfPerson}}</div>
     <div id="chatHeader1">Score {{score.points}}</div>
     <hr class="one">
-    <div id="chatHeader">{{header}}</div>
+    <div id="chatHeader">Chat</div>
     <div>
         <table class="table">
                 <tr *ngFor="let me of messages">
@@ -45,6 +46,5 @@
   </div>
   
   </body>
-
 
 <router-outlet></router-outlet>

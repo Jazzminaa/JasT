@@ -15,6 +15,12 @@
   margin-top:20px;
   margin-left: 10px;
 }
+
+#finish{
+  float: right;
+  margin-right: 65px;
+  
+}
 #game{
     width: 900px;
     height: 560px;

@@ -8,7 +8,7 @@
       (wrongGuess)="wrongGuess()" (givenUp)="givenUp(i)"></qandainput> 
 </div>
 
-<button type="button" class="formatButton" (click)="openModal();saveScore();">Speichern</button>
+<button type="button" class="formatButton" (click)="openModal();">Speichern</button>
 
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
 <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
@@ -22,7 +22,7 @@
         <p>You scored {{getPoints()}} points!</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="onCloseHandled()" routerLink="/home" routerLinkActive="active">Close</button>
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
       </div>
     </div>
   </div>

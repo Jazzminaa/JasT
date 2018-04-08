@@ -32,6 +32,8 @@ export class PlayMemoryComponent implements OnInit {
   row1:string[]=[];
   row2:string[]=[];
   row3:string[]=[];
+  row4:string[]=[];
+  row5:string[]=[];
   rowContents: string[][] =[[null],[null],[null],[null],[null],[null],[null],[null],[null]];
   rowOfCard1:number;
   colOfCard1:number;
@@ -363,10 +365,14 @@ send(){
   {
       if(this.contentsmixed == undefined || this.contentsmixed.length == 0)
       {
-            for(var i= 0; i < 9; i++)
+            for(var i= 0; i < 15; i++)
             {
-                this.contentsmixed.push(this.contents[i].input1);
-                this.contentsmixed.push(this.contents[i].input2);
+                if(this.contents[i] != undefined)
+                {
+                    this.contentsmixed.push(this.contents[i].input1);
+                    this.contentsmixed.push(this.contents[i].input2);
+
+                }
             }
             this.shuffle(this.contentsmixed);
             this.socket.next("memory;"+this.contentsmixed.toString());
@@ -381,15 +387,38 @@ send(){
     this.row1 =[];
     this.row2 =[];
     this.row3 =[];
-    for (var i=0; i< this.contentsmixed.length; i+=3) {
-        this.row1.push(this.contentsmixed[i]);
-        this.row2.push(this.contentsmixed[i+1]);
-        this.row3.push(this.contentsmixed[i+2]);
+    this.row4 =[];
+    this.row5 =[];
+    for (var i=0; i< this.contentsmixed.length; i+=5) {
+        
+        if(this.contentsmixed[i] != undefined)
+        {
+            this.row1.push(this.contentsmixed[i]);
+        }
+        if(this.contentsmixed[i+1] != undefined)
+        {
+            
+            this.row2.push(this.contentsmixed[i+1]);
+        }
+        if(this.contentsmixed[i+2] != undefined)
+        {
+            this.row3.push(this.contentsmixed[i+2]);
+        }
+        if(this.contentsmixed[i+3] != undefined)
+        {
+            this.row4.push(this.contentsmixed[i+3]);
+        }
+        if(this.contentsmixed[i+4] != undefined)
+        {
+            this.row5.push(this.contentsmixed[i+4]);
+        }
     }
     for (var i=0; i< this.row1.length; i++) {
         this.rowContents[0][i] = this.row1[i];
         this.rowContents[1][i] = this.row2[i];
         this.rowContents[2][i] = this.row3[i];
+        this.rowContents[3][i] = this.row4[i];
+        this.rowContents[4][i] = this.row5[i];
     }
   }
                     

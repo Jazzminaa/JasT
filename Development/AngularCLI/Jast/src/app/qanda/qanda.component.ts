@@ -32,11 +32,14 @@ export class QandaComponent  implements OnInit {
         selCategory: Category;
 
         openModal(){
+            this.saveScore();
             this.display='block';
         }
 
         onCloseHandled(){
+            
             this.display='none';
+            this.router.navigateByUrl('/home');
         }
 
         getPoints() {
@@ -52,7 +55,6 @@ export class QandaComponent  implements OnInit {
             this.score.user = this.user;
             this.score.quiz = this.selQuiz;
             this.score.points = this.finalPoints;
-            this.score.quiz = this.selQuiz;
             if(this.score.quiz == undefined)
             {
                 this.score.quiz = this.contents[1].quiz;
@@ -68,7 +70,8 @@ export class QandaComponent  implements OnInit {
                     });
             }
             
-            this.display='none';
+            this.display='block';
+            
         }
 
         ngOnInit(): void {

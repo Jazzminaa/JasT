@@ -1,4 +1,5 @@
 <h1>Willkommen zur Lerngruppe: {{multiplay?.name}}</h1>
+<button id="finish" (click)="openModal(0)">Beenden</button>
 <div id="game">
     <h2 id="header">{{contents[0]?.quiz.name}}</h2>
     <div id="question" *ngFor="let content of contents; let i=index">
@@ -32,7 +33,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">{{header}}</h4>
+              <h4 class="modal-title">Chat</h4>
             </div>
             <div class="modal-body">
               <p>{{con}}</p>

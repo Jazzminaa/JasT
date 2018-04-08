@@ -1,5 +1,3 @@
-import { Score } from './../../../model/score.model';
-import { Message } from './../../../model/message.model';
 import { Component, OnInit, AfterViewInit, Input, PipeTransform, Pipe, DoCheck } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs/Rx';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -8,12 +6,15 @@ import { Multiplay } from '../../../model/multiplay.model';
 import { User } from '../../../model/user.model';
 import { DataService } from '../../../shared/data.service';
 import { WebsocketService } from '../../websocket-service';
+import { Score } from '../../../model/score.model';
+import { Message } from 'app/model/message.model';
+
 
 @Component({
-  selector: 'app-play-multichoice',
-  templateUrl: './play-multichoice.component.html',
-  styleUrls: ['./play-multichoice.component.css']
-})
+    selector: 'app-play-multichoice',
+    templateUrl: './play-multichoice.component.html',
+    styleUrls: ['./play-multichoice.component.css']
+  })
 export class PlayMultichoiceComponent implements OnInit {
     private data: string[];
 
@@ -29,14 +30,14 @@ export class PlayMultichoiceComponent implements OnInit {
     theUser:User;
     messages:Message[]=[];
     private sendMessage: string;
-    checkAnswer:boolean[]=[];
     
     isfinish: boolean = false;
     display: string;
-
+    
     header = "Dein Punktestand";
     con = "Du hast {{score?.points}} Punkte erreicht!";
     buttonText = "Speichern";
+
   constructor(private router: Router,private dataService: DataService, websocketService: WebsocketService,private route: ActivatedRoute){
       
       if(dataService.user != null)
@@ -48,7 +49,8 @@ export class PlayMultichoiceComponent implements OnInit {
                 this.multiplayId = params['id'];
             }
             );
-
+            this.theUser.multiplay = this.multiplayId;
+            this.dataService.updateUser(this.theUser);
             this.score = new Score();
             this.score.points=0;
             this.score.id = 0;
@@ -59,7 +61,6 @@ export class PlayMultichoiceComponent implements OnInit {
           this.router.navigateByUrl("/login");
       }
     
-      
 
       if(this.multiplayId != undefined)
       {
@@ -70,28 +71,31 @@ export class PlayMultichoiceComponent implements OnInit {
 
   }
 
-    openModal(i:number){
-        this.display='block';
-        this.score.quiz = this.contents[0].quiz;
-        
-        
-        if(i= 0)
-        {
-            this.header = "Dein Punktestand";
-            this.con = "Du hast "+this.score.points+"Punkte erreicht!";
-            this.buttonText = "Speichern";
-        }
-        else{
-            this.header ="Warten";
-            this.con = "Warte auf einen weitern Spieler!";
-            this.buttonText = "Schließen";
-        }
+  openModal(i:number){
+    this.display='block';
+    this.score.quiz = this.contents[0].quiz;
+
+    
+    if(i== 0)
+    {
+        this.header = "Dein Punktestand";
+        this.con = "Du hast "+this.score.points+"Punkte erreicht!";
+        this.buttonText = "Speichern";
+        this.numOfPerson = 0;
+        this.theUser.multiplay = 0;
+        this.dataService.updateUser(this.theUser);
     }
+    else{
+        this.header ="Warten";
+        this.con = "Warte auf einen weitern Spieler!";
+        this.buttonText = "Schließen";
+    }
+}
 
     onCloseHandled(){
         this.display='none';
         this.saveScore();
-        if(this.numOfPerson == 1)
+        if(this.numOfPerson <= 1)
         {
             this.router.navigateByUrl('/home')
         }
@@ -100,24 +104,21 @@ export class PlayMultichoiceComponent implements OnInit {
     saveScore()
     {
     
-        this.dataService.insertScore(this.score).subscribe(data => {
-        },
-        error => {
-            //alert("Speichern fehlgeschlagen: " + error);
-        });
+    this.dataService.insertScore(this.score).subscribe(data => {
+    },
+    error => {
+        //alert("Speichern fehlgeschlagen: " + error);
+    });
     }
- 
-
   ngDoCheck(): void {
     if(this.numOfPerson <=1)
     {
-        //
-        this.openModal(1);
+       this.openModal(1);
     }
     else{
         this.onCloseHandled();
     }
-    if(this.contents  != undefined && !this.isfinish)
+    if(this.contents  != undefined)
     {
         if(this.message != undefined)
         {
@@ -149,14 +150,15 @@ export class PlayMultichoiceComponent implements OnInit {
               this.data =this.message.split(';');
               if(this.data[1]!= undefined)
               {
+                  
                   this.data[1] = this.data[1].substring(0, this.data[1].length - 1);
               }
               let num:number = Number(this.data[0].match(/\d+/)[0]);
-              console.log(num);
               if(this.contents[ Number(num)] != undefined)
               {
                   
                   this.contents[Number(num)].geloestVon ="Gelöst von: "+ this.data[1];
+                  
                   if(this.contents.length != 0)
                   {
                     this.isfinish = true;
@@ -218,26 +220,12 @@ send(){
       (data=>{this.contents=data;},
       error=>{alert("Laden der Fragen fehlgeschlagen: "+error)})
 
-      if(this.contents.length !=0)
-      {
-          this.contents.forEach(element => {
-              this.checkAnswer[element.id] = false;
-          });
-      }
-
   }
 
   correctGuess(i:number)
   {
-      console.log(i)
       this.socket.next(i+";"+this.dataService.user.username);
       this.score.points += 2;
   }
-
-  check(i:number)
-  {
-      this.checkAnswer[i]= true;
-  }
-  
 
 }

@@ -36,6 +36,7 @@ export class AddMultiplayComponent implements OnInit {
         this.user = dataService.user;
         this.newMultiplay.id = 0;
         this.canFil = true;
+        this.newMultiplay.user = this.user;
         this.route.params.subscribe(
           (params: Params) => {
               this.qid = params['id'];

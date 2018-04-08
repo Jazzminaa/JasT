@@ -48,6 +48,8 @@ export class PlayqandaComponent implements  OnInit{
                 this.multiplayId = params['id'];
             }
             );
+        this.theUser.multiplay = this.multiplayId;
+        this.dataService.updateUser(this.theUser);
         this.score = new Score();
         this.score.points=0;
         this.score.id = 0;
@@ -72,11 +74,14 @@ export class PlayqandaComponent implements  OnInit{
     this.score.quiz = this.contents[0].quiz;
 
     
-    if(i= 0)
+    if(i== 0)
     {
         this.header = "Dein Punktestand";
         this.con = "Du hast "+this.score.points+"Punkte erreicht!";
         this.buttonText = "Speichern";
+        this.theUser.multiplay = 0;
+        this.dataService.updateUser(this.theUser);
+        this.numOfPerson = 0;
     }
     else{
         this.header ="Warten";
@@ -88,7 +93,7 @@ export class PlayqandaComponent implements  OnInit{
     onCloseHandled(){
         this.display='none';
         this.saveScore()
-        if(this.numOfPerson == 1)
+        if(this.numOfPerson <= 1)
         {
             this.router.navigateByUrl('/home')
         }
